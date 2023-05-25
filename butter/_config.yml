@@ -14,7 +14,8 @@ language: zh-CN
 timezone: ''
 
 # URL
-## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+# http://yoursite.com
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project' https://github.com/ilovchara/ilovchara.github.io.git
 url: https://github.com/ilovchara/ilovchara.github.io.git
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -80,7 +81,7 @@ prismjs:
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: '/butter'
+  path: ''
   per_page: 10
   order_by: -date
 
