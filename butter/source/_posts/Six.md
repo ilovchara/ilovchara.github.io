@@ -2,6 +2,7 @@
 title: six
 date: 2023-04-28 09:09:57
 tags: 算法
+categories: 算法
 ---
 
 ## 动态规划

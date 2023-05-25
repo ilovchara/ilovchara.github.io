@@ -5,6 +5,8 @@ tags: 算法
 #描述
 description: "涉及到一些基础算法思想"
 typora-root-url: Two
+
+categories: 算法
 ---
 
 ## 第二章 - 对数据的简单操作

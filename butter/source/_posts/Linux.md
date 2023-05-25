@@ -347,10 +347,6 @@ halt 关闭系统，等同于shutdown –h now 和 poweroff
 
 ![显示目录](image-20230503104833277.png)
 
-
-
-
-
 ### ls (列出目录)
 
 在Linux系统当中， ls 命令可能是最常被运行的。
