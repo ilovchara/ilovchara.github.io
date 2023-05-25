@@ -1,0 +1,29 @@
+# Menu 目錄 - 就是最上方的目录 - 这些按钮可以自行更改
+menu:
+  首页: / || fas fa-home
+  时间轴: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  # 可以隐藏子目录：子目錄裏添加 hide 
+  清单||fas fa-list||hide: 
+    音乐: /playlist/ || fas fa-music
+    影片: /movies/ || fas fa-video
+  友链: /link/ || fas fa-link
+  关于: /about/ || fas fa-heart
+
+# 播放音乐软件
+aplayer:
+  meting: true
+
+# Inject
+inject:
+  head: 
+     - <link rel="stylesheet" href="/static/css/custom.css">
+      # - <link rel="stylesheet" href="/self/vscode_dark.css">
+  bottom:
+    # 这个是下面的音乐播放器
+    #  - <script src="xxxx"></script>
+    #  - <div class="aplayer no-destroy" data-id="60198" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div>
+ 
+
+
