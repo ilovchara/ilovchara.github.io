@@ -46,11 +46,11 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: \img\favicon.png
+favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: \img\Vigus.jpg
+  img: /picture/img/Vigus.jpg
   # 头像转圈
   effect: false
 
@@ -58,17 +58,17 @@ avatar:
 disable_top_img: false
 
 # 首页的横幅图片
-index_img: \img\游乐场.jpg
+index_img: /picture/img/游乐场.jpg
 
 # 默认图片 
-default_top_img: \img\市2.jpg
+default_top_img: /picture/img/市2.jpg
 
 # 归档页面的图片 - 就是目录 - 你写文章的记录
-archive_img: \picture\img\miku.jpg
+archive_img: /picture/img/miku.jpg
 
 # note: tag page, not tags page (子標籤頁面的 top_img)
 # tag 子頁面 的 默認 top_img
-tag_img: \img\Girl of the Deep.jpg
+tag_img: /picture/img/Girl of the Deep.jpg
 
 
 # format:
@@ -93,7 +93,7 @@ cover:
   # left/right/both
   position: both
   # (當沒有設置cover時，默認的封面顯示)- 输入图片地址就行
-  default_cover: \img\Girl of the Deep.jpg
+  default_cover: /picture/img/Girl of the Deep.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
