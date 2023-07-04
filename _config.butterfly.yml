@@ -1,3 +1,5 @@
+# 魔改主页面
+
 # Menu 目錄 - 就是最上方的目录 - 这些按钮可以自行更改
 menu:
   首页: / || fas fa-home
@@ -9,21 +11,42 @@ menu:
     音乐: /playlist/ || fas fa-music
     影片: /movies/ || fas fa-video
   友链: /link/ || fas fa-link
+  # 这里有bug
   关于: /about/ || fas fa-heart
 
 # 播放音乐软件
 aplayer:
   meting: true
 
-# Inject
+# Inject - 
 inject:
+# css放在head部分
   head: 
-     - <link rel="stylesheet" href="/static/css/custom.css">
-      # - <link rel="stylesheet" href="/self/vscode_dark.css">
+    
+    #代码高亮
+    - <link rel="stylesheet" href="/self/Kimbiedark.css">
+
+    # 自定义css - 位置在css chara1中
+    # 自定义鼠标样式 - css
+    - <link rel="stylesheet" href="/css/chara1/demo1.css">
+
+    # 自定义友联样式
+    - <link rel="stylesheet" href="/css/chara1/flink.css">
+    
+# js放在bottom处
   bottom:
     # 这个是下面的音乐播放器
     #  - <script src="xxxx"></script>
     #  - <div class="aplayer no-destroy" data-id="60198" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div>
- 
 
+    # 引入jquery - js素材
+    - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> #一定要放在所有引入的js前面！！！
+    # 自定义js
+    #- <script data - pjax type = "text/javascript" src = "/js/{demo}.js" ></script >
+    
+    # 自定义鼠标样式 - js
+    #- <link rel="stylesheet" href="/js/chara/demo.js">
+    - <script data-pjax type="text/javascript" src="/js/chara/demo.js"></script>
 
+    #自定义友联样式 - js
+    - <script data - pjax type = "text/javascript" src = "/js/chara/flink.js" ></script >

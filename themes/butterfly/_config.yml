@@ -346,7 +346,8 @@ readmode: true
 
 # dark mode - 黑夜模式切换
 darkmode:
-  enable: true
+# 这里有bug - 这里是我代码框框没设置好颜色
+  enable: false
   # Toggle Button to switch dark/light mode
   button: true
   # Switch dark/light mode automatically (自動切換 dark mode和 light mode)
@@ -776,8 +777,8 @@ beautify:
 font:
   global-font-size:
   code-font-size:
-  font-family: "Segoe UI"
-  code-font-family: "PingFang SC"
+  font-family: -apple-system,MONACO, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
+  code-font-family: consolas, Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字-主网
