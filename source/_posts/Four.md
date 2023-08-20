@@ -3,6 +3,8 @@ title: Four
 date: 2023-04-28 09:05:38
 tags: 算法
 categories: 算法
+typora-root-url: Four
+typora-copy-images-to: Four
 ---
 
 ## 第四章 - 图论的拓展
@@ -12,17 +14,17 @@ categories: 算法
 2.图论算法
 ```
 
-​  图是用点和边组成的一种数据类型，点与点之间用边来联系在一起。（图通常用于解决，最短路径问题、最小生成树问题、最大流问题）有关于图的问题，大概就是最短路，最小生成树，贪心价值最大，还有图的两种遍历。有关于图的数学知识我们尚不讨论，但是关于图的遍历我们需要了解。目前，常规的遍历方法有两种，1.是竖向的dfs递归遍历 2.是横向的bfs递归遍历。我们现在先要求掌握两种遍历，然后才开始下一阶段的学习。
+  图是用点和边组成的一种数据类型，点与点之间用边来联系在一起。（图通常用于解决，最短路径问题、最小生成树问题、最大流问题）有关于图的问题，大概就是最短路，最小生成树，贪心价值最大，还有图的两种遍历。有关于图的数学知识我们尚不讨论，但是关于图的遍历我们需要了解。目前，常规的遍历方法有两种，1.是竖向的dfs递归遍历 2.是横向的bfs递归遍历。我们现在先要求掌握两种遍历，然后才开始下一阶段的学习。
 
 ### 二叉树
 
-​  要了解上述两个遍历模型，就要了解二叉树。二叉树是图的一种特殊造型，二叉树有两种主要形式：满二叉树和完全二叉树.满二叉树的深度和结点是有关系的，一个深度为k的满二叉树，它的节点数是2^k - 1（每一层是两个，减去我们的头结点就ok了）
+  要了解上述两个遍历模型，就要了解二叉树。二叉树是图的一种特殊造型，二叉树有两种主要形式：满二叉树和完全二叉树.满二叉树的深度和结点是有关系的，一个深度为k的满二叉树，它的节点数是2^k - 1（每一层是两个，减去我们的头结点就ok了）
 
 #### 1.完全二叉树
 
-​  完全⼆叉树的定义如下：在完全⼆叉树中，除了最底层节点可能没填满外，其余每层节点数 都达到最⼤值，并且最下⾯⼀层的节点都集中在该层最左边的若⼲位置。若最底层为第 h层，则该层包含 1~ 2^h -1 个节点。（就是叶子结点左边可以不满，其他必须满是这个意思是吗）。
+  完全⼆叉树的定义如下：在完全⼆叉树中，除了最底层节点可能没填满外，其余每层节点数 都达到最⼤值，并且最下⾯⼀层的节点都集中在该层最左边的若⼲位置。若最底层为第 h层，则该层包含 1~ 2^h -1 个节点。（就是叶子结点左边可以不满，其他必须满是这个意思是吗）。
 
-​        ![image-20230216131827500](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230216131827500.png)
+​        ![image-20230216131827500](image-20230216131827500-16923746582101.png)
 
 ```c++
 //二叉搜索树（建立在完全二叉树的基础之上吗）
@@ -32,17 +34,17 @@ categories: 算法
  -它的左、右⼦树也分别为⼆叉排序树
 ```
 
-![image-20230216133015856](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230216133015856.png)
+![image-20230216133015856](/image-20230216133015856-16923744832954.png)
 
 #### 2.平衡二叉搜索树
 
 平衡⼆叉搜索树：又被称为AVL（Adelson-Velsky and Landis）树，且具有以下性质：它是 ⼀棵空树或它的左右两个⼦树的⾼度差的绝对值不超过1，并且左右两个⼦树都是⼀棵平衡⼆叉树。（高度差 注意是高度差！！！！！）
 
-![image-20230216133247245](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230216133247245.png)
+![image-20230216133247245](/image-20230216133247245-16923744811933.png)
 
 #### 3.用数组实现二叉树
 
-![image-20230216134441813](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230216134441813.png)
+![image-20230216134441813](image-20230216134441813-16923744802222.png)
 
 ```c++
 ⽤数组来存储⼆叉树如何遍历的呢？ 如果⽗节点的数组下表是i，那么它的左孩⼦就是i * 2 + 1，右孩⼦就是 i * 2 + 2。 
@@ -120,15 +122,15 @@ void traversal(TreeNode* cur, vector<int>& vec) {
 }
 ```
 
-![image-20230216135315873](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230216135315873.png)
+![image-20230216135315873](/image-20230216135315873.png)
 
-![image-20230216135326265](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230216135326265.png)
+![image-20230216135326265](/image-20230216135326265.png)
 
 ### 深度优先遍历
 
 #### 0.前置知识 图的存储
 
-![image-20230305080127311](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230305080127311.png)
+![image-20230305080127311](/image-20230305080127311.png)
 
 ##### 领接矩阵
 
@@ -163,7 +165,7 @@ int main()
 
 ##### 边集数组
 
-![image-20230305080154969](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230305080154969.png)
+![image-20230305080154969](/image-20230305080154969.png)
 
 ```c++
 //边集数组
@@ -199,7 +201,7 @@ int main()
 
 ##### 领接表（重点）
 
-![image-20230302110544398](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302110544398.png)
+![image-20230302110544398](/image-20230302110544398.png)
 
 ```c++
 //领接表（将图用dfs序输出）
@@ -239,7 +241,7 @@ int main()
 
 ##### 链式领接表
 
-![image-20230302111110291](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302111110291.png)
+![image-20230302111110291](/image-20230302111110291.png)
 
 ```c++
 //链式领接表
@@ -287,7 +289,7 @@ int main()
 
 ##### 链式前向星（重点）
 
-![image-20230302112003101](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302112003101.png)
+![image-20230302112003101](/image-20230302112003101.png)
 
 ```c++
 //链式前向星 - 用边集数组和领接表结合成的 - （还是不理解）
@@ -360,13 +362,13 @@ e[5] = {1,0,3}，表示从3到1的边的信息，其中ne=3表示下一条边的
 这样就完成了输入数据和构建链式前向星存储结构。你明白了吗？
 ```
 
-![image-20230302112236202](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302112236202.png)
+![image-20230302112236202](/image-20230302112236202.png)
 
 #### DFS
 
 dfs算法是一种深度优先搜索算法，它的特点是沿着树的深度遍历树的节点，尽可能深的搜索树的分支。它可以用来解决许多不同类型的问题，如寻找最短路径、搜索树、图等。dfs又被称之为递归，算是一种用暴力方法求解全部点的连通性。这种方法使用于树（树是图的一种，它具有没有环的性质），下面我们用一种简单的二叉树的图进行讨论。
 
-![image-20230216151302883](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230216151302883.png)
+![image-20230216151302883](/image-20230216151302883.png)
 
 ##### 1.dfs过程的实现
 
@@ -487,9 +489,9 @@ void dfs(int u,int fa)
 //如果一个点的起始时间和终结时间被另一个点包括，这个点肯定是另一个点的子节点。（算导里称之为括号化定理）
 ```
 
-![img](https://images2017.cnblogs.com/blog/1188068/201710/1188068-20171027104122883-1380446385.png)
+![img](/1188068-20171027104122883-1380446385.png)
 
-![image-20230301212454581](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230301212454581.png)
+![image-20230301212454581](/image-20230301212454581.png)
 
 ```c++
 //代码 
@@ -666,11 +668,11 @@ int main() {
 
 ##### 1.bfs算法模版
 
-![image-20230216163555284](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230216163555284.png)
+![image-20230216163555284](/image-20230216163555284.png)
 
-![image-20230310225256235](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230310225256235.png)
+![image-20230310225256235](/image-20230310225256235.png)
 
-![image-20230310225331114](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230310225331114.png)
+![image-20230310225331114](/image-20230310225331114.png)
 
 ```c++
 //代码模版
@@ -701,7 +703,7 @@ void bfs()
 
 ##### 2. bfs序列（树与图的遍历）
 
-![image-20230310225353381](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230310225353381.png)
+![image-20230310225353381](/image-20230310225353381.png)
 
 ```c++
 //bfs搜索树
@@ -726,17 +728,17 @@ void bfs(){
 
 ```
 
-![image-20230310225411526](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230310225411526.png)
+![image-20230310225411526](/image-20230310225411526.png)
 
 ### 拓扑排序
 
-![image-20230302193314874](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302193314874.png)
+![image-20230302193314874](/image-20230302193314874.png)
 
-![image-20230302195721755](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302195721755.png)
+![image-20230302195721755](/image-20230302195721755.png)
 
-![image-20230302195739338](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302195739338.png)
+![image-20230302195739338](/image-20230302195739338.png)
 
-![image-20230302195757415](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302195757415.png)
+![image-20230302195757415](/image-20230302195757415.png)
 
 ```c++
 //简单来说就是 按照 前面点最少的顺序排序（也就是入度从小到大）
@@ -811,9 +813,9 @@ bool toposort(){
 
 ### Dijkstra - 最短路算法
 
-![image-20230302202401928](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302202401928.png)
+![image-20230302202401928](/image-20230302202401928.png)
 
-![image-20230302204100958](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302204100958.png)
+![image-20230302204100958](/image-20230302204100958.png)
 
 ```c++
 //简单来说：就是每次选择最短路线进行前进（画最小生成树）
@@ -860,9 +862,9 @@ int main()
 }
 ```
 
-![image-20230302204110774](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302204110774.png)
+![image-20230302204110774](/image-20230302204110774.png)
 
-![image-20230302205328621](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302205328621.png)
+![image-20230302205328621](/image-20230302205328621.png)
 
 ```c++
 //堆优化 - 用优先队列维护别更新点的集合。
@@ -896,7 +898,7 @@ void dijkstra(int s)
 }
 ```
 
-![image-20230302205410861](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302205410861.png)
+![image-20230302205410861](/image-20230302205410861.png)
 
 ```c++
 //就是两个模板 优化的地方就是枚举的时候用队列维护
@@ -926,7 +928,7 @@ void dijkstra(int s)
 }
 ```
 
-![image-20230302205417632](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230302205417632.png)
+![image-20230302205417632](/image-20230302205417632.png)
 
 ### Bellman-Ford  - 处理负权边的最短路算法
 
@@ -941,11 +943,11 @@ void dijkstra(int s)
     单源最短路问题是图论中的一个基本问题，它指的是给定一张有权图，如何求某两点之间的最短路径1。解决这个问题的算法有很多，比如Dijkstra算法和Bellman-Ford算法等。
 ```
 
-![image-20230304212846831](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230304212846831.png)
+![image-20230304212846831](/image-20230304212846831.png)
 
-![image-20230304210834724](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230304210834724.png)
+![image-20230304210834724](/image-20230304210834724.png)
 
-![image-20230304212028882](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230304212028882.png)
+![image-20230304212028882](/image-20230304212028882.png)
 
 ```c++
 //目的是算出图中的最短路（单源最短路：是指在一个图中，给你一个起点（起点固定），然后终点不是固定的，求起点到任意终点的最短路径）
@@ -988,11 +990,11 @@ SPFA 算法是Bellman-Ford算法的队列优化算法的别称，通常用于求
 //其实还不如直接用Bellman-ford
 ```
 
-![image-20230304212218685](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230304212218685.png)
+![image-20230304212218685](/image-20230304212218685.png)
 
-![image-20230304212529352](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230304212529352.png)
+![image-20230304212529352](/image-20230304212529352.png)
 
-![image-20230304212738052](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230304212738052.png)
+![image-20230304212738052](/image-20230304212738052.png)
 
 ```c++
 //堆优化 bellman 算法 - spfa算法
@@ -1025,11 +1027,11 @@ bool spfa(int s){
 
 ### Floyd算法 - 点到点的最短路
 
-![image-20230307160057133](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230307160057133.png)
+![image-20230307160057133](/image-20230307160057133.png)
 
-![image-20230307160205801](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230307160205801.png)
+![image-20230307160205801](/image-20230307160205801.png)
 
-![image-20230307160839691](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230307160839691.png)
+![image-20230307160839691](/image-20230307160839691.png)
 
 ```c++
 // 求图中两点的最短路（用的是动态规划） - （我感觉更像塔桥）
@@ -1044,7 +1046,7 @@ void floyd(){
 }
 ```
 
-![image-20230307161152125](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230307161152125.png)
+![image-20230307161152125](/image-20230307161152125.png)
 
 ```c++
 //路径记录原理不了解
@@ -1077,11 +1079,11 @@ int main(){
 }
 ```
 
-![image-20230307161434260](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230307161434260.png)
+![image-20230307161434260](/image-20230307161434260.png)
 
 ### 最小生成树 - prim算法
 
-![image-20230308192754299](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230308192754299.png)
+![image-20230308192754299](/image-20230308192754299.png)
 
 ```c++
 //没有优化版本 - 基于贪心算法
@@ -1113,7 +1115,7 @@ bool prim(int s){
 
 ```
 
-![image-20230308110618789](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230308110618789.png)
+![image-20230308110618789](/image-20230308110618789.png)
 
 ```c++
 //简单来说： 起初所有的点都是在队列中，每次取出一个点，将这个点的路径进行选择，选择路径最小的。 更新，重复知道队列中没有点即可。
@@ -1148,13 +1150,13 @@ bool prim(int s){
 
 ```
 
-![image-20230308110724388](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230308110724388.png)
+![image-20230308110724388](/image-20230308110724388.png)
 
 ### 最小生成树 - 克鲁斯卡尔算法 - 并查集
 
-![image-20230308125205044](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230308125205044.png)
+![image-20230308125205044](/image-20230308125205044.png)
 
-![image-20230308125225033](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230308125225033.png)
+![image-20230308125225033](/image-20230308125225033.png)
 
 ```c++
 克鲁斯卡尔算法（Kruskal）是一种使用贪婪方法的最小生成树算法。该算法初始将图视为森林，图中的每一个顶点视为一棵单独的树。一棵树只与它的邻接顶点中权值最小且不违反最小生成树属性（不构成环）的树之间建立连边。
@@ -1205,13 +1207,13 @@ int main(){
 
 ### 总结
 
-![image-20230308100226384](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230308100226384.png)
+![image-20230308100226384](/image-20230308100226384.png)
 
 ## 补充
 
 ### 染色法判断二分图*
 
-![image-20230314143817025](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230314143817025.png)
+![image-20230314143817025](/image-20230314143817025.png)
 
 ```c++
 //染色法判断二分图
@@ -1292,9 +1294,9 @@ int main()
 }
 ```
 
-![image-20230314144148781](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230314144148781.png)
+![image-20230314144148781](/image-20230314144148781.png)
 
-![image-20230314144232392](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230314144232392.png)
+![image-20230314144232392](/image-20230314144232392.png)
 
 ```c++
 #include <iostream>
@@ -1349,7 +1351,7 @@ int main() {
 
 #### 匈牙利算法*
 
-![image-20230314205307317](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230314205307317.png)
+![image-20230314205307317](/image-20230314205307317.png)
 
 ```c++
 1.匈牙利算法 - 二分图的最大匹配
@@ -1399,9 +1401,9 @@ int main()
 
 #### 染色法判断二分图
 
-![image-20230315104701595](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315104701595.png)
+![image-20230315104701595](/image-20230315104701595.png)
 
-![image-20230315123714291](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315123714291.png)
+![image-20230315123714291](/image-20230315123714291.png)
 
 ```c++
 //1.二分图的定义
@@ -1455,17 +1457,17 @@ int main()
 }
 ```
 
-![image-20230314142804998](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230314142804998.png)
+![image-20230314142804998](/image-20230314142804998.png)
 
-![image-20230314143439093](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230314143439093.png)
+![image-20230314143439093](/image-20230314143439093.png)
 
-![image-20230314143503237](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230314143503237.png)
+![image-20230314143503237](/image-20230314143503237.png)
 
 ### [最近公共祖先](https://www.bilibili.com/video/BV1A94y12737/?spm_id_from=333.999.0.0&vd_source=731595967596af37618c926a191e7811)
 
 #### 朴素方法
 
-![image-20230319121246852](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230319121246852.png)
+![image-20230319121246852](/image-20230319121246852.png)
 
 ```c++
 #include <iostream>
@@ -1521,7 +1523,7 @@ int main() {
 
 #### Tarjan算法
 
-![image-20230314144355261](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230314144355261.png)
+![image-20230314144355261](/image-20230314144355261.png)
 
 ```c++
 //Tarjan算法是由Robert Tarjan发明的一种图算法。它可以用于解决许多不同类型的问题，包括寻找强连通分量、双连通分量、割点和割边等。其中一种应用是在树中查找节点对的最近公共祖先（LCA）。Tarjan算法通过深度优先搜索和并查集数据结构来高效地解决这个问题。
@@ -1555,9 +1557,9 @@ void tarjan(int u){
 
 #### 树链剖分(不理解)
 
-![image-20230315210121556](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315210121556.png)
+![image-20230315210121556](/image-20230315210121556.png)
 
-![image-20230315210610462](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315210610462.png)
+![image-20230315210610462](/image-20230315210610462.png)
 
 ```c++
 vector<int> e[N];
@@ -1596,11 +1598,11 @@ int lca(int u,int v){
 
 #### 倍增算法（不理解）
 
-![image-20230315210919875](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315210919875.png)
+![image-20230315210919875](/image-20230315210919875.png)
 
-![image-20230315210938761](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315210938761.png)
+![image-20230315210938761](/image-20230315210938761.png)
 
-![image-20230315210958755](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315210958755.png)
+![image-20230315210958755](/image-20230315210958755.png)
 
 ```c++
 
@@ -1608,20 +1610,21 @@ int lca(int u,int v){
 
 #### 总
 
-![image-20230315210622550](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315210622550.png)
+![image-20230315210622550](/image-20230315210622550.png)
 
 ## 补充2
 
 ### 线段树*
 
-![image-20230401100823894](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230401100823894.png)
+![image-20230401100823894](/image-20230401100823894.png)
 
-![image-20230401100840271](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230401100840271.png)
+![image-20230401100840271](/image-20230401100840271.png)
 
-![image-20230401100850209](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230401100850209.png)
+![image-20230401100850209](/image-20230401100850209.png)
 
-![image-20230401100859800](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230401100859800.png)
+![image-20230401100859800](/image-20230401100859800.png)
 
-![image-20230401100913730](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230401100913730.png)
+![image-20230401100913730](/image-20230401100913730.png)
 
 ### 树状数组*
+

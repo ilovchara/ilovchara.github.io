@@ -3,8 +3,9 @@ title: One 基本算法
 date: 2023-04-26 08:20:07
 tags: 算法
 description: 简单介绍一下基础的算法
-typora-root-url: One
+
 categories: 算法
+typora-root-url: One
 ---
 
 ## 基础算法

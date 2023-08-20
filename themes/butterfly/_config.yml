@@ -2,7 +2,7 @@
 # see https://butterfly.js.org/posts/4aa8abbe/##導航欄設置-Navigation-bar-settings
 # --------------------------------------
 
-# 导航栏设置
+# 导航栏设置 - 搞好图床再说
 nav:
   logo: # image # 网站的logo图片
   display_title: true  # 是否显示网站标题
@@ -256,10 +256,11 @@ aside:
     # 描述
     description:
     button:
+    #按钮通往github
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/ilovchara
   # 公告
   card_announcement:
     enable: true
@@ -391,19 +392,23 @@ katex:
 
 # search (搜索)
 # see https://butterfly.js.org/posts/ceeb73f/#搜索系統
-# --------------------------------------
-
-# Algolia search
-algolia_search:
-  enable: false
+# Algolia search - 外置配置搜索
+# https://dashboard.algolia.com/account/api-keys/all?applicationId=Z3MWKH4W0V
+algolia_search: #麻烦
+  enable: true
   hits:
-    per_page: 6
+    per_page: 10
+  labels:
+    input_placeholder: Search for Posts
+    hits_empty: "我们没有找到任何搜索结果: ${query}"
+    hits_stats: "找到${hits}条结果（用时${time} ms）"
+
 
 # Local search
 local_search:
   enable: false
   # Preload the search data when the page loads.
-  preload: false
+  preload: true
   # Show top n results per article, show all results by setting to -1
   top_n_per_article: 1
   # Unescape html strings to the readable one.

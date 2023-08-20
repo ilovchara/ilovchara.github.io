@@ -129,5 +129,19 @@ prism_plugin:
   theme: 'default'
   line_number: true # default false
 
-
-  
+# 这个好像没实现
+algolia:
+  appId: "Z3MWKH4W0V"
+  apiKey: "828a95db73a211e34eb00401aed977dd"
+  adminApiKey: "166aa9dd01b79734a08514d9a8355ad0"
+  chunkSize: 5000
+  indexName: "chara"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink
+    - photos
+    - slug
+    - tags
+    - title
