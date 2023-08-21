@@ -14,12 +14,10 @@ menu:
   时间轴: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  # 可以隐藏子目录：子目錄裏添加 hide 
   清单||fas fa-list||hide: 
     音乐: /playlist/ || fas fa-music
     影片: /movies/ || fas fa-video
   友链: /link/ || fas fa-link
-  # 这里有bug
   关于: /about/ || fas fa-heart
 
 # Code Blocks 代码框
@@ -958,15 +956,12 @@ css_prefix: true
 inject:
 # css放在head部分
   head:     
-  
-    # 代码高亮 themes\butterfly\source\css\code_demo
-    - <link rel="stylesheet" href="css/code_demo/Kimbiedark.css">
+    # 代码高亮 
+    - <link rel="stylesheet" href="/css/code_demo/Kimbiedark.css">
+    # 引入- https://blog.antmoe.com/posts/a811d614/#post-comment
+    #- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/static-butterfly/dist/css/index.min.css">
     # 导航栏
-    #- <link rel="stylesheet" href="source/self_use/sosuo/icat.css>
-    # 自定义css - 位置在css chara1中
-
-    # 自定义友联样式
-    - <link rel="stylesheet" href="/css/chara1/flink.css">
+    - <link rel="stylesheet" href="/css/Navigation_Bar.css">
 # js放在bottom处
   bottom:
     # 这个是下面的音乐播放器
@@ -977,12 +972,7 @@ inject:
     - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> #一定要放在所有引入的js前面！！！
     # 自定义js
     #- <script data - pjax type = "text/javascript" src = "/js/{demo}.js" ></script >
-    
-    #- <script data-pjax type="text/javascript" src="/js/chara/demo.js"></script>
-
-    #自定义友联样式 - js
-    - <script data - pjax type = "text/javascript" src = "/js/chara/flink.js" ></script >
-
+  
 # 非必要請不要修改
 CDN:
   # The CDN provider of internal scripts (主題內部 js 的 cdn 配置)
