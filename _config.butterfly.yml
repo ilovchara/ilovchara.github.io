@@ -9,14 +9,15 @@ nav:
   fixed: false # fixed navigation bar  # 是否显示状态栏
 
 # Menu 目錄 - 就是最上方的目录 - 这些按钮可以自行更改
+# 前面是标签 - 后面是图片
 menu:
   首页: / || fas fa-home
   时间轴: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  清单||fas fa-list||hide: 
-    音乐: /playlist/ || fas fa-music
-    影片: /movies/ || fas fa-video
+  #清单||fa fa-heartbeat:
+    #音乐: /music/ || fas fa-music
+    #照片: /Gallery/ || fas fa-images
   友链: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 

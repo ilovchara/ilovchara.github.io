@@ -1,5 +1,6 @@
 # Navigation bar settings (導航欄設置)
 # see https://butterfly.js.org/posts/4aa8abbe/##導航欄設置-Navigation-bar-settings
+# 两个config是采取合并的策略
 # --------------------------------------
 
 # 导航栏设置 - 搞好图床再说
@@ -15,9 +16,9 @@ menu:
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
   # 可以隐藏子目录：子目錄裏添加 hide 
-  清单||fas fa-list||hide: 
-    音乐: /music/达到高度自动折叠 || fas fa-music
-    影片: /movies/ || fas fa-video
+  #清单||fas fa-list||hide: 
+    #音乐: /music/|| fas fa-music
+    #影片: /movies/ || fas fa-video
   友链: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 
