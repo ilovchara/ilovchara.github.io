@@ -954,14 +954,15 @@ Open_Graph_meta:
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true
 
-# Inject - 
+# Inject - 插入
 inject:
 # css放在head部分
-  head: 
-    
-    #代码高亮
-    - <link rel="stylesheet" href="/self/Kimbiedark.css">
-    #- <link rel="stylesheet" href="/self/vscode_dark.css">
+  head:     
+  
+    # 代码高亮
+    - <link rel="stylesheet" href="source/self_use/code_demo">
+    # 导航栏
+    - <link rel="stylesheet" href="source/self_use/sosuo/icat.css>
     # 自定义css - 位置在css chara1中
 
     # 自定义友联样式

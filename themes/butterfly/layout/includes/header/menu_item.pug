@@ -2,7 +2,7 @@ if theme.menu
   .menus_items
     each value, label in theme.menu
       if typeof value !== 'object'
-        .menus_item
+        .icat_menus_item
           - const valueArray = value.split('||')
           a.site-page(href=url_for(trim(valueArray[0])))
             if valueArray[1]

@@ -42,7 +42,7 @@ git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/bu
 
 > It supports Hexo 5.0.0 or later
 
-In Hexo site root directory 
+In Hexo site root directory
 
 ```powershell
 npm i hexo-theme-butterfly
@@ -50,11 +50,11 @@ npm i hexo-theme-butterfly
 
 ## ⚙ Configuration
 
- Set theme in the hexo work folder's root config file `_config.yml`: 
+ Set theme in the hexo work folder's root config file `_config.yml`:
 
 > theme: butterfly
 
- If you don't have pug & stylus renderer, try this: 
+ If you don't have pug & stylus renderer, try this:
 
 > npm install hexo-renderer-pug hexo-renderer-stylus
 

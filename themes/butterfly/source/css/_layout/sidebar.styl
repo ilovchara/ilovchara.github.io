@@ -34,6 +34,9 @@
     .menus_items
       padding: 0 10px 40px
 
+      .menus_item
+        margin: 10px 0
+
       .site-page
         @extend .limit-one-line
         position: relative
@@ -41,6 +44,10 @@
         padding: 6px 30px 6px 22px
         color: var(--font-color)
         font-size: 1.15em
+        border: var(--icat-style-border-always)
+        background: var(--icat-essay-card-bg)
+        font-size: 14px
+        border-radius: 12px
 
         &:hover
           background: var(--text-bg-hover)
@@ -48,6 +55,7 @@
         i:first-child
           width: 15%
           text-align: left
+          padding-left: 10px
 
         &.group
           & > i:last-child
@@ -66,3 +74,29 @@
       .menus_item_child
         margin: 0
         list-style: none
+        padding-top: 6px
+
+#sidebar
+  #sidebar-menus
+    .icat_menus_item
+      display: inline-block
+      width: 50%
+
+      .site-page
+        text-align: center
+        margin: 4px
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding: 8px 0
+        border-radius: 12px
+        font-size: 14px
+
+        i:first-child
+          padding-left: 0
+
+        & > .icat-essay
+          font-weight: 500
+
+        span
+          margin-top: -8px
