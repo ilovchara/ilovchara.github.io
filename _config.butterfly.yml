@@ -61,7 +61,7 @@ disable_top_img: false
 index_img: /picture/img/游乐场.jpg
 
 # 默认图片 
-default_top_img: /picture/img/市2.jpg
+default_top_img: /picture/img/miku.jpg
 
 # 归档页面的图片 - 就是目录 - 你写文章的记录
 archive_img: /picture/img/miku.jpg

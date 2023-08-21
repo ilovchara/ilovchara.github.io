@@ -1,10 +1,11 @@
-#nav-right{
-    flex:1 1 auto;
+#nav-right {
+    flex: 1 1 auto;
     justify-content: flex-end;
     margin-left: auto;
     display: flex;
-    flex-wrap:nowrap;
+    flex-wrap: nowrap;
 }
+
 /* 菜单栏居中 */
 
 #blog-info a:hover {
@@ -12,11 +13,13 @@
     transition: background .3s;
     border-radius: 8px;
 }
+
 #blog-info a:hover .site-name {
     color: var(--icat-blue) !important;
     position: relative;
     text-shadow: 0 0 transparent;
 }
+
 #blog-info a:hover .site-name:after {
     position: absolute;
     display: flex;
@@ -31,35 +34,42 @@
     justify-content: center;
     align-items: center;
 }
+
 @media screen and (max-width: 768px) {
     #blog-info a:hover {
         background: 0;
         transition: unset;
         border-radius: 0;
     }
+
     #blog-info a:hover .site-name {
         color: var(--icat-blue) !important;
         position: relative;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
     }
+
     #blog-info a:hover .site-name:after {
         display: none;
     }
 }
+
 /* 主页按钮 */
 
 #nav.show {
     display: flex;
     justify-content: center;
 }
+
 #nav .site-page {
     padding-bottom: 14px;
 }
+
 #page-header.not-top-img #nav {
     display: flex;
     justify-content: center;
     border-bottom: 1px solid var(--icat-secondbg);
 }
+
 #nav-group {
     width: 1400px;
     display: flex;
@@ -68,16 +78,21 @@
     margin-left: auto;
     margin-right: auto;
 }
+
 /* 顶部栏宽度定义 */
 
-#nav .menus_items .menus_item .menus_item_child, #nav .menus_items .icat_menus_item .menus_item_child {
+#nav .menus_items .menus_item .menus_item_child,
+#nav .menus_items .icat_menus_item .menus_item_child {
     margin-top: 14px;
     border: 1px solid var(--icat-secondbg);
 }
-#nav .menus_items .menus_item .menus_item_child li a, #nav .menus_items .icat_menus_item .menus_item_child li a {
+
+#nav .menus_items .menus_item .menus_item_child li a,
+#nav .menus_items .icat_menus_item .menus_item_child li a {
     padding: 8px 34px;
     text-align: center;
 }
+
 #travellings {
     padding: 0 14px 0 0;
 }
@@ -85,9 +100,11 @@
 #sidebar #sidebar-menus .menus_items .menus_item {
     margin: 10px 0;
 }
+
 #sidebar #sidebar-menus .menus_items a.site-page {
     padding-left: 0;
 }
+
 #sidebar #sidebar-menus .menus_items .site-page {
     position: relative;
     display: block;
@@ -99,6 +116,7 @@
     font-size: 14px;
     border-radius: 12px;
 }
+
 #sidebar #sidebar-menus .menus_items .site-page i:first-child {
     text-align: left;
     padding-left: 10px;
@@ -124,13 +142,17 @@
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
-#sidebar #sidebar-menus .menus_items a.site-page, #sidebar .menus_item ul {
+
+#sidebar #sidebar-menus .menus_items a.site-page,
+#sidebar .menus_item ul {
     padding-left: 0;
 }
+
 #sidebar #sidebar-menus .menus_item_child li {
     width: calc(50% - 8px);
     margin: 4px;
 }
+
 #sidebar #sidebar-menus .menus_item_child .site-page.child {
     display: -webkit-box;
     display: -moz-box;
@@ -156,9 +178,11 @@
     background: var(--icat-card-bg);
     font-size: 14px;
 }
+
 #nav.hide-menu #toggle-menu {
     padding: 0 0 0 12px;
 }
+
 #sidebar #sidebar-menus .icat_menus_item .site-page {
     text-align: center;
     margin: 4px;
@@ -184,31 +208,37 @@
     border-radius: 12px;
     font-size: 14px;
 }
+
 @media screen and (max-width: 768px) {
-    #sidebar #sidebar-menus .menus_items .site-page.group > i:last-child {
+    #sidebar #sidebar-menus .menus_items .site-page.group>i:last-child {
         margin-top: 4px;
     }
+
     #sidebar #sidebar-menus .menus_items .icat_menus_item .site-page i:first-child {
         text-align: center;
         padding-left: 0;
     }
 }
+
 /* 子菜单美化 */
 
-#sidebar .open > .avatar-img img {
+#sidebar .open>.avatar-img img {
     height: 100px;
     width: 100px;
     border-radius: 50%;
 }
-#sidebar .open > .avatar-img img {
+
+#sidebar .open>.avatar-img img {
     border: 5px #fff solid;
 }
-#sidebar .open > .avatar-img::before {
+
+#sidebar .open>.avatar-img::before {
     bottom: 8px;
     height: 12px;
     width: 12px;
 }
-#sidebar .open > .avatar-img::before {
+
+#sidebar .open>.avatar-img::before {
     content: '';
     position: absolute;
     left: 50%;
@@ -216,9 +246,10 @@
     background: #6bdf8f;
     border: 5px solid #fff;
     border-radius: 50%;
-    transition: filter 375ms ease-in .2s,transform .3s;
+    transition: filter 375ms ease-in .2s, transform .3s;
     z-index: 2;
 }
+
 /* 头像美化 */
 
 #sidebar #sidebar-menus .sidebar-site-data {
@@ -228,13 +259,15 @@
     border-radius: 12px;
     border: var(--style-border-always);
 }
+
 @media screen and (max-width: 768px) {
     .site-data {
         width: 94%;
     }
 }
+
 /* 侧边栏的统计栏美化 */
-  
+
 /* PE端菜单栏美化 */
 #nav #menus {
     display: flex;
@@ -245,6 +278,7 @@
     margin: 0;
     transform: translateZ(0);
 }
+
 #nav #blog-info {
     flex-wrap: nowrap;
     display: flex;
@@ -252,16 +286,19 @@
     z-index: 102;
     max-width: fit-content;
 }
+
 @media screen and (max-width: 900px) {
     #nav {
         padding: 0 15px;
     }
+
     #nav-group {
         padding: 0 0.2rem;
     }
+
     #rightside {
         right: -42px;
     }
 }
-/* IPAD菜单栏调整 */
 
+/* IPAD菜单栏调整 */
