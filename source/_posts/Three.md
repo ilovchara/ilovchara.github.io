@@ -1,5 +1,5 @@
 ---
-title: Three 基本数据结构
+title: 数据结构 - 简单数据结构
 date: 2023-04-27 14:48:19
 tags: 算法
 description: 基本数据结构
@@ -18,9 +18,7 @@ categories: 算法
 3.线段树
 ```
 
-### 链表
-
-> [链表看这一篇就够了](https://blog.51cto.com/u_15018701/2616916)
+### [链表](https://blog.51cto.com/u_15018701/2616916)
 
 ```c++
  //个人学习的时候并不是很了解，就是，将一些没有联系的数据串起来。这样可以用当前的数据访问到下一个数据或者上一个数据。可以理解成为，数存储在一个数组中，然后我们再声明一个数组，存储着这些数据的位置。
@@ -111,11 +109,7 @@ void remove(int k)
         ListNode *head = nullptr;   
 ```
 
-#### 双向链表
-
-> <https://blog.csdn.net/slandarer/article/details/91863177>
->
-> <http://c.biancheng.net/view/1570.html>
+#### [双向链表](https://blog.csdn.net/slandarer/article/details/91863177)
 
 ![双向链表](双向链表.png)
 
@@ -218,9 +212,7 @@ listpoint *create_normal_list(int n)
 
 #### 循环链表
 
-##### 循环单链表*
-
-> [数据结构——从单链表到单向循环链表 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/107808443)
+##### [循环单链表](https://zhuanlan.zhihu.com/p/107808443)*
 
  就是在单链表的基础之上，将最后本指向null的改为指向链表头。
 
@@ -304,9 +296,7 @@ void SingleLinkedList::traversal() {
 }
 ```
 
-##### 循环双链表*
-
-> [循环双链表](https://blog.csdn.net/sum_TW/article/details/61624039?ydreferer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8%3D)
+##### [循环双链表](https://blog.csdn.net/sum_TW/article/details/61624039?ydreferer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8%3D)*
 
  和循环单链表一样，只是多了双链表的属性。
 

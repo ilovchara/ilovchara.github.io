@@ -1,6 +1,6 @@
 ---
 layout: daily
-title: Question
+title: 刷题日记
 date: 2023-04-28 08:38:38
 tags: 每日一题
 ---

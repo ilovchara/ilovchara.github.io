@@ -963,6 +963,8 @@ inject:
     #- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/static-butterfly/dist/css/index.min.css">
     # 导航栏
     - <link rel="stylesheet" href="/css/Navigation_Bar.css">
+    # 自定义css文件 themes\butterfly\source\css\self.css
+    - <link rel="stylesheet" href="/css/self.css">
 # js放在bottom处
   bottom:
     # 这个是下面的音乐播放器
