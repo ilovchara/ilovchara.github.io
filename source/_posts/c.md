@@ -4,6 +4,7 @@ date: 2023-05-29 15:39:15
 tags: 工程
 typora-root-url: c
 description: "记录c#的基础知识"
+swiper_index: 8
 ---
 
 ## C#基础

@@ -3,6 +3,7 @@ title: Linux
 date: 2023-04-30 22:29:58
 tags: 工程
 typora-root-url: Linux
+swiper_index: 7
 ---
 
 ## 基础知识和起源
