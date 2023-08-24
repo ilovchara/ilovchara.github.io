@@ -9,15 +9,15 @@ nav:
   fixed: false # fixed navigation bar  # 是否显示状态栏
 
 # Menu 目錄 - 就是最上方的目录 - 这些按钮可以自行更改
-# 前面是标签 - 后面是图片
+# 前面是标签 - 后面是图片 Menu iconfont icon名字
 menu:
   首页: / || fas fa-home
   时间轴: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  #清单||fa fa-heartbeat:
-    #音乐: /music/ || fas fa-music
-    #照片: /Gallery/ || fas fa-images
+  清单||fa fa-heartbeat:
+    个人笔记: /eassy/ || iconfont icon-xiuxianqu
+    研究记录: /open/ || iconfont icon-huikequ
   友链: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 
@@ -956,15 +956,21 @@ css_prefix: true
 # Inject - 插入
 inject:
 # css放在head部分
-  head:     
-    # 代码高亮 
+  head:
+    # 图源
+    - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4222343_dr0clxta0zj.css">
+    
+    # 代码高亮  themes\butterfly\source\css\comment\Navigation_Bar.css
     - <link rel="stylesheet" href="/css/code_demo/Kimbiedark.css">
+
     # 引入- https://blog.antmoe.com/posts/a811d614/#post-comment
     #- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/static-butterfly/dist/css/index.min.css">
+    
     # 导航栏
-    - <link rel="stylesheet" href="/css/Navigation_Bar.css">
+    - <link rel="stylesheet" href="/css/comment/Navigation_Bar.css">
+    
     # 自定义css文件 themes\butterfly\source\css\self.css
-    - <link rel="stylesheet" href="/css/self.css">
+    - <link rel="stylesheet" href="/css/comment/self.css">
 # js放在bottom处
   bottom:
     # 这个是下面的音乐播放器
