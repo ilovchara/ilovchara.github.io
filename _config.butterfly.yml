@@ -57,7 +57,7 @@ avatar:
 disable_top_img: false
 
 # 首页的横幅图片
-index_img: /picture/img/游乐场.jpg
+index_img:
 
 # 默认图片 
 default_top_img: /picture/img/miku.jpg
@@ -92,8 +92,14 @@ cover:
   # left/right/both
   position: both
   # (當沒有設置cover時，默認的封面顯示)- 输入图片地址就行
-  default_cover: /picture/img/Girl of the Deep.jpg
-
+  default_cover: #/picture/img/Girl of the Deep.jpg
+    
+    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251542846.jpg
+    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251544299.jpg
+    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
+    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251543942.jpg
+    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251330938.jpg
+    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
   flink: /img/friend_404.gif
@@ -697,10 +703,10 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(/img/pexels-james-wheeler-1486974.jpg)
+background: url(/picture/img/游乐场.jpg)
 
 # Footer Background
-footer_bg: true
+footer_bg: false
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
@@ -775,8 +781,8 @@ display_mode: light
 beautify:
   enable: true
   field: post # site/post
-  title-prefix-icon: '\f0c1'
-  title-prefix-icon-color: '#F47466'
+  title-prefix-icon: '\f863'
+  title-prefix-icon-color: "#F47466"
 
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)
