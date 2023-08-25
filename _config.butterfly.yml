@@ -15,9 +15,9 @@ menu:
   时间轴: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  清单||fa fa-heartbeat:
-    个人笔记: /eassy/ || iconfont icon-xiuxianqu
-    研究记录: /open/ || iconfont icon-huikequ
+  #清单||fa fa-heartbeat:
+    #个人笔记: /eassy/ || iconfont icon-xiuxianqu
+    #研究记录: /open/ || iconfont icon-huikequ
   友链: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 

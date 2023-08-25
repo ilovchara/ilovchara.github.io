@@ -974,6 +974,9 @@
 <p>作业：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">创建好作业后，先进入文件夹/home/acs/homework/lesson_1/，然后：<br>(0) 进入homework_0文件夹，分别创建文件夹dir_a, dir_b, dir_c<br>(1) 进入homework_1文件夹，将a.txt, b.txt, c.txt 分别复制成: a.txt.bak, b.txt.bak, c.txt.bak<br>(2) 进入homework_2文件夹，将a.txt, b.txt, c.txt 分别重命名为: a_new.txt, b_new.txt, c_new.txt<br>(3) 进入homework_3文件夹，将dir_a文件夹下的a.txt, b.txt, c.txt分别移动到文件夹dir_b下<br>(4) 进入homework_4文件夹，将普通文件a.txt, b.txt, c.txt删除<br>(5) 进入homework_5文件夹，将文件夹dir_a, dir_b, dir_c删除<br>(6) 进入homework_6文件夹，查看task.txt的内容，并按其指示进行操作<br>(7) 进入homework_7文件夹，创建文件夹dir_0, dir_1, dir_2，<br>    将a.txt, b.txt, c.txt复制到dir_0下，重命名为a0.txt, b0.txt, c0.txt;<br>    将a.txt, b.txt, c.txt复制到dir_1下，重命名为a1.txt, b1.txt, c1.txt;<br>    将a.txt, b.txt, c.txt复制到dir_2下，重命名为a2.txt, b2.txt, c2.txt;<br>(8) 进入homework_8文件夹，分别在dir_a, dir_b, dir_c文件夹下查看task.txt的内容，并分别按照指示进行操作<br>(9) 进入homework_9文件夹，将其中所有txt类型的文件删除<br></code></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>工程</category>
+      </categories>
       <tags>
         <tag>工程</tag>
       </tags>
@@ -1044,6 +1047,9 @@
     <title>刷题日记</title>
     <url>/2023/04/28/Question/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
       <tags>
         <tag>每日一题</tag>
       </tags>
@@ -1430,6 +1436,17 @@
       </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>unity</title>
+    <url>/2023/08/24/unity/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>工程</category>
+      </categories>
+      <tags>
+        <tag>工程</tag>
       </tags>
   </entry>
   <entry>
@@ -1865,14 +1882,9 @@
 </ol>
 <p>这些属性用于控制盒子的尺寸、内外边距和边框样式。通过合理地使用这些属性，可以实现灵活的布局和设计效果。</p>
 ]]></content>
-      <tags>
-        <tag>工程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>unity</title>
-    <url>/2023/08/24/unity/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
       <tags>
         <tag>工程</tag>
       </tags>
@@ -1959,6 +1971,9 @@
 <hr>
 <h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><h4 id="可做转义的字符"><a href="#可做转义的字符" class="headerlink" title="可做转义的字符"></a>可做转义的字符</h4><p><img src="/../picture/format/turn.png" alt="转义字符"></p>
 ]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
   </entry>
   <entry>
     <title>c#</title>
@@ -3485,6 +3500,9 @@
 </ol>
 <p>总之，观察者设计模式是一种常用的设计模式，它在许多应用场景中都有广泛的应用，例如事件处理、GUI 编程、消息队列等。通过使用观察者模式，可以实现对象之间的解耦和增加系统的灵活性。</p>
 ]]></content>
+      <categories>
+        <category>工程</category>
+      </categories>
       <tags>
         <tag>工程</tag>
       </tags>
