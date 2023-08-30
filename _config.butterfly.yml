@@ -24,7 +24,7 @@ menu:
 # Code Blocks 代码框
 # --------------------------------------
 # 较暗 苍白的夜 光 海洋 苹果格式 麦克灯 - 自定义
-highlight_theme: false
+highlight_theme: mac
 # 支持代码复制
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
@@ -790,7 +790,7 @@ beautify:
 font:
   global-font-size:
   code-font-size:
-  font-family: -apple-system,MONACO, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
+  font-family: -apple-system ,MONACO, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
   code-font-family: consolas, Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
 
 # Font settings for the site title and site subtitle
@@ -966,8 +966,8 @@ inject:
     # 图源
     - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4222343_dr0clxta0zj.css">
     
-    # 代码高亮  themes\butterfly\source\css\comment\Navigation_Bar.css
-    - <link rel="stylesheet" href="/css/code_demo/Kimbiedark.css">
+    # 代码高亮  
+    #- <link rel="stylesheet" href="/css/code_demo/vscode_dark.css">
 
     # 引入- https://blog.antmoe.com/posts/a811d614/#post-comment
     #- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/static-butterfly/dist/css/index.min.css">

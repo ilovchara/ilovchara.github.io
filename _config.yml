@@ -59,7 +59,7 @@ highlight:
   auto_detect: false
   tab_replace: ''
   wrap: true
-  hljs: true
+  hljs: false
 
 # 高光
 prismjs:
