@@ -93,7 +93,6 @@ cover:
   position: both
   # (當沒有設置cover時，默認的封面顯示)- 输入图片地址就行
   default_cover: #/picture/img/Girl of the Deep.jpg
-    
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251542846.jpg
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251544299.jpg
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
@@ -269,7 +268,7 @@ aside:
   # 公告
   card_announcement:
     enable: true
-    content: 这里我也不知道怎么写,先计划写完web吧
+    content: 文章中如果有引用，会在段落标题中有超链接可以直达引用文章地址。
 
   #最近的文章
   card_recent_post:
