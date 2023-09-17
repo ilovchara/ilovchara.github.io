@@ -192,8 +192,8 @@ categoryBar:
       cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251245417.jpg
     - descr: 随笔 
       cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251243743.jpg
-    #- descr: 个人日记
-      #cover: https://assets.akilar.top/image/cover4.webp
+    - descr: 刷题
+      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202309142152600.jpg
     #- descr: 诗词歌赋
       #cover: https://assets.akilar.top/image/cover5.webp
     #- descr: 杂谈教程

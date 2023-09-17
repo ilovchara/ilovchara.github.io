@@ -154,7 +154,7 @@ typora-root-url: ./unity
 >
 > **创建之后，我们可以看到，他们的图标是不一样的**
 >
-> ![img](/2021062216284812.png)
+> ![img](2021062216284812.png)
 >
 > 此时点击`Enemy_Type3`
 >
@@ -757,7 +757,265 @@ public class Map_Manager : MonoBehaviour
 
 状态机是用于切换状态的，链接的线就是切换的方式（人物可以从静止到动其实就是状态机的作用）。可以在左边创建几个，触发器来触发我们的动作。
 
+> 参数有`Float`，`Int`，`Bool`，`Trigger`。
+>
+> ![20210903162325143](20210903162325143.gif)
+>
+> `Float`、`Int`用来控制一个动画状态的参数，比如速度方向等可以用数值量化的东西，
+> `Bool`用来控制动画状态的转变，比如从走路转变到跑步，
+> `Trigger`本质上也是`bool`类型，但它默认为`false`，且当程序设置为`true`后，它会自动变回`false`。
+>
+> 如下这里创建一个`Int`类型的参数`AnimState`
+>
+> ![在这里插入图片描述](20210903162326144.png)
+
 ![image-20230912201521128](image-20230912201521128.png)
 
+> [**`Animator Controller`**](https://www.jb51.net/article/221837.htm):
+>
+> 每个`Animator Controller`都会自带三个状态：`Any State`, `Entry`和 `Exit`。
+>
+> ![在这里插入图片描述](/20210903162325136.png)
+>
+> 1、`Any State`状态
+>
+> 表示任意状态的特殊状态。例如我们如果希望角色在任何状态下都有可能切换到死亡状态，那么`Any State`就可以帮我们做到。当你发现某个状态可以从任何状态以相同的条件跳转到时，那么你就可以用`Any State`来简化过渡关系。
+>
+> 2、`Entry`状态
+>
+> 表示状态机的入口状态。当我们为某个`GameObject`添加上`Animator`组件时，这个组件就会开始发挥它的作用。
+> 如果`Animator Controller`控制多个`Animation`的播放，那么默认情况下`Animator`组件会播放哪个动画呢？ 由`Entry`来决定的。
+> 但是`Entry`本身并不包含动画，而是指向某个带有动画的状态，并设置其为默认状态。被设置为默认状态的状态会显示为 橘黄色。
+>
+> ![在这里插入图片描述](/20210903162325137.png)
+>
+> 当然，你可以随时在任意一个状态上通过 `鼠标右键->Set as Layer Default State`更改默认状态。
+>
+> ![在这里插入图片描述](/20210903162325138.png)
+>
+> 记住， `Entry`在`Animator`组件被激活后 无条件 跳转到默认状态，并且每个`Layer`有且仅有一个默认状态。
+>
+> 3、`Exit`状态
+>
+> 表示状态机的出口状态，以红色标识。如果你的动画控制器只有一层，那么这个状态可能并没有什么卵用。但是当你需要从子状态机中返回到上一层(`Layer`)时，把状态指向`Exit`就可以了。
+>
+> ![在这里插入图片描述](/20210903162325139.png)
 
+下面的是线段的属性，也就是控制切换动画的功能。
+
+![image-20230914121208511](image-20230914121208511.png)
+
+> 我们可以选中某个自定义状态，并在`Inspector`窗口下观察它具有的属性
+>
+> ![在这里插入图片描述](/20210903162325140.png)
+>
+> | 属性名        | 描述                                                         |
+> | :------------ | :----------------------------------------------------------- |
+> | Motion        | 状态对应的动画。每个状态的基本属性，直接选择已定义好的动画（Animation Clip）即可 |
+> | Speed         | 动画播放的速度。默认值为1，表示速度为原动画的1.0倍。         |
+> | Mutiplier     | 勾选右侧的Parameter后可用，即在计算Speed的时考虑 区域1 中定义的某个参数。若选择的参数为smooth, 则动画播放速度的计算公式为 smooth * speed * fps(animation clip中指定) |
+> | Mirror        | 仅适用于humanoid animation(人型机动画)                       |
+> | Cycle Offset  | 周期偏移，取值范围为0-1.0，用于控制动画起始的偏移量。把它和正弦函数的offset进行对比就能够理解了，只会影响起始动画的播放位置。 |
+> | Foot IK       | 仅适用于humanoid animation(人型机动画)                       |
+> | Write Default | 最好保持默认，感兴趣可以参考官方手册                         |
+> | Transitions   | 该状态向其他状态发起的过渡列表，包含了Solo和Mute两个参数，在预览状态机的效果时起作用 |
+> | Add Behaviour | 用于向状态添加“行为”                                         |
+
+其中，`exit time`播放完整度，满的就是播放完全，没满就是播放部分。然后我们还需要配置一下对应的`conditions`控制器。
+
+然后制作完成的状态过度就是这个样子：
+
+![录制_2023_09_14_12_46_41_452](录制_2023_09_14_12_46_41_452.gif)
+
+![录制_2023_09_14_12_49_29_314](录制_2023_09_14_12_49_29_314.gif)
+
+> **状态间的过渡关系`(Transitions)`**:
+>
+> 直观上说它们就是连接不同状态的有向箭头
+>
+> ![在这里插入图片描述](20210903162325141.png)
+>
+> 要创建一个从`状态A`到`状态B`的过渡，直接在`状态A`上 鼠标`右键 - Make Transition`并把出现的箭头拖拽到`状态B`上点击鼠标左边即可。
+>
+> ![在这里插入图片描述](20210903162325142.gif)
+
+然后完善剩下怪物的状态机就可以啦：
+
+
+
+--------------
+
+> **补充：**
+>
+> 添加状态控制参数（）
+>
+> 参数有`Float`，`Int`，`Bool`，`Trigger`。
+>
+> ![在这里插入图片描述](20210903162325143-1694675043266-21.gif)
+>
+> `Float`、`Int`用来控制一个动画状态的参数，比如速度方向等可以用数值量化的东西，
+> `Bool`用来控制动画状态的转变，比如从走路转变到跑步，
+> `Trigger`本质上也是`bool`类型，但它默认为`false`，且当程序设置为`true`后，它会自动变回`false`。
+>
+> 如下这里创建一个`Int`类型的参数`AnimState`
+>
+> ![在这里插入图片描述](20210903162326144-1694675043267-23.png)
+
+> **编辑切换状态的条件**
+>
+> 点击连线，在`Inspecter`窗口中可以进行设置，在`Conditions`栏下可以添加条件，如下图表示当参数
+> `AnimState`为`0`时会执行这个动画`Any State`到`New Animation2`的过渡
+>
+> 必须在Parameters面板中添加了参数才可以在这里查看到，其次添加的条件为&&”与”关系，即必须同时满足。
+>
+> ![在这里插入图片描述](20210903162326145.png)
+
+## 控制主角的运动
+
+我们需要控制我们的角色运动，需要赋予物体一些物理特征，让其能够碰撞移动之类的。
+
+>刚体是用于模拟物理效果的：
+>
+>当一个游戏对象被赋予刚体组件之后，游戏引擎就会对其进行物理效果的计算和模拟。同时我们也可以给这个对象施加各种作用力，让它运动起来。
+>另外如果要实现重力的效果，那么相应的游戏物体都必须附上刚体组件。
+>
+>![在这里插入图片描述](20210520090756488.png)
+>
+>使用方法，右键在需要附加刚体的物体，加上`Rigidbody`即可
+>
+>![在这里插入图片描述](20210520091143625.png)
+>
+>![在这里插入图片描述](2021052009122631.png)
+>
+>| 属性                    | 作用                                                         |
+>| ----------------------- | ------------------------------------------------------------ |
+>| **Mass**                | 质量 质量越大，惯性越大。建议场景中的物体质量最好不要相差100倍率以上。防止两个质量相差太大的物体碰撞后会产生过大的速度，从而影响游戏性能及呈现的效果。 |
+>| **Drag**                | 阻力（摩擦力） 这里指的是空气阻力，属性数值影响阻碍此物体对象的直线运动的速度效果。当游戏物体受到某个作用力的时候，这个值越大越难移动。如果设置成无限的话，物体会立即停止移动 |
+>| **Angular Drag**        | 角阻力（旋转摩擦力） 同样指的是空气阻力，只不过是用来阻碍物体旋转的。如果设置成无限的话，物体会立即停止旋转 |
+>| **Use Gravity**         | 使用重力效果 不勾选，则不会受到重力影响。                    |
+>| **Is Kinematic**        | 是否符合运动学的（是否受到物理引擎的驱动） 勾选后，变成不再受物理引擎的影响，改为受Transform的影响。即不再有重力，不再被碰撞等，只会呆在Transform规定的位置上不动，物体撞击时候像一堵墙一样不会倒，位置不会因碰撞而发生改变 |
+>| **Interpolate**         | 差值类型 如果看到刚体移动的时候运动的不是很平滑，可以选择一种平滑方式。即：平滑物体运动的曲线 None（无差值）：不使用差值平滑 Interpolate（差值）：根据上一帧来平滑移动 Extrapolate（推算）：根据推算下一帧物体的位置来平滑移动 |
+>| **Collision Detection** | 碰撞侦测。用来改变物体碰撞检测的精度 Discrete（离散）：默认的碰撞检测方式。但若当物体A运动很快的时候，有可能前一帧还在B物体的前面，后一帧就在B物体后面了，这种情况下不会触发碰撞事件，所以如果需要检测这种情况，那就必须使用后两种检测方式 Continuous（连续）：这种方式可以与有静态网格碰撞器的游戏对象进行碰撞检测。 可以避免因物体移动速度过快而穿过另一个物体的情况 Continuous Dynamic（动态连续）：这种方式可以与所有设置了2或3方式的游戏对象进行碰撞检测 |
+>| **Constraints**         | 约束 约束位置或旋转时的x/y/z坐标,使其Freeze(冻结)。比如想控制游戏对象人物上台阶不会摔倒，或者高速碰到一个墙壁物体时不会胡乱转动的话,则要冻结x，y和z轴的旋转 `centerOfMass`:相对于变换原点的质心 `angularVelocity` 刚体的角速度向量,修改它可以使刚体进行旋转 |
+>
+>**[引用](https://bbs.huaweicloud.com/blogs/298023)**
+
+![录制_2023_09_14_15_53_22_790](录制_2023_09_14_15_53_22_790.gif)
+
+对于`2d`的物体，我们不需要它的重力(如果有重力会往下掉)，接着为了我们主角和其他物体有碰撞需要给主角添加碰撞器`Box Collider 2D`
+
+![image-20230914162022215](image-20230914162022215.png)
+
+注意在设置碰撞箱的时候，需要将角色的碰撞箱设计小一点，这样子相邻格子就不会发生碰撞了。
+
+![image-20230914163138955](image-20230914163138955.png)
+
+> [碰撞器](https://blog.csdn.net/xiegy_august/article/details/106491229#fn1)：
+>
+> 碰撞器`(Collider)`是组件，加了碰撞器的游戏物体才可能实现碰撞效果。在Unity内部提供了许多碰撞器，通过`Add Component -> Physics`可以添加`3D`碰撞器组件。Unity提供的组件有：`BoxCollider(盒碰撞器), SphereCollider(球碰撞器), CapsuleCollider(胶囊碰撞器), MeshCollider(网格碰撞器), WheelCollider(轮子碰撞器，用来创建交通工具), TerrainCollider(地形碰撞器), CharacterController(角色控制器)。`
+>
+> 其中前三种为**基元碰撞器**，`MeshCollider`为常用碰撞器（后几种碰撞器有着特殊作用）。其中`BoxCollider`结构最简单，消耗最小，而`MeshCollider`最为复杂，消耗很高，且需要提供网格模型。
+>
+> **当两个碰撞体`(Collider)`发生了碰撞`(Collision)`，且其中至少一个附加了刚体`(Rigibody)`，会向它们附加的对象发射三条碰撞信息，可以在脚本里处理这些信息**。
+>
+> ```CSharp
+> //其中collision为本次碰撞信息集合，从中可以读取与之发生碰撞的碰撞体，碰撞的冲击力等信息
+> private void OnCollisionEnter(Collision collision) { }    //当两个碰撞体刚互相接触时
+> private void OnCollisionStay(Collision collision) { }    //当两个碰撞体持续保持接触状态时
+> private void OnCollisionExit(Collision collision) { }    //当两个碰撞体停止互相接触时
+> 1234
+> ```
+>
+> 这里要详细介绍一下网格碰撞体`(MeshCollider)`，其采用网格资源并基于该网格构建其碰撞体：
+> ![网格碰撞器的Inspector视图](2020060311035887.png)
+> *碰撞网格使用背面剔除，如果对象与图形方式背面剔除的网格碰撞，则不会以物理方式与它碰撞（故两个网格碰撞体无法碰撞）*。但若是该网格碰撞体标记为凸体(Convex)，则可以和其它网格碰撞体发生碰撞，**标记为凸体的网格碰撞体网格限制为255个三角形**。
+
+为了使我们可以操控角色，需要在角色这里编写一些脚本，这里就创建一个`c#`的脚本代码。
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+    //移动速度
+    public float smoothing = 1;
+    //休息时间
+    public float restTime = 1;
+    //计时器
+    public float restTimer = 0;
+    //起始位置
+    private Vector2 targetPos = new Vector2(1,1);
+    
+    //命名的刚体和碰撞器
+    private Rigidbody2D Rigidbody;
+    private BoxCollider2D Collider;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Rigidbody = GetComponent<Rigidbody2D>();
+        Collider = GetComponent<BoxCollider2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //物体运动逻辑
+        Rigidbody.MovePosition(Vector2.Lerp(transform.position, targetPos, smoothing * Time.deltaTime));
+
+        //休息时间间隔计算
+        restTimer += Time.deltaTime;
+        if (restTimer < restTime) return;
+
+        //控制移动 - 垂直+水平
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        //水平优先
+        if (h > 0)
+        {
+            v = 0;
+        }
+
+
+        if (h!=0 || v!=0)
+        {
+            //检测
+            Collider.enabled = false;
+            RaycastHit2D hit = Physics2D.Linecast(targetPos,targetPos + new Vector2(h,v));
+            Collider.enabled = true;
+
+            if(hit.transform == null)
+            {
+                targetPos += new Vector2(h, v);
+                
+            }
+            else
+            {
+                switch (hit.collider.tag)
+                {
+                    case "OutWall":
+                        break;
+                    case "Wall":
+                        hit.collider.SendMessage("TakeDamage");
+                        break;
+                }
+            }
+
+            restTimer = 0; //攻击和移动都需要休息
+        }
+      
+    }
+}
+
+```
+
+> 物体移动的逻辑是靠这个代码:`Rigidbody.MovePosition(Vector2.Lerp(transform.position, targetPos, smoothing * Time.deltaTime));`
+>
+> 1. `Rigidbody.MovePosition`：这是Unity中的一个函数，用于移动Rigidbody组件附加的物体的位置。Rigidbody是用于模拟物理行为的组件，例如重力和碰撞。
+> 2. `Vector2.Lerp(transform.position, targetPos, smoothing * Time.deltaTime)`：这是一个矢量插值（Lerp）操作。它在两个矢量之间进行插值，产生一个介于它们之间的新矢量。在这里，它在物体当前位置（`transform.position`）和目标位置（`targetPos`）之间进行插值。`smoothing`是一个控制插值速度的参数，`Time.deltaTime`是每一帧的时间间隔，用于使移动平滑。
+> 3. 整个表达式作为参数传递给`Rigidbody.MovePosition`，它告诉Rigidbody在每一帧中移动物体，使其逐渐接近目标位置，从而创建平滑的移动效果。
 
