@@ -976,6 +976,14 @@ inject:
     
     # 自定义css文件 themes\butterfly\source\css\self.css
     - <link rel="stylesheet" href="/css/comment/self.css">
+
+    # 插入流星背景
+    - <link rel="stylesheet" href="/css/universe.css">
+
+    # 插入波浪
+    - <link rel="stylesheet" href="/css/wave.css">
+
+
 # js放在bottom处
   bottom:
     # 这个是下面的音乐播放器
@@ -986,6 +994,10 @@ inject:
     - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> #一定要放在所有引入的js前面！！！
     # 自定义js
     #- <script data - pjax type = "text/javascript" src = "/js/{demo}.js" ></script >
+    
+    # 流星背景 - 这里没啥用
+    - <canvas id="universe"></canvas>
+    - <script defer src="/js/universe.js"></script>
   
 # 非必要請不要修改
 CDN:
