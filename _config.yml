@@ -206,10 +206,10 @@ categoryBar:
 butterfly_article_double_row:
   enable: true
 
-# github图磁贴
+# github图磁贴 - 这里Vercel爆掉了
 # hexo-filter-gitcalendar  source\about\index.md
 gitcalendar:
-  enable: true # 开关
+  enable: false # 开关 - 先关了
   priority: 5 #过滤器优先权
   enable_page: /about/ # 应用页面
   # butterfly挂载容器
