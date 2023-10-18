@@ -827,6 +827,7 @@ subtitle:
 # Loading Animation (加載動畫) - 加载动画
 preloader:
   enable: true
+  layout: gear # gear,spinner-box两种风格可选
   # source
   # 1. fullpage-loading
   # 2. pace (progress bar)
@@ -982,6 +983,10 @@ inject:
 
     # 插入波浪
     - <link rel="stylesheet" href="/css/wave.css">
+
+    #插入加载动画风格
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_1.css" > # spinner-box风格样式文件
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_2.css" > # gear风格样式文件
 
 
 # js放在bottom处
