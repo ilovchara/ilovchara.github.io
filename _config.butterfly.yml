@@ -2,7 +2,7 @@
 # see https://butterfly.js.org/posts/4aa8abbe/##導航欄設置-Navigation-bar-settings
 # --------------------------------------
 
-# 导航栏设置 - 搞好图床再说
+# 导航栏设置
 nav:
   logo: # image # 网站的logo图片
   display_title: true  # 是否显示网站标题
@@ -19,11 +19,10 @@ menu:
     #个人笔记: /eassy/ || iconfont icon-xiuxianqu
     #研究记录: /open/ || iconfont icon-huikequ
   友链: /link/ || fas fa-link
-  关于: /about/ || fas fa-heart
+  #关于: /about/ || fas fa-heart
 
 # Code Blocks 代码框
 # --------------------------------------
-# 较暗 苍白的夜 光 海洋 苹果格式 麦克灯 - 自定义
 highlight_theme: mac
 # 支持代码复制
 highlight_copy: true # copy button
@@ -45,7 +44,7 @@ social:
 # 图片设置
 # --------------------------------------
 # Favicon（網站圖標）
-favicon: /img/favicon.png
+favicon: /img/crystal-ball.png
 
 # Avatar (頭像)
 avatar:
@@ -217,7 +216,7 @@ post_pagination: false
 # Displays outdated notice for a post (文章過期提醒) - 
 # 文章过期提醒
 noticeOutdate:
-  enable: false
+  enable: true
   style: flat # style: simple/flat
   limit_day: 50 # When will it be shown - 距离多少天
   position: top # position: top/bottom
@@ -454,10 +453,10 @@ addtoany:
 # Comments System 评论
 # --------------------------------------
 
-comments:
+comments: #这里评论有问题
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
-  use: Twikoo # Valine,Disqus
+  use: #Twikoo # Valine,Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
@@ -699,7 +698,7 @@ index_top_img_height:
 category_ui: # 留空或 index
 tag_ui: # 留空或 index
 
-# Website Background (設置網站背景)
+# Website Background (設置網站背景) - 网站背景
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
 background: url(/picture/img/游乐场.jpg)
@@ -988,6 +987,8 @@ inject:
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_1.css" > # spinner-box风格样式文件
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_2.css" > # gear风格样式文件
 
+    # 友联添加 kslink
+    #- <link rel="stylesheet" href="/css/kslink.css">
 
 # js放在bottom处
   bottom:
@@ -1000,9 +1001,14 @@ inject:
     # 自定义js
     #- <script data - pjax type = "text/javascript" src = "/js/{demo}.js" ></script >
     
-    # 流星背景 - 这里没啥用
+    # 流星背景
     - <canvas id="universe"></canvas>
     - <script defer src="/js/universe.js"></script>
+
+    #友联样式
+    #- <script defer src="/js/kslink.js"></script>
+
+
   
 # 非必要請不要修改
 CDN:
