@@ -243,7 +243,7 @@ aside:
   button: true
   mobile: true # display on mobile
   # 左边还是右边 - 侧边栏方向
-  position: left # left or right
+  position: right # left or right
 
   # 展示
   display:

@@ -185,7 +185,7 @@ categoryBar:
     type: id
     name: recent-posts
     index: 0
-  column: odd # odd：3列 | even：4列
+  column: even # odd：3列 | even：4列
   row: 1 #显示行数，默认两行，超过行数切换为滚动显示
   message: 
     - descr: 数据结构和算法 
