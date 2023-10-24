@@ -98,6 +98,8 @@ cover:
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251543942.jpg
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251330938.jpg
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
+    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346815.jpg
+    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346385.jpg
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
   flink: /img/friend_404.gif
@@ -701,7 +703,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景) - 网站背景
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(/picture/img/游乐场.jpg)
+background: url(/picture/notwo/112671776_p0.jpg)
 
 # Footer Background
 footer_bg: false
