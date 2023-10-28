@@ -188,11 +188,11 @@ categoryBar:
   column: even # odd：3列 | even：4列
   row: 1 #显示行数，默认两行，超过行数切换为滚动显示
   message: 
-    - descr: 数据结构和算法 
+    - descr: 工程
       cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251245072.jpg
-    - descr: 工程结构 
+    - descr: 随笔
       cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251245417.jpg
-    - descr: 随笔 
+    - descr: 算法 
       cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251243743.jpg
     - descr: 刷题
       cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202309142152600.jpg
