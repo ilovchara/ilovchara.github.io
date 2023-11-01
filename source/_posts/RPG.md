@@ -3,6 +3,7 @@ title: RPG
 date: 2023-10-30 22:56:26
 tags: 工程
 categories: 工程
+typora-root-url: ./RPG
 ---
 
 # RPG
