@@ -960,6 +960,17 @@ Open_Graph_meta:
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true
 
+# 友链样式，butterfly为默认样式，volantis为站点卡片样式.flexcard为弹性卡片样式
+flink_style:  flexcard # butterfly | volantis | flexcard
+
+#Replace Broken Images (替換無法顯示的圖片)
+#error_img:
+  #flink:   # 头像失效替换图
+  #post_page:  # 站点缩略图
+
+
+
+
 # Inject - 插入
 inject:
 # css放在head部分
@@ -1079,8 +1090,6 @@ electric_clock:
   gaud_map_key:  # 高得地图web服务key
   default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
   rectangle: 113.34532,23.15624 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
-
-
 
 
 
