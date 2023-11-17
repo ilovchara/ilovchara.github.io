@@ -102,7 +102,7 @@ cover:
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346385.jpg
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
-  flink: /img/friend_404.gif
+  flink: img/111119755_p0_master1200.jpg
   post_page: /img/404.jpg
 
 # A simple 404 page
@@ -964,9 +964,9 @@ css_prefix: true
 flink_style:  flexcard # butterfly | volantis | flexcard
 
 #Replace Broken Images (替換無法顯示的圖片)
-#error_img:
-  #flink:   # 头像失效替换图
-  #post_page:  # 站点缩略图
+#error_img: 
+  #flink: source\picture\img\Vigus.jpg # 头像失效替换图
+  #post_page: source\picture\notwo\112652215_p0_master1200.jpg # 站点缩略图
 
 
 
