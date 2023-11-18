@@ -94,21 +94,19 @@ cover:
   default_cover: #/picture/img/Girl of the Deep.jpg
   #url(/picture/img/8BFED8A3E9CC90D2D68BDFD4B1495FA0.jpg)
   #url()
-    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251542846.jpg
-    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251544299.jpg
-    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
-    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251543942.jpg
-    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251330938.jpg
-    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
-    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346815.jpg
-    - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346385.jpg
+    - https://i.postimg.cc/SKSckRLn/109535523-p0-master1200.jpg
+    - https://i.postimg.cc/NMVX6x3X/111002764-p0-master1200.jpg
+    - https://i.postimg.cc/K8n5mCdH/111097004-p0-master1200.jpg
+    - https://i.postimg.cc/wjdh407c/111125960-p0-master1200.jpg
+    - https://i.postimg.cc/CKT6NGVW/111138606-p0-master1200.jpg
+    - https://i.postimg.cc/cH5RDWnr/Girl-of-the-Deep.jpg
+    - https://i.postimg.cc/W3Rj0F93/image.png
     - https://i.postimg.cc/PrJ5yKFP/36-EAEEC6-A0012-C8807-BC9-E804-D47-DD2-D.jpg
     - https://i.postimg.cc/tgQRXbRx/3705-BE3564-BA6103-F5823-E240307-B140.jpg
     - https://i.postimg.cc/3RrTRJsd/62226-E7-EBEE95-CFD289-D8-E98774-DC9-C2.jpg
     - https://i.postimg.cc/XYM658MM/7235-CF181273439-BC356-B7-C00371751-C.jpg
     - https://i.postimg.cc/XqJ427LT/79-C069066176-FF955-FB519266-CB1-F630.jpg
     - https://i.postimg.cc/FFDK0wpM/81-D4178-C4-DBAF0-E01-E251968-DE9-D71-D8.jpg
-    - https://i.postimg.cc/rmhLt2Tg/8552446-B2-B6-BB2-FF5-EF4-AEE15-E47-E206.jpg
     - https://i.postimg.cc/YCmqK077/A7561-F0-C4-D8453828-B6666-B67-E732023.jpg
     - https://i.postimg.cc/L4bp9SN8/FA779-C1331-C9-EA231-B33-F585-DEDE2-B7-B.gif
 # Replace Broken Images (替換無法顯示的圖片)
@@ -364,7 +362,7 @@ translate:
 readmode: true
 
 # dark mode - 黑夜模式切换
-darkmode:
+darkmode: 
 # 这里有bug - 这里是我代码框框没设置好颜色
   enable: true
   # Toggle Button to switch dark/light mode
@@ -373,7 +371,7 @@ darkmode:
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
-  autoChangeMode: false
+  autoChangeMode: true
   # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
   start: # 8
   end: # 22
