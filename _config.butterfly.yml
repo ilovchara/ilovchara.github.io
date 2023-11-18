@@ -102,11 +102,15 @@ cover:
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346815.jpg
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346385.jpg
-    - url(/picture/Quality/79C069066176FF955FB519266CB1F630.jpg)
-    - url(/picture/Quality/3705BE3564BA6103F5823E240307B140.jpg)
-    - url(/picture/Quality/7235CF181273439BC356B7C00371751C.jpg)
-    - url(/picture/Quality/62226E7EBEE95CFD289D8E98774DC9C2.jpg)
-    - url(/picture/Quality/A7561F0C4D8453828B6666B67E732023.jpg)
+    - https://i.postimg.cc/PrJ5yKFP/36-EAEEC6-A0012-C8807-BC9-E804-D47-DD2-D.jpg
+    - https://i.postimg.cc/tgQRXbRx/3705-BE3564-BA6103-F5823-E240307-B140.jpg
+    - https://i.postimg.cc/3RrTRJsd/62226-E7-EBEE95-CFD289-D8-E98774-DC9-C2.jpg
+    - https://i.postimg.cc/XYM658MM/7235-CF181273439-BC356-B7-C00371751-C.jpg
+    - https://i.postimg.cc/XqJ427LT/79-C069066176-FF955-FB519266-CB1-F630.jpg
+    - https://i.postimg.cc/FFDK0wpM/81-D4178-C4-DBAF0-E01-E251968-DE9-D71-D8.jpg
+    - https://i.postimg.cc/rmhLt2Tg/8552446-B2-B6-BB2-FF5-EF4-AEE15-E47-E206.jpg
+    - https://i.postimg.cc/YCmqK077/A7561-F0-C4-D8453828-B6666-B67-E732023.jpg
+    - https://i.postimg.cc/L4bp9SN8/FA779-C1331-C9-EA231-B33-F585-DEDE2-B7-B.gif
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
   flink: /img/friend_404.gif
