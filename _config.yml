@@ -189,17 +189,19 @@ categoryBar:
   row: 1 #显示行数，默认两行，超过行数切换为滚动显示
   message: 
     - descr: 工程
-      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251245072.jpg
+      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182022695.jpg
     - descr: 随笔
-      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251245417.jpg
+      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182021415.jpg
     - descr: 算法 
-      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251243743.jpg
+      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182021103.jpg
     - descr: 刷题
-      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202309142152600.jpg
+      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182021212.jpg
     #- descr: 诗词歌赋
       #cover: https://assets.akilar.top/image/cover5.webp
     #- descr: 杂谈教程
       #cover: https://assets.akilar.top/image/cover6.webp
+      # 图片 ![](https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182021986.jpg)
+      # 图片 ![](https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182021561.jpg)
   custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
 
 # 双文章

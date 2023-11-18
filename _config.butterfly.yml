@@ -92,6 +92,8 @@ cover:
   position: both
   # (當沒有設置cover時，默認的封面顯示)- 输入图片地址就行
   default_cover: #/picture/img/Girl of the Deep.jpg
+  #url(/picture/img/8BFED8A3E9CC90D2D68BDFD4B1495FA0.jpg)
+  #url()
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251542846.jpg
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251544299.jpg
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
@@ -100,6 +102,11 @@ cover:
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202308251553183.png
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346815.jpg
     - https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202310241346385.jpg
+    - url(/picture/Quality/79C069066176FF955FB519266CB1F630.jpg)
+    - url(/picture/Quality/3705BE3564BA6103F5823E240307B140.jpg)
+    - url(/picture/Quality/7235CF181273439BC356B7C00371751C.jpg)
+    - url(/picture/Quality/62226E7EBEE95CFD289D8E98774DC9C2.jpg)
+    - url(/picture/Quality/A7561F0C4D8453828B6666B67E732023.jpg)
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
   flink: /img/friend_404.gif
@@ -703,7 +710,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景) - 网站背景
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(/picture/notwo/112671776_p0.jpg)
+background: url(/picture/img/8BFED8A3E9CC90D2D68BDFD4B1495FA0.jpg)
 
 # Footer Background
 footer_bg: false
