@@ -163,7 +163,7 @@ copy:
   enable: true
   copyright: 
     enable: true
-    limit_count: 50
+    limit_count: 200
 
 # 文章
 # --------------------------------------
@@ -183,7 +183,7 @@ toc:
 
 #版权
 post_copyright:
-  enable: true
+  enable: false
   decode: false
   author_href:
   license: CC BY-NC-SA 4.0
@@ -348,7 +348,7 @@ newest_comments:
 translate:
   enable: true
   # The text of a button
-  default: 繁
+  default: 简
   # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
   defaultEncoding: 1
   # Time delay
@@ -363,7 +363,6 @@ readmode: true
 
 # dark mode - 黑夜模式切换
 darkmode: 
-# 这里有bug - 这里是我代码框框没设置好颜色
   enable: true
   # Toggle Button to switch dark/light mode
   button: true
@@ -371,10 +370,10 @@ darkmode:
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
-  autoChangeMode: true
+  autoChangeMode: 2
   # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
-  start: # 8
-  end: # 22
+  start:  6
+  end:  18
 
 # show scroll percent in scroll-to-top button
 # 显示文章百分比
@@ -468,7 +467,7 @@ comments: #这里评论有问题
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
   use: #Twikoo # Valine,Disqus
-  text: true # Display the comment name next to the button
+  text: false # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
   lazyload: true
@@ -773,7 +772,7 @@ click_heart:
 
 # Mouse click effects: words (鼠標點擊效果: 文字)
 ClickShowText:
-  enable: true
+  enable: false
   text:
     - 点啥
     - 别点
