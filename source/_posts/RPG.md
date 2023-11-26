@@ -330,3 +330,87 @@ private void OnMove(InputValue value)
 - 将player拖入到follow，让相机随着player移动
 
 ![image-20231125215936669](image-20231125215936669.png)
+
+这里补充一个知识点：
+
+- 将我们创建的物品拉入到文件夹中可以获得这个物品的预制体，预制体的所有配置和我们创建的物品相同。拉入会变蓝。
+
+  ![image-20231126195521070](image-20231126195521070.png)
+
+## 制作小怪
+
+和制作角色一样，先在界面处创建一个2d的物品
+
+![image-20231126210643767](image-20231126210643767.png)
+
+然后新建一个动画机，拖入图片
+
+![image-20231126211227095](image-20231126211227095.png)
+
+就可以得到我们的小怪了
+
+![image-20231126211245694](image-20231126211245694.png)
+
+然后给小怪设置一些基本的属性
+
+![image-20231126211334541](image-20231126211334541.png)
+
+制作四个行为动画：
+
+- 死亡
+
+  ![录制_2023_11_26_21_52_10_418](录制_2023_11_26_21_52_10_418.gif)
+
+- 运动
+
+  ![录制_2023_11_26_21_52_34_846](录制_2023_11_26_21_52_34_846.gif)
+
+- 待机
+
+  ![录制_2023_11_26_21_49_31_620](录制_2023_11_26_21_49_31_620.gif)
+
+- 受击
+
+![录制_2023_11_26_21_53_45_279](录制_2023_11_26_21_53_45_279.gif)
+
+## 制作小怪的ai
+
+设计一个简单的小怪ai，逻辑是声明一个以这个小怪为圆心的圆，然后检测我们的角色是否在这个圆的面积之内，如果是就追踪角色，不是就停止。
+
+```c#
+public class DetectionZone : MonoBehaviour
+{
+
+    public Collider2D detectedObjs;//全局变量
+    public float viewRadius; //半径
+    public LayerMask playerLayerMask; //扫描的layer
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Collider2D collider =  Physics2D.OverlapCircle(transform.position, viewRadius, playerLayerMask);
+
+        if(collider != null)
+        {
+            detectedObjs = collider;
+        }
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, viewRadius);
+    }
+}
+```
+
+半径的效果：在unity可以输入变量的值。
+
+![image-20231126221908087](image-20231126221908087.png)
