@@ -378,23 +378,30 @@ private void OnMove(InputValue value)
 设计一个简单的小怪ai，逻辑是声明一个以这个小怪为圆心的圆，然后检测我们的角色是否在这个圆的面积之内，如果是就追踪角色，不是就停止。
 
 ```c#
-public class DetectionZone : MonoBehaviour
-{
-
-    public Collider2D detectedObjs;//全局变量
-    public float viewRadius; //半径
-    public LayerMask playerLayerMask; //扫描的layer
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate()
     {
+        if (detectionZone.detectedObjs != null)
+        {
+            //计算位置 玩家位置 - 怪物位置
+            Vector2 direction = (detectionZone.detectedObjs.transform.position - transform.position);
+            if (direction.magnitude <= detectionZone.viewRadius)
+            {
+				//沿 force 矢量的方向连续施加力。
+                rb.AddForce(direction.normalized * speed);
+            }
+        }
         
     }
+```
 
-    // Update is called once per frame
-    void Update()
+`detectionZone.detectedObjs` 这个是在`DetectionZone`这里出现的
+
+```
+   public Collider2D detectedObjs;
+   public LayerMask playerLayerMask; //扫描的layer
+   void Update()
     {
+        //位置 半径 目标 - 这个方法返回的是 Collider2D 与圆重叠的碰撞器。
         Collider2D collider =  Physics2D.OverlapCircle(transform.position, viewRadius, playerLayerMask);
 
         if(collider != null)
@@ -403,14 +410,15 @@ public class DetectionZone : MonoBehaviour
         }
 
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, viewRadius);
-    }
-}
 ```
 
 半径的效果：在unity可以输入变量的值。
 
 ![image-20231126221908087](image-20231126221908087.png)
+
+这里需要将，player和Oct的碰撞体打开，才可以获取我们layer的碰撞体。我就是犯了这个错误找了半个小时。原理就是用碰撞体定位方位，然后用`add.force`对这个矢量方向施加一个力，来运动。演示如下：
+
+![录制_2023_11_27_22_16_16_838](录制_2023_11_27_22_16_16_838.gif)
+
+
+
