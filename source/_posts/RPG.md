@@ -394,7 +394,7 @@ private void OnMove(InputValue value)
     }
 ```
 
-`detectionZone.detectedObjs` 这个是在`DetectionZone`这里出现的
+`detectionZone.detectedObjs` 这个是在`DetectionZone`这里出现的，表示的是获取处理之后的碰撞器（应该是player的）
 
 ```
    public Collider2D detectedObjs;
@@ -420,5 +420,249 @@ private void OnMove(InputValue value)
 
 ![录制_2023_11_27_22_16_16_838](录制_2023_11_27_22_16_16_838.gif)
 
+同时我们应该限制，两个角色之间的z轴坐标：如果打开它们就会转圈圈
 
+![image-20231129211451721](/image-20231129211451721.png)
 
+同样的，对于小怪也需要搞方向，这里的原理是最开始的方向基准为0，向左就小于0，向右就大于0.通过翻转 `spriteRenderer` 的 `flipX` 属性来实现。
+
+![录制_2023_11_29_21_29_08_794](录制_2023_11_29_21_29_08_794.gif)
+
+## 制作角色攻击
+
+首先制作角色攻击动画，拉入图片然后设置刷新率就行。
+
+![录制_2023_11_29_22_06_18_832](录制_2023_11_29_22_06_18_832.gif)
+
+在下载的插件处，有预设的攻击方式：``
+
+![image-20231129221120631](image-20231129221120631.png)
+
+这里的`Left Button`是控制鼠标攻击：
+
+![image-20231129221224064](image-20231129221224064.png)
+
+在`playManager`处添加攻击动画
+
+```c#
+    void OnFire()
+    {
+        animator.SetTrigger("swordAttack");
+    }
+
+```
+
+就可以成功了：
+
+![录制_2023_11_29_22_21_05_862](录制_2023_11_29_22_21_05_862.gif)
+
+但是现在攻击是没有作用的，因为我们的攻击只是一个动画，所以说我们需要实例化这个动画。在player处建一个object，我们要对这个object进行操作。
+
+![image-20231129224822837](image-20231129224822837.png)
+
+在挥剑最大的动画，需要配置一个碰撞体（好像直接设置触发器就行），上面已经创建了物体了，接下来配置一下：左上角是标记，然后做了一个碰撞箱。
+
+![image-20231129232145618](/image-20231129232145618.png)
+
+![image-20231129232255491](image-20231129232255491.png)
+
+然后再动画里面，插入碰撞体
+
+![image-20231129232459448](image-20231129232459448.png)
+
+设置这条竖线再我们需要的动画帧处：这里表示再这个位置处启动BOX，记得在player里面吧box关掉，然后就可以正常使用了。
+
+![image-20231129232554020](image-20231129232554020.png)
+
+![录制_2023_11_30_10_48_48_862](录制_2023_11_30_10_48_48_862.gif)
+
+但是这样还不够，角色在移动的时候剑不会跟着角色一起转方向，这里新建一个类来实现挥剑的动作：
+
+```c#
+    //控制剑的方向
+    Vector3 position;
+
+    void Start()
+    {
+        //位置基准是以父物体的
+        position = transform.localPosition;
+    }
+
+    //函数翻转剑
+    void IsFacingRight(bool isFacingRight)
+    {
+        if (isFacingRight)
+        {
+            transform.localPosition = position;
+        }
+        else
+        {
+            //单单翻转x
+            transform.localPosition = new Vector3(-position.x,position.y,position.z);
+        }
+    }
+
+```
+
+调用的时候，我们采用父类调用子类的方法：因为这个剑的碰撞体是在player上的嘛。
+
+```c#
+private void OnMove(InputValue value)
+    {
+        //控制移动的逻辑
+        moveInput = value.Get<Vector2>();
+        if(moveInput == Vector2.zero)
+        {
+            //控制移动动画播放
+            animator.SetBool("IsWalk", false);
+        }
+        else
+        {
+            animator.SetBool("IsWalk", true);
+            if(moveInput.x>0)
+            {
+                spriteRenderer.flipX = false;
+                //调用这个物体的子物体的方法
+                gameObject.BroadcastMessage("IsFacingRight", true);
+
+            }
+            if(moveInput.x<0)
+            {
+                spriteRenderer.flipX= true;
+                gameObject.BroadcastMessage("IsFacingRight", false);
+            }
+        }
+
+    }
+```
+
+## 制作受击脚本
+
+创建两个脚本，`DamageableCharater`和`IDamageable`.其中`IDamageable`作为接口依附在`DamageableCharater`.
+
+`IDamageable`接口抽象出来的意思是挂载在物品上就认为是可摧毁的
+
+```c#
+//接口才能被继承
+public interface IDamageable
+{
+    //挂上这个脚本就是攻击？
+    public void OnHit(int damage, Vector2 knockback);    
+}
+
+```
+
+`DamageableCharater` 重写方法
+
+```c#
+public class DamageableCharater : MonoBehaviour, IDamageable
+{
+    Rigidbody2D rb;
+    Collider2D physicsCollider;
+
+    public void OnHit(int damage,Vector2 knockback)
+    {
+        rb.AddForce(knockback);
+    }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        physicsCollider = GetComponent<Collider2D>();
+    }
+
+}
+```
+
+在`sword`处将`box2d`配置为触发器
+
+![image-20231130133501319](image-20231130133501319.png)
+
+设置打击时实现怪物击退效果，
+
+![image-20231130133953588](image-20231130133953588.png)
+
+```c#
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        IDamageable damageable = collider.GetComponent<IDamageable>();
+        if(damageable != null )
+        {
+            Vector3 _position = transform.parent.position;
+            Vector2 direction = collider.transform.position - _position;
+
+            attackPower = 1;
+            damageable.OnHit(attackPower, direction.normalized * knockbackForce);
+        }
+    }
+```
+
+原理是给打击对象施加一个力，让它远离自己。施加函数是`rb.AddForce(knockback);`
+
+![录制_2023_11_30_13_51_45_258](录制_2023_11_30_13_51_45_258.gif)
+
+## 配置剩余动画
+
+创建两个触发器，来触发我们的动画：
+
+![image-20231130143608642](image-20231130143608642.png)
+
+在这个的基础之上绘制我们的动画转移图
+
+![image-20231130143629369](image-20231130143629369.png)
+
+对于过度的箭头，我们设置为无过度时间且过度间隔为0.但是在受击恢复行动的时候，我们需要播放完受击动画才回到正常状态。在死亡的时候也需要播放完成，设置为下面这张图的状态。
+
+![image-20231130144204167](image-20231130144204167.png)
+
+然后将死亡动画取消循环播放：
+
+![image-20231130144857701](image-20231130144857701.png)
+
+在orc管理脚本中添加两个播放动画
+
+```c#
+    void OnDamage()
+    {
+        animator.SetTrigger("isDamage");
+    }
+
+    void OnDie()
+    {
+        animator.SetTrigger("isDead");
+    }
+```
+
+在受击脚本中添加一个属性，`health`用于配置怪物的血量
+
+```c#
+    public int Health
+    {
+        get { return health; }
+        set { health = value;
+            if (health <= 0)
+            {
+                //血量小于0 播放死亡
+                gameObject.BroadcastMessage("OnDie");
+            }
+            else
+            {	
+                //大于0播放受击
+                gameObject.BroadcastMessage("OnDamage");
+            }    
+        
+        }
+    }
+```
+
+然后就实现完成了：
+
+![录制_2023_11_30_14_52_27_209](录制_2023_11_30_14_52_27_209.gif)
+
+对于小怪死亡还在追踪角色，我们将他的`Simulated`关闭即可
+
+![image-20231130150226190](image-20231130150226190.png)
+
+然后就可以实现了：
+
+![录制_2023_11_30_15_03_56_510](录制_2023_11_30_15_03_56_510.gif)
