@@ -6,7 +6,9 @@ categories: 工程
 typora-root-url: ./RPG
 ---
 
-# RPG
+# [RPG](https://www.bilibili.com/video/BV1Xj411r7Mm/?share_source=copy_web&vd_source=0d2493ac4766210855634c1c51302689)
+
+> 这里是我初学在哔哩哔哩跟做的RPG小游戏，记录生活，仅供参考。
 
 ## 导入素材
 
@@ -22,7 +24,7 @@ typora-root-url: ./RPG
 
 但是开了梯子就下载不了，我也不知道是什么原因。
 
-下载完成之后我们就得到了两个素菜包，打开素材包我们开始构造我们的地图
+下载完成之后我们就得到了两个素材包，打开素材包我们开始构造我们的地图
 
 ![image-20231031133124761](image-20231031133124761.png)
 
@@ -88,10 +90,6 @@ typora-root-url: ./RPG
 点击`Used By Composite`，合并
 
 ![image-20231101140556421](image-20231101140556421.png)
-
-
-
-
 
 顺便设置物理属性，设置为静态
 
@@ -666,3 +664,165 @@ public class DamageableCharater : MonoBehaviour, IDamageable
 然后就可以实现了：
 
 ![录制_2023_11_30_15_03_56_510](录制_2023_11_30_15_03_56_510.gif)
+
+## 死亡动画添加事件
+
+在动画处我们可以用这个小东西添加事件，这里可以调用我们生成的类的方法来实现死亡动画的清除
+
+![image-20231130213553575](image-20231130213553575.png)
+
+在结尾帧处，插入我们消除物品的事件
+
+![image-20231130213651267](image-20231130213651267.png)
+
+## 小怪攻击
+
+攻击和player攻击模式就行，就是血量下降到0就死亡。在player处搭载，调用小怪的方法，但是现在没有主角受击的情况，我们需要添加。
+
+![image-20231130215741056](image-20231130215741056.png)
+
+添加了几个动画：
+
+![image-20231130221959593](image-20231130221959593.png)
+
+运用我们之前的事件，在死亡结尾处调用函数：
+
+![image-20231130222044248](image-20231130222044248.png)
+
+效果达成：
+
+![image-20231130222110951](image-20231130222110951.png)
+
+## 伤害飘字
+
+制作一个3D类型的字体，让我们脚本可以挂载
+
+![image-20231202105829509](image-20231202105829509.png)
+
+原理是小怪受到攻击掉血的时候，我们将掉血的值创建出来。我们创建一个gameobject来挂载这个脚本
+
+![image-20231202105944654](image-20231202105944654.png)
+
+获取这个脚本利用属性和文件定位：
+
+```c#
+    private static GameAssets instance;
+    //位置
+    public Transform DamagePopop;
+
+    public static GameAssets Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                //在resource文件夹中找到GameAssets
+                instance = Resources.Load<GameAssets>("GameAssets");
+            }
+            return instance;
+        }
+    }
+```
+
+对于其挂载的Text我们对其构造一个脚本
+
+```c#
+private TextMeshPro textMesh;
+    private Vector3 moveVector;
+    public float disappearTimer;
+    public float disappearSpeed;
+    private Color textColor;
+    private const float DISAPPEAR_TIMER_MAX = 1f;
+
+    private static int sortingOrder;
+
+
+    private void Awake()
+    {
+        textMesh = transform.GetComponent<TextMeshPro>();
+        textColor = textMesh.color;
+    }
+    //创建飘字
+    public static DamagePopup Create(Vector3 position,int damageAmount,bool isCritical)
+    {
+        Transform damagePopupTransform = Instantiate(GameAssets.Instance.DamagePopop,position,Quaternion.identity);
+        DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
+        damagePopup.Setup(damageAmount,isCritical);
+        return damagePopup;
+    }
+    //飘字设置
+    private void Setup(int damageAmount,bool iscriticalHit)
+    {
+        textMesh.SetText(damageAmount.ToString());
+        if (!iscriticalHit)
+        {
+            textMesh.fontSize = 5;
+        }
+        else
+        {
+            textMesh.fontSize = 7;
+            textColor = Color.red;            
+        }
+        textMesh.color = textColor;
+        disappearTimer = DISAPPEAR_TIMER_MAX;
+
+        //数字转字符
+        moveVector = new Vector3(0.7f,1)*10;
+        sortingOrder++;
+        textMesh.sortingOrder = sortingOrder; 
+
+    }
+
+    private void Update()
+    {
+        transform.position += moveVector * Time.deltaTime;
+        moveVector -= moveVector*7 * Time.deltaTime;
+
+        if(disappearTimer > DISAPPEAR_TIMER_MAX*0.5f)
+        {
+            float increaseScaleAmount = 1f;
+            transform.localScale += Vector3.one * increaseScaleAmount * Time.deltaTime;
+        }
+        else
+        {
+            float drcreaseScaleAmount = 1f;
+            transform.localScale -= Vector3.one * drcreaseScaleAmount * Time.deltaTime;
+        }
+
+       
+        disappearTimer -= Time.deltaTime;
+        if(disappearTimer < 0)
+        {
+            //降低透明度
+            textColor.a -= disappearSpeed * Time.deltaTime;
+            textMesh.color = textColor;
+            if (textColor.a < 0)
+            {
+                Destroy(gameObject);
+            }
+            
+        }
+    }
+```
+
+这里需要提到的只有两个：
+
+- 这个函数是为了创造飘字
+
+  ```c#
+  public static DamagePopup Create(Vector3 position,int damageAmount,bool isCritical)
+      {
+          Transform damagePopupTransform = Instantiate(GameAssets.Instance.DamagePopop,position,Quaternion.identity);
+          DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
+          //damagePopup.Setup(damageAmount,isCritical); //添加花里胡哨的特效
+          return damagePopup;
+      }
+  ```
+
+- Update挂载的代码是为了让字消失
+
+  ![录制_2023_12_02_11_07_21_596](录制_2023_12_02_11_07_21_596.gif)
+
+-------
+
+以上完结！！！
