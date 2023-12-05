@@ -265,6 +265,151 @@ C#支持重写实例方法和属性，但不支持字段和任何静态成员的
 
 ![image-20231204221955700](image-20231204221955700.png)
 
+### Is关键字
+
+用于判断变量的类型，是一个匹配操作符。返回的是bool值。is操作符的优点是允许验证一个数据项是否属于特定类型，常用于判断一个对象是否兼容于其他指定的类型然后用as操作符进行转化。
+
+![image-20231205104217403](image-20231205104217403.png)
+
+### as操作符
+
+as操作符更进一步，它会像一次转型所做的那样，尝试将对象转换为特定数据类型。可以理解为as操作符是用于类型转换的。`as` 只能用于引用类型不能用于值类型;
+
+```c#
+object o = new object();  
+ 
+ Label lb = o as Label;   // as 操作符
+ 
+ if (lb == null)  
+ {  
+     Response.Write("类型转换失败");  
+ }  
+ else 
+ {  
+     Response.Write("类型转换成功");  
+ } 
+```
+
+as也可以转换对象，可以用于尝试将一个对象转换为另一个类或接口类型。前提是目标类型必须是源类型的基类、接口或派生类。
+
+```c#
+class Animal
+{
+    public void Eat()
+    {
+        Console.WriteLine("Animal is eating.");
+    }
+}
+
+class Dog : Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine("Dog is barking.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Animal animal = new Dog();
+        //只能转换成派生类的对象
+        Dog dog = animal as Dog;
+
+        if (dog != null)
+        {
+            dog.Bark();
+        }
+        else
+        {
+            Console.WriteLine("Conversion failed.");
+        }
+    }
+}
+```
+
+### [接口](https://www.zhihu.com/question/430902220)
+
+C#放弃了多重继承，采用了单继承操作。但是这样会导致需求比较复杂时捉襟见肘。采用接口的方式代替多重继承。接口的意义是可以让不同的类型具有相同的操作标准。就像插头，两孔是一个接口，实现这个接口就可以插到两孔的插座上，三孔是另一个接口。如果同时实现这两个接口就可以既插到两孔插头也可以插到三孔插头。
+
+> 接口的意义就是实现最大的封装，当两个实现类针对一个接口的时候，就叫互为多态。
+>
+> 总结：1.规范 2.多态
+
+![image-20231205112412961](image-20231205112412961.png)
+
+“继承”本身是有局限性的。如果我们把需要关心的“功能和特性”列出表来，实际上是这样的：
+
+![img](/v2-33b195f52fc6d296eec6b672d388fb33_720w.webp)
+
+单纯从一个角度分类，远远不如像这样把功能摊开的好。如果把左边的每个`可XXXX`看做一种接口（**接口这个名词翻译得有问题，应当理解为“满足的协议”或“承诺可进行的操作”**）
+
+```c#
+// 可按下按键的“协议”
+    interface IPressButton
+    {
+        // 按下某个按键
+        void Press(int button);
+    }
+    // 可插USB的“协议”
+    interface IUSB
+    {
+        // 插USB
+        void PlugUSB();
+    }
+```
+
+所有的具体类型，要根据是否满足协议来设计：
+
+```c#
+class 键盘 : IPressButton, IUSB
+    {
+        public void Press(int b)
+        {
+            Console.WriteLine("按下键盘"+b+"键");
+        }
+        public void PlugUSB() { }
+    }
+    class 鼠标 : IPressButton, IUSB
+    {
+        public void Press(int b)
+        {
+            Console.WriteLine("按下鼠标"+b+"键");
+        }
+        public void PlugUSB() { }
+    }
+    class 显示器 : IPressButton
+    {
+        public void Press(int b)
+        {
+            Console.WriteLine("按下显示器"+b+"键");
+        }
+    }
+    class 手机 : IPressButton, IUSB
+    {
+        public void Press(int b) {
+            Console.WriteLine("按下手机"+b+"键");
+        }
+        public void PlugUSB() { }
+    }
+```
+
+### 枚举
+
+类似于Switch语句，定义的枚举其实是一种变量：
+
+```c#
+enum Con{
+	a,
+	b
+}
+```
+
+通过`.`操作符，可以像数组一样来枚举变量内部的值。
+
+## 线程
+
 ## `API`
 
 > 遇到不懂的api都会记录在这里
