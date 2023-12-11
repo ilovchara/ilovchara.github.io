@@ -50,6 +50,7 @@ sudo yum install libxml2 libxml2-devel
 
 ```shell
 ./configure --prefix=/usr/local/php --enable-mbstring --enable-fpm
+make && make install
 ```
 
 执行`php-v`发现没有出现`php`的版本，添加一下环境变量
@@ -59,6 +60,35 @@ export PATH=/usr/local/php/bin:$PATH
 ```
 
 ![image-20231209172850504](image-20231209172850504.png)
+
+> 这里我重新安装的时候遇到了一个问题，就是找不到`php.ini`这个文件了，只能从源码拉过来一个：
+>
+> 先确定`php.ini`的位置
+>
+> ```shell
+> php -r "phpinfo();" | grep 'php.ini'
+> ```
+>
+> ![image-20231211210606030](image-20231211210606030.png)
+>
+> 去安装位置拉取我们的php.ini
+>
+> ![image-20231211210652252](image-20231211210652252.png)
+>
+> 一个是开发用的，一个是生产环境用的，复制到对应的位置就行：
+>
+> ```shell
+> cp /home/php-7.3.8/php.ini-development /usr/local/php/lib
+> ```
+>
+> 然后里面的内容注意！！！
+>
+> ```shell
+> ;
+> #这个分号是注释！！！！
+> ```
+
+
 
 ### 安装`swoole`
 
@@ -107,6 +137,10 @@ make && make install
 extension=swoole.so
 ```
 
+如果没有，我们执行命令` php --ini`，来找到`php.ini`
+
+![image-20231211203841025](image-20231211203841025.png)
+
 检查输出
 
 ```shell
@@ -152,20 +186,23 @@ yum install gcc gcc-c++
 wget https://nginx.org/download/nginx-1.24.0.tar.gz
 ```
 
-下载解压安装
+下载解压
 
 ```shell
-tar -zxvf nginx-1.20.1.tar.gz
-./configure --prefix=/usr/local/nginx
+tar -zxvf nginx-1.24.0.tar.gz
 ```
 
-然后理所应当失败了，发现缺少 PCRE（Perl Compatible Regular Expressions）库
-
-![image-20231209165810547](image-20231209165810547.png)
+缺少` PCRE`（Perl Compatible Regular Expressions）库
 
 ```shell
 #安装呗
 sudo yum install pcre pcre-devel 
+```
+
+```shell
+#编译
+./configure --prefix=/usr/local/nginx
+
 ```
 
 然后就成功了：
@@ -191,6 +228,22 @@ make && make install
 # 启动后查看进程
 [root@localhost sbin]# ps aux|grep nginx
 ```
+
+但是这里系统无法识别到， `Nginx `添加到系统 PATH 中，可以使用 `echo` 命令将路径添加到 shell 配置文件，而不必手动编辑。以下是一个简单的例子：
+
+```shell
+echo 'export PATH=/usr/local/nginx/sbin:$PATH' >> ~/.bashrc
+```
+
+上述命令将新的 PATH 配置添加到 `~/.bashrc` 文件的末尾。然后，运行以下命令以使更改生效：
+
+```shell
+source ~/.bashrc
+```
+
+### 反向代理
+
+
 
 ## 安装Python 3.6 以及 pip
 
@@ -260,5 +313,47 @@ nohup /usr/local/php/bin/php server.php > server.log 2>&1 &
 
 对`nginx.conf`操作，申请证书，还是不行唉，放弃了，只能之后再部署了。
 
+## 知识点
 
+### 删除文件夹
+
+删除文件用rm就行，这里`rf`是删除不用询问
+
+```shell
+rm -rf 指定文件夹
+```
+
+### 查看运行
+
+这里是为了查看`ngnix`运行情况
+
+```shell
+sudo systemctl status nginx
+```
+
+查看线程也可以
+
+```shell
+ps aux | grep nginx
+```
+
+### `vim`文件编辑
+
+全部删除
+
+```shell
+:%d
+```
+
+搜索指定内容
+
+```shell
+/指定内容
+```
+
+全选
+
+```shell
+ggVG
+```
 
