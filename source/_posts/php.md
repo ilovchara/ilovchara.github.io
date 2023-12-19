@@ -357,3 +357,14 @@ ps aux | grep nginx
 ggVG
 ```
 
+### 安装
+
+安装git
+
+```
+sudo yum install git
+```
+
+## 安装`mysql`
+
+安装w
