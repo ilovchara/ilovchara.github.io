@@ -5,21 +5,18 @@ tags: 工程
 typora-root-url: ./php
 ---
 
-# PHP
+# `PHP`远程聊天
 
-> 本来差一点做好了，结果不小心删库了，只能重新做了
->
-> 同时还遇到了`nginx`的问题，麻上加麻
+> 完成这个项目的路程有点坎坷，途中换了个项目，这里保存我下载的内容。
 
 ## 项目
 
-在`github`上拉的一个项目，名字叫做[SyncMusic](https://github.com/kasuganosoras/SyncMusic)。需要的插件很多，我们一个一个下载，下面是一些需要的插件。
+在`github`上拉的一个项目，名字叫做`swoole-webim-demo`。需要的插件很多，我们一个一个下载，下面是一些需要的插件。
 
 - `PHP Swoole`
-- ` Python 3.6 以及 pip`
 - `Nginx`
 
-那闲话不多说，就开始安装吧。
+最后觉得安装软件太麻烦了，直接用宝塔面板傻瓜安装了。
 
 ## 安装`php`
 
@@ -87,8 +84,6 @@ export PATH=/usr/local/php/bin:$PATH
 > ;
 > #这个分号是注释！！！！
 > ```
-
-
 
 ### 安装`swoole`
 
@@ -158,7 +153,7 @@ sudo service nginx restart
 
 ## 安装`wget`
 
-这个`wget`是安装的命令，先看一下有没有安装：
+这个`wget`是安装的命令，`wget` 是一个在命令行中使用的工具，用于从网络上下载文件。先看一下有没有安装：
 
 ![image-20231209165133696](image-20231209165133696.png)
 
@@ -202,7 +197,6 @@ sudo yum install pcre pcre-devel
 ```shell
 #编译
 ./configure --prefix=/usr/local/nginx
-
 ```
 
 然后就成功了：
@@ -241,130 +235,9 @@ echo 'export PATH=/usr/local/nginx/sbin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### 反向代理
+## 项目具体
 
+依据项目的部署[文档](https://github.com/hellosee/swoole-webim-demo)，部署完的项目截图：
+![image-20240101212022676](image-20240101212022676.png)
 
-
-## 安装Python 3.6 以及 pip
-
-```shell
-yum install python36 python36-pip -y
-pip3 install mutagen
-```
-
-## 部署
-
-在路径`/home`中拉入我们的项目
-
-```shell
-git clone https://github.com/kasuganosoras/SyncMusic/
-```
-
-前提是要安装`git`
-
-```shell
-sudo yum install git
-```
-
-然后启动 `server.php`
-
-![image-20231209182536562](image-20231209182536562.png)
-
-```shell
-#让它在后台运行
-nohup /usr/local/php/bin/php server.php > server.log 2>&1 &
-```
-
-用`ps-x`可以看到在运行了
-
-![image-20231209182638058](image-20231209182638058.png)
-
-配置一下`index.html`
-
-![image-20231209183049742](image-20231209183049742.png)
-
-```shell
-#配置这里改一下你自己的ip
-```
-
-接下来配置前端页面，我们的服务器是在`nginx`的嘛，所以说配置一下`nginx`
-
-![image-20231209183154488](image-20231209183154488.png)
-
-```shell
-#找到nginx.conf这里是我们网页的配置
-```
-
-![image-20231209184457970](image-20231209184457970.png)
-
-然后用我们的ip登陆，就可以找到项目了
-
-![image-20231209184515337](image-20231209184515337.png)
-
-但是这里有个问题。是关于`https`协议的，有个文件被拦截了
-
-![image-20231209184546788](image-20231209184546788.png)
-
-## 最终
-
-那就只能申请`https`了，先更改配置文件
-
-![image-20231209194543588](image-20231209194543588.png)
-
-对`nginx.conf`操作，申请证书，还是不行唉，放弃了，只能之后再部署了。
-
-## 知识点
-
-### 删除文件夹
-
-删除文件用rm就行，这里`rf`是删除不用询问
-
-```shell
-rm -rf 指定文件夹
-```
-
-### 查看运行
-
-这里是为了查看`ngnix`运行情况
-
-```shell
-sudo systemctl status nginx
-```
-
-查看线程也可以
-
-```shell
-ps aux | grep nginx
-```
-
-### `vim`文件编辑
-
-全部删除
-
-```shell
-:%d
-```
-
-搜索指定内容
-
-```shell
-/指定内容
-```
-
-全选
-
-```shell
-ggVG
-```
-
-### 安装
-
-安装git
-
-```
-sudo yum install git
-```
-
-## 安装`mysql`
-
-安装w
+下面是一些用到的知识点
