@@ -1072,16 +1072,15 @@ swiper:
   custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁
   custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
 
-# 侧栏时钟
-# electric_clock (安知鱼电子钟)
-# see https://anzhiy.cn/posts/fc18.html
+# electric_clock
+# see https://blog.anheyu.com/posts/fc18.html
 electric_clock:
   enable: true # 开关
   priority: 5 #过滤器优先权
   enable_page: / # 应用页面
   exclude:
-    # - /posts/
-    # - /about/
+  # - /posts/
+  # - /about/
   layout: # 挂载容器类型
     type: class
     name: sticky_layout
@@ -1091,9 +1090,9 @@ electric_clock:
   clock_js: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js
   ip_api: https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0
   qweather_key: ee3d7f610b85431d891a12105f573ae6 # 和风天气key
-  gaud_map_key:  # 高得地图web服务key
-  default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
-  rectangle: 113.34532,23.15624 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
+  gaud_map_key: 58d4638ce2f98f04bd823cde6a2d5099 # 高得地图web服务key
+  default_rectangle: true # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
+  rectangle: 112.982279,28.19409 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
 
 
 
