@@ -998,7 +998,7 @@ inject:
     # 自定义css文件 themes\butterfly\source\css\self.css
     - <link rel="stylesheet" href="/css/comment/self.css">
 
-    # 插入流星背景
+    # 插入流星背景 - 只会在黑夜模式下才有 - 这里是蒙版
     - <link rel="stylesheet" href="/css/universe.css">
 
     # 插入波浪
@@ -1013,16 +1013,12 @@ inject:
 
 # js放在bottom处
   bottom:
-    # 这个是下面的音乐播放器
-    #  - <script src="xxxx"></script>
-    #  - <div class="aplayer no-destroy" data-id="60198" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div>
-
     # 引入jquery - js素材
     - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> #一定要放在所有引入的js前面！！！
     # 自定义js
     #- <script data - pjax type = "text/javascript" src = "/js/{demo}.js" ></script >
     
-    # 流星背景
+    # 流星背景 - 暗夜才有效果 - 这里是执行函数
     - <canvas id="universe"></canvas>
     - <script defer src="/js/universe.js"></script>
 
@@ -1094,7 +1090,7 @@ electric_clock:
   clock_css: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css
   clock_js: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js
   ip_api: https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0
-  qweather_key:  # 和风天气key
+  qweather_key: ee3d7f610b85431d891a12105f573ae6 # 和风天气key
   gaud_map_key:  # 高得地图web服务key
   default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
   rectangle: 113.34532,23.15624 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
