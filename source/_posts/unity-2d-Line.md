@@ -1,10 +1,9 @@
 ---
 title: unity 2d Line
 date: 2023-10-12 14:19:34
-tags: 工程
-categories: 工程
+categories: unity
 typora-root-url: ./unity-2d-Line
-hidden: true
+hidden: false
 ---
 
 ## 菜单搭建

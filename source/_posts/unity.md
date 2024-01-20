@@ -1,11 +1,10 @@
 ---
 title: unity - 拾荒者
 date: 2023-08-24 11:11:19
-tags: 工程
-categories: 工程
+categories: unity
 swiper_index: 5
 typora-root-url: ./unity
-hidden: true
+hidden: false
 ---
 
 # 拾荒者
