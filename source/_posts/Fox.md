@@ -5,7 +5,7 @@ categories: unity
 typora-root-url: ./Fox
 ---
 
-# Ruby's Adventure
+# [Ruby's Adventure](https://learn.unity.com/project/ruby-s-adventure-2d-chu-xue-zhe?uv=2020.3)
 
 > 前面创建角色啥的就不细谈了，这里直接快进到画地图
 
@@ -283,9 +283,817 @@ public class HealthCollectible : MonoBehaviour
         if (controller != null)
         {
             controller.ChangeHealth(1);
+            //拾取之后删除
             Destroy(gameObject);
         }
     }
 }
 ```
 
+当然，一直设置类函数为**public**是不太安全的，如果我们需要访问私有变量，这个时候就需要用到属性了。
+
+在 **RubyController** 脚本中定义一个属性：
+
+```c#
+//get 关键字来获取第二个代码块中的任何内容。 - 用途是访问私有变量
+public int health { get { return currentHealth; } }
+```
+
+这里的`currentHealth`是一个私有变量(感觉可以理解为换个名字)
+
+下面是文件代码
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
+
+public class RubyController : MonoBehaviour
+{
+    public float speed = 3.0f;
+
+    //生命值
+    public int maxHealth = 5;
+
+    public int health { get { return currentHealth; } }
+    int currentHealth;
+
+
+    Rigidbody2D rigidbody2d;
+    // 横 - 纵
+    float horizontal;
+    float vertical;
+    
+    //速度
+
+
+    // 只执行一次
+    void Start()
+    {
+        //QualitySettings.vSyncCount = 0; //垂直同步关闭
+        //Application.targetFrameRate = 10; // 限制刷新率 - 这里目的是限制移动
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        //初始化
+        currentHealth = maxHealth;
+    }
+
+    // 按帧执行
+    void Update()
+    {
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 position = transform.position;
+        position.x = position.x + speed * horizontal * Time.deltaTime;
+        position.y = position.y + speed * vertical * Time.deltaTime;
+
+        rigidbody2d.MovePosition(position);
+    }
+    // 改变血量
+    public void ChangeHealth(int amount)
+    {
+        //使用 Mathf.Clamp() 函数确保健康值在指定范围内（0 到 maxHealth 之间）
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
+    }
+
+}
+```
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HealthCollectible : MonoBehaviour
+{    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //获取碰撞体上的 RubyController 组件
+        RubyController controller = other.GetComponent<RubyController>();
+        //有敌人 - 碰撞
+        if (controller != null)
+        {
+            if (controller.health < controller.maxHealth)
+            {
+                controller.ChangeHealth(1);
+                Destroy(gameObject);
+            }
+        }
+    }
+}
+```
+
+## 伤害扣取生命值
+
+布置陷阱精灵，配置触发器。
+
+![image-20240122131846228](image-20240122131846228.png)
+
+在陷阱精灵处，添加一个脚本文件，控制陷阱伤害人物。这里和获取生命值差不多，只是换了一个函数**OnTriggerStay2D**
+
+这里的函数是按照帧来触发的
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DamageZone : MonoBehaviour
+{
+    // 降低生命值 - 用触发器 - 这里Stay是按照帧触发
+    void OnTriggerStay2D(Collider2D other)
+    {
+        RubyController controller = other.GetComponent<RubyController>();
+
+        if (controller != null)
+        {
+            controller.ChangeHealth(-1);
+        }
+    }
+}
+```
+
+但是，在陷阱范围内静止就不会触发伤害了，这是因为优化资源，**物理系统**在**刚体**停止移动时会停止计算刚体的碰撞。这里我们让刚体永不休眠就行：
+
+![image-20240122134338963](image-20240122134338963.png)
+
+可以看到不断刷新生命值了。这里dps有点高了
+
+![image-20240122135136478](image-20240122135136478.png)
+
+我们改为按照一定时间！过后才能再受到伤害
+
+```c#
+public class RubyController : MonoBehaviour
+{
+    public float speed = 3.0f;
+    
+    public int maxHealth = 5;
+    public float timeInvincible = 2.0f;
+    
+    public int health { get { return currentHealth; }}
+    int currentHealth;
+    // 是否处于无敌状态
+    bool isInvincible;
+    // 恢复到可受伤状态之前剩下的无敌状态时间
+    float invincibleTimer;
+    
+    Rigidbody2D rigidbody2d;
+    float horizontal;
+    float vertical;
+    
+    // 在第一次帧更新之前调用 Start
+    void Start()
+    {
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+    }
+
+    // 每帧调用一次 Update
+    void Update()
+    {
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+        
+        if (isInvincible)
+        {
+            // 通过这个时间间隔控制受伤开关
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+                isInvincible = false;
+        }
+    }
+    
+    void FixedUpdate()
+    {
+        Vector2 position = rigidbody2d.position;
+        position.x = position.x + speed * horizontal * Time.deltaTime;
+        position.y = position.y + speed * vertical * Time.deltaTime;
+
+        rigidbody2d.MovePosition(position);
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        if (amount < 0)
+        {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            // 更新时间
+            invincibleTimer = timeInvincible;
+        }
+        
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
+    }
+}
+```
+
+这里就可以2s伤害一次了
+
+![image-20240122143524317](image-20240122143524317.png)
+
+然后配置另一种减少生命的形式，添加一些敌人
+
+拉入敌人的图片制作成精灵
+
+![image-20240122145944625](image-20240122145944625.png)
+
+创建控制敌人的脚本，写入让敌人周期不同方向移动
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyController : MonoBehaviour
+{
+    public float speed;
+    public bool vertical;
+    public float changeTime = 3.0f;
+	// 物体的刚体 - 有我们需要的变量
+    Rigidbody2D rigidbody2D;
+    float timer;
+    int direction = 1;
+
+    // 在第一次帧更新之前调用 Start
+    void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        timer = changeTime;
+    }
+
+    void Update()
+    {
+        //时间周期
+        timer -= Time.deltaTime;
+
+        if (timer < 0)
+        {
+            //方向
+            direction = -direction;
+            timer = changeTime;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        Vector2 position = rigidbody2D.position;
+
+        if (vertical)
+        {
+            position.y = position.y + Time.deltaTime * speed * direction; ;
+        }
+        else
+        {
+            position.x = position.x + Time.deltaTime * speed * direction; ;
+        }
+
+        rigidbody2D.MovePosition(position);
+    }
+}
+```
+
+> 这里补充一下
+>
+> - `timer -= Time.deltaTime;` `Time` 是一个静态类，用于获取有关时间的信息，它返回上一帧和当前帧之间的时间间隔。
+> - `MovePosition` 字面意思，移动到指定的position
+> - `direction` 表示的是方向
+
+在之前的陷阱精灵布置，布置大范围的陷阱的时候拉伸精灵会变得很难看。这里就需要用到**精灵渲染器 (Sprite Renderer)** 的功能
+
+- 首先，确保**游戏对象**的缩放在 **Transform 组件**中设置为 **1**,**1**,**1**。
+- 然后在 **Sprite Renderer** 组件中将 **Draw Mode** 设置为 **Tiled**，并将 **Tile Mode** 更改为 **Adaptive**。
+
+这里的Tiled表示平铺，Adaptive表示自适应大小
+
+![image-20240123121857814](image-20240123121857814.png)
+
+如果平铺会显示警告，这是因为原素材没有采用**Full Rect:**
+
+![image-20240123122215213](image-20240123122215213.png)
+
+在Unity游戏引擎中，Mesh Type（网格类型）通常是指用于渲染3D模型的网格（Mesh）的类型。在Renderer组件或Mesh Filter组件中，你可能会找到Mesh Type这个属性。以下是常见的Mesh Type选项：
+
+1. **Full Rect:**
+   - 这个选项表示网格将占据整个矩形区域。通常用于渲染整个模型。
+2. **Tight:**
+   - Tight表示网格将紧密包围在模型的非透明区域周围。这可以减少不透明区域之外的渲染开销，特别是对于复杂形状的模型。
+3. **Bounding Box:**
+   - 这个选项使用包围盒（Bounding Box）来定义模型的边界。包围盒是一个最小的立方体，完全包围模型。这种方式可以更快速地进行渲染，但可能会导致在一些情况下出现不准确的渲染。
+
+## 添加动画
+
+先添加敌人的，打开对应的预制体，添加`animator`
+
+![image-20240123131920499](image-20240123131920499.png)
+
+再创建一个Controller,拖入到animator中，这里的控制器就创建完成了
+
+![image-20240124134530016](image-20240124134530016.png)
+
+我们需要做四个方向的运动，这里需要用到动画树的效果
+
+现在先制作向左运动的动画，打开window中的animation，拉入对应的动画即可
+
+![image-20240124134933727](image-20240124134933727.png)
+
+这里需要注意的是，Samples可能被隐藏了，可以在右边的三点找到
+
+![image-20240124135021647](image-20240124135021647.png)
+
+直接将Samples的值调为4，表示每秒刷新四张图片。可以将这个理解为帧率
+
+![image-20240124135327448](image-20240124135327448.png)
+
+制作四个动画的时候发现一个问题，我没找到向右运动的动画，这里就将向左运动的y轴翻转180°。
+
+![image-20240124141616203](image-20240124141616203.png)
+
+然后发现了更简单的方法：这里有个按钮可以直接反转x轴？"Flip X" 表示在水平方向上进行翻转或镜像。
+
+![image-20240124142102487](image-20240124142102487.png)
+
+接下来就是布置动画状态机了，打开我们之前创建的状态机
+
+![image-20240124142605326](image-20240124142605326.png)
+
+这里学习使用混合树来构造播放效果，将上面的动画删除，右键创建Blend Tree
+
+![image-20240124155013305](./image-20240124155013305.png)
+
+打开Blend Tree，选用2d
+
+![image-20240124155117389](image-20240124155117389.png)
+
+选用之前记得创建两个，创建两个维度
+
+![image-20240124155159438](image-20240124155159438.png)
+
+在右侧插入动画，中间红点靠近会播放动画
+
+![image-20240124160112558](image-20240124160112558.png)
+
+然后我们需要在脚本中调用这些动画，这里只注释有关动画的部分
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyController : MonoBehaviour
+{
+    public float speed;
+    public bool vertical;
+    public float changeTime = 3.0f;
+
+    Rigidbody2D rigidbody2D;
+    float timer;
+    int direction = 1;
+	// 声明一个动画
+    Animator animator;
+
+
+    // 在第一次帧更新之前调用 Start
+    void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        timer = changeTime;
+        animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer < 0)
+        {
+            direction = -direction;
+            timer = changeTime;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        Vector2 position = rigidbody2D.position;
+        // 这里只在竖直方向运动
+        if (vertical)
+        {
+            // 调用设置好的动画名字
+            animator.SetFloat("Move X", 0);
+            animator.SetFloat("Move Y", direction);
+            position.y = position.y + Time.deltaTime * speed * direction; ;
+        }
+        else
+        {
+            // 调用设置好的动画名字
+            animator.SetFloat("Move X", direction);
+            animator.SetFloat("Move Y", 0);
+            position.x = position.x + Time.deltaTime * speed * direction; ;
+        }
+
+        rigidbody2D.MovePosition(position);
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        // 获取玩家的碰撞体
+        RubyController player = other.gameObject.GetComponent<RubyController>();
+
+        if (player != null)
+        {
+            player.ChangeHealth(-1);
+        }
+    }
+
+
+}
+```
+
+这里的X,Y决定了Position,可以看作显示红点的方位
+
+![image-20240124181619146](image-20240124181619146.png)
+
+![image-20240124181740210](image-20240124181740210.png)
+
+同样的对于Ruby我们也做一个动画，不过是用传统的动画机做的。打开角色的预制体，然后插入状态机
+
+![image-20240125155537908](image-20240125155537908.png)
+
+这里导入写好的状态过度，左侧可以理解为编译器可以检测到的变量
+
+![image-20240125155832472](./image-20240125155832472.png)
+
+然后对应的脚本
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
+
+public class RubyController : MonoBehaviour
+{
+    public float speed = 3.0f;
+
+    //生命值
+    public int maxHealth = 5;
+    //造成伤害时间
+    public float timeInvincible = 2.0f;
+
+    public int health { get { return currentHealth; } }
+    int currentHealth;
+
+    bool isInvincible;
+    float invincibleTimer;
+
+    Rigidbody2D rigidbody2d;
+    // 横 - 纵
+    float horizontal;
+    float vertical;
+
+    //动画
+    Animator animator;
+    Vector2 lookDirection = new Vector2(1, 0);
+
+
+
+    // 只执行一次
+    void Start()
+    {
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        
+        //获取动画
+        animator = GetComponent<Animator>();
+    }
+
+    // 按帧执行
+    void Update()
+    {
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+	    //移动位置
+        Vector2 move = new Vector2(horizontal, vertical);
+
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        {
+            lookDirection.Set(move.x, move.y);
+            lookDirection.Normalize();
+        }
+	   // 根据对应的变量 播放不同的动画
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
+
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if(invincibleTimer < 0 )
+            {
+                isInvincible = false;
+            }
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 position = transform.position;
+        position.x = position.x + speed * horizontal * Time.deltaTime;
+        position.y = position.y + speed * vertical * Time.deltaTime;
+
+        rigidbody2d.MovePosition(position);
+    }
+    // 改变血量
+    public void ChangeHealth(int amount)
+    {
+        if (amount < 0)
+        {
+            if (isInvincible) { return; }
+
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+        }
+
+
+        //使用 Mathf.Clamp() 函数确保健康值在指定范围内（0 到 maxHealth 之间）
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        // 打印
+        Debug.Log(currentHealth + "/" + maxHealth);
+    }
+
+}
+```
+
+## 攻击模式
+
+拉入齿轮精灵作为主角发射的飞弹，在拉入之前设置PPU
+
+![image-20240125162432217](image-20240125162432217.png)
+
+"Pixels Per Unit"（PPU）是一个用于定义图像和实际世界尺寸之间关系的度量。它指定了在Unity中的一个单位（通常是一个米或一个Unity单位）对应于游戏中的多少个像素。可以控制游戏中的图像在屏幕上的大小，而无需直接改变图像文件的分辨率
+
+为了对这个齿轮进行操作，这里创建一个脚本`Projectile`
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Projectile : MonoBehaviour
+{
+    Rigidbody2D rigidbody2d;
+
+    void Start()
+    {
+        rigidbody2d = GetComponent<Rigidbody2D>();
+    }
+
+    public void Launch(Vector2 direction,float force)
+    {
+        // 调用物理函数 - 理解为推出去就行
+        rigidbody2d.AddForce(direction * force);
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        //我们还增加了调试日志来了解飞弹触碰到的对象
+        Debug.Log("Projectile Collision with " + other.gameObject);
+        // 碰撞完成就销毁
+        Destroy(gameObject);
+    }
+
+}
+```
+
+在Ruby脚本处添加有关于子弹的函数
+
+```c#
+// 预制件 - 获取
+public GameObject projectilePrefab;
+
+ // 发射子弹函数
+ void Launch()
+ {
+     //配置生成的预制体
+     GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+
+     Projectile projectile = projectileObject.GetComponent<Projectile>();
+     projectile.Launch(lookDirection, 300);
+
+     animator.SetTrigger("Launch");
+ }
+```
+
+然后记得在挂载子弹
+
+![image-20240125190003442](image-20240125190003442.png)
+
+> 这里补充一些知识点：用口水话说`Instantiate`函数,就是在运行的时候通过你设定的机制生成指定的预制体。
+>
+> 当在Unity中需要在运行时创建新的游戏对象实例时，可以使用 `Instantiate` 函数。该函数允许你根据给定的预制件（Prefab）在场景中动态生成新的游戏对象。以下是 `Instantiate` 函数的一般用法和作用：
+>
+> ```c#
+> public static Object Instantiate(Object original);
+> public static Object Instantiate(Object original, Vector3 position, Quaternion rotation);
+> public static Object Instantiate(Object original, Transform parent);
+> public static Object Instantiate(Object original, Vector3 position, Quaternion rotation, Transform parent);
+> ```
+>
+> - `original`：要实例化的对象或预制件。
+> - `position`：新实例的初始位置。
+> - `rotation`：新实例的初始旋转。
+> - `parent`：新实例的父级 `Transform`。如果指定了父级，新实例将成为父级 `Transform` 的子对象。
+>
+> 使用 `Instantiate` 的典型场景包括：
+>
+> 1. **生成游戏对象：** 在游戏运行时，你可能需要根据某些条件或事件创建新的游戏对象。通过 `Instantiate`，你可以在代码中动态生成这些对象。
+>
+>    ```c#
+>    public GameObject prefab; // 预制件
+>    
+>    void Start()
+>    {
+>        // 在场景中生成预制件的实例
+>        GameObject newObject = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+>    }
+>    ```
+>
+> 2. **子弹发射：** 在射击游戏中，当玩家发射子弹时，你可能希望在发射点生成一个子弹实例。
+>
+>    ```c#
+>    public GameObject bulletPrefab;
+>    
+>    void Update()
+>    {
+>        if (Input.GetButtonDown("Fire1"))
+>        {
+>            // 在当前位置生成子弹实例
+>            Instantiate(bulletPrefab, transform.position, transform.rotation);
+>        }
+>    }
+>    ```
+>
+> 3. **敌人生成：** 在敌人波次开始时，你可以使用 `Instantiate` 在指定位置生成一组敌人实例。
+>
+>    ```c#
+>    public GameObject enemyPrefab;
+>    
+>    void StartWave()
+>    {
+>        for (int i = 0; i < 5; i++)
+>        {
+>            // 在指定位置生成敌人实例
+>            Instantiate(enemyPrefab, new Vector3(i * 2, 0, 0), Quaternion.identity);
+>        }
+>    }
+>    ```
+
+但是创建的子弹预制体会和我们角色碰撞从而被摧毁掉，这里就需要配置图层。添加两个图层。
+
+![image-20240125192539255](image-20240125192539255.png)
+
+但是设置完成图层之后还会碰撞，这里就需要查看碰撞逻辑了，打开**Edit** **>** **Project Settings** **>** **Physics 2D** 
+
+![image-20240125193005838](image-20240125193005838.png)
+
+把`Character`和`Projectile`对应的位置取消对勾，这样就不会相互碰撞了
+
+![image-20240125193237983](image-20240125193237983.png)
+
+然后就可以发射了
+
+![image-20240125212233200](image-20240125212233200.png)
+
+> 这里补充一下我犯的错误
+>
+> 我把Ruby发射的子弹，拉成了我创建在地图的预制体了，当预制体被摧毁的时候，Ruby就发射不了子弹了。所以说一定要拉文件夹的。
+
+接下来需要做机器人的受击，这里射击机器人 = 修复机器人
+
+原理是，创建一个bool变量来控制机器人的Update
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyController : MonoBehaviour
+{
+    public float speed;
+    public bool vertical;
+    public float changeTime = 3.0f;
+
+    Rigidbody2D rigidbody2D;
+    float timer;
+    int direction = 1;
+
+    Animator animator;
+	// 判断运动
+    bool broken = true;
+
+    // 在第一次帧更新之前调用 Start
+    void Start()
+    {
+
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        timer = changeTime;
+        animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer < 0)
+        {
+            direction = -direction;
+            timer = changeTime;
+        }
+		// 修好停止
+        if (!broken)
+        {
+            return;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        // 修好停止
+        if (!broken)
+        {
+            return;
+        }
+
+        Vector2 position = rigidbody2D.position;
+        // 这里只在竖直方向运动
+        if (vertical)
+        {
+            animator.SetFloat("Move X", 0);
+            animator.SetFloat("Move Y", direction);
+            position.y = position.y + Time.deltaTime * speed * direction; ;
+        }
+        else
+        {
+            animator.SetFloat("Move X", direction);
+            animator.SetFloat("Move Y", 0);
+            position.x = position.x + Time.deltaTime * speed * direction; ;
+        }
+
+        rigidbody2D.MovePosition(position);
+
+
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        // 获取玩家的碰撞体
+        RubyController player = other.gameObject.GetComponent<RubyController>();
+
+        if (player != null)
+        {
+            player.ChangeHealth(-1);
+        }
+    }
+	// 控制修理成功
+    public void Fix()
+    {
+        broken = false;
+        rigidbody2D.simulated = false;
+        // 控制对应的控制器
+        animator.SetTrigger("Fixed");
+    }
+
+}
+```
+
+这里创建了一个变量用于控制动画播放，这里声明了一个Triger变量
+
+![image-20240125231634469](image-20240125231634469.png)
+
+在子弹脚本部分，加上一下内容。目的是子弹击中之后播放机器人修理动画
+
+```c#
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        EnemyController e = other.collider.GetComponent<EnemyController>();
+        if (e != null)
+        {
+            e.Fix();
+        }
+
+        Destroy(gameObject);
+    }
+```
+
+这样就完成了。
+
+![image-20240125232108572](image-20240125232108572.png)
