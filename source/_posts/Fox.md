@@ -946,7 +946,7 @@ public GameObject projectilePrefab;
 >
 >    ```c#
 >    public GameObject enemyPrefab;
->             
+>                   
 >    void StartWave()
 >    {
 >        for (int i = 0; i < 5; i++)
@@ -1135,3 +1135,220 @@ public class EnemyController : MonoBehaviour
 这样就行了
 
 ![image-20240127235827367](image-20240127235827367.png)
+
+## 特效制作
+
+使用粒子系统为游戏创建一些粒子，例如**损坏的机器人**的烟雾效果
+
+先制作一个特效，右键 Effects > Particle System
+
+![image-20240128144434812](image-20240128144434812.png)
+
+然后制作特效的切割 
+
+![image-20240128144608434](image-20240128144608434.png)
+
+插入我们切割完成的特效，启用Texture Sheet Animation > 插入两个动画 > 删除Particle System Curver 的图曲线。这里还要设置Start Frame 的范围，设置为0-2即可
+
+![image-20240128144901433](image-20240128144901433.png)
+
+然后特效就有了。
+
+![image-20240128145204790](image-20240128145204790.png)
+
+下一步是更改创建这些烟雾精灵的方式，因为现在它们在方向上过于分散。在 **Inspector** 中打开 **Shape 部分**。**Scene 视图**将显示发射粒子的锥体。将 **Radius** 设置为 **0**，让粒子都从一个点发出。
+
+![image-20240128145746916](image-20240128145746916.png)
+
+在 **Particle System** 顶部的主要部分中，查找以下**三个设置**：
+
+**1.Start Lifetime**：粒子的生命周期是指粒子在屏幕上被粒子系统销毁之前存在的时间。如果在 **Scene 视图**中**缩小**，所有粒子都差不多在同一位置消失。这是因为粒子的初始速度和生命周期都相同，因此最终在相同的距离处被销毁。
+
+单击 **Start Lifetime** 右侧的小向下箭头，然后选择 **Random Between Two Constants**。输入 **1.5** 和 **3**。粒子的消失速度会更快，因为现在它们的生命周期更短了。而且粒子也会以更加自然的方式消失，因为粒子现在的生命周期各不相同。
+
+**2.Start Size**：这是粒子创建后的大小。现在只设置了一个数字，因此所有粒子的大小都相同。和上面一样，选择 **Random Between Two Constants** 并分别设置为 **0.3** 和 **0.5**，这样来引入一些随机性。粒子现在变小了且大小不同，但移动速度仍然过快。
+
+**3.Start Speed**：通过将这个属性设置为 **Random Between Two Constants**，可以降低粒子的初始移动速度并增加一些随机性。将两个常量分别设置为 **0.5** 和 **1**。
+
+![image-20240128150807404](image-20240128150807404.png)
+
+设置完成之后烟雾就合理了
+
+![image-20240128151112779](image-20240128151112779.png)
+
+但是消失的时候透明度不自然，这里调整一下颜色属性。上面的标表示透明度，下面表示颜色深度。将Alpha调整为0，让它在末尾完全透明，演示消失的效果。
+
+![image-20240128185030322](image-20240128185030322.png)
+
+然后就自然许多了。
+
+![image-20240128185238914](image-20240128185238914.png)
+
+现在我们脚本还不能识别这个烟雾，我们得生成一个物体变量可以让unity和c#交互
+
+```c#
+// 变量拖入    
+public ParticleSystem smokeEffect;
+```
+
+不过为什么是这个类型，教程是这样说的：
+
+如果公共成员是 **Component** 或 **Script 类型**（而不是 **GameObject**），则当你在 **Inspector** 中为这个成员分配**游戏对象**时，**Unity** 将存储**游戏对象**上的组件类型。
+
+这样可以避免必须像以前一样在脚本中执行 **GetComponent**。此外还会阻止你将没有该组件类型的**游戏对象**分配给该设置。这也避免了用户不小心制造 bug。
+
+接下来拖入我们的烟雾
+
+![image-20240128185521846](image-20240128185521846.png)
+
+脚本中的Fix()函数，在修理完成之后停止特效渲染
+
+```c#
+public void Fix()
+{
+    broken = false;
+    rigidbody2D.simulated = false;
+    animator.SetTrigger("Fixed");
+    // 修理
+    smokeEffect.Stop();
+}
+```
+
+然后就可以了
+
+![GIF1](GIF1-1706439722524-3.gif)
+
+**Stop** 只会阻止**粒子系统**创建粒子，已经存在的粒子可以正常结束自己的生命周期。这比所有粒子突然消失要看起来自然得多。
+
+## UI制作
+
+制作一个显示Ruby血量的UI，这里要学到遮罩的效果
+
+![image-20240129231607864](image-20240129231607864.png)
+
+创建一个UI画布
+
+![image-20240129231633477](image-20240129231633477.png)
+
+画布会比地图大上不少，方便我们在上面加入素材
+
+这里创建UI，作用是显示血量
+
+![image-20240129232237596](image-20240129232237596.png)
+
+这里UI可以插入图片，插入完成是这个样子的
+
+![image-20240129232309910](image-20240129232309910.png)
+
+接下来就是设计这个UI的样式了，由三个部分组成
+
+![image-20240129233315205](image-20240129233315205.png)
+
+需要学的是这个UI的锚点和遮罩
+
+新建的Health的锚点设置在左上角
+
+![image-20240129233410467](image-20240129233410467.png)
+
+头像的锚点设置在图片四周
+
+![image-20240129233448308](image-20240129233448308.png)
+
+遮罩部分也是四周
+
+![image-20240129233510930](image-20240129233510930.png)
+
+什么是锚点呢？在选择图像后，观察 **Scene 视图**：
+
+![img](https://connect-prd-cdn.unity.com/20190827/learn/images/af042431-a565-4001-b6e8-dd86f35242ce_pasted_image_0__11_.png)
+
+屏幕中央的十字就是图像的锚点。这是计算对象位置时的起点（由绿色箭头显示，从图像的锚点到图像的轴心（即小蓝色圆圈））。
+
+因此，在调整屏幕大小时，该位置将保持不变，并且图像不会随着**屏幕边框**移动。
+
+接下来创建一个遮罩，**遮罩**是 **UI 系统**中的一种技术，利用这种技术可以将一张图像用作其他图像的“遮罩”。我们可以看成是第一张图像充当一个模板。
+
+创建Health的子对象，叫做Mask
+
+![image-20240129234718140](image-20240129234718140.png)
+
+在UI处调整到合适的大小，同时添加一个组件Mask
+
+![image-20240129234829592](image-20240129234829592.png)
+
+Show Mask Graphic属性用于指定是否显示遮罩区域的图形，这里我们需要白色背景隐藏，所以说取消勾选
+
+所以说在Mask中，我们创建一个子对象来让它成为被遮罩的物件
+
+![image-20240129235524423](image-20240129235524423.png)
+
+这样调整Mask，就可以调整这个血量了。
+
+![GIF3](GIF3.gif)
+
+接下来写一个脚本，将血量减少和遮罩联系起来。
+
+```c#
+public class UIHealthBar : MonoBehaviour
+{
+    // 单例变量 - 不用多声明对象
+    public static UIHealthBar instance { get; private set; }
+    // 获取遮罩
+    public Image mask;
+    float originalSize;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+    void Start()
+    {
+        originalSize = mask.rectTransform.rect.width;
+    }
+
+    public void SetValue(float value)
+    {				      
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
+    }
+}
+```
+
+然后再ruby血量变化的地方
+
+```c#
+public void ChangeHealth(int amount)
+{
+    if (amount < 0)
+    {
+        if (isInvincible) { return; }
+
+        isInvincible = true;
+        invincibleTimer = timeInvincible;
+    }
+
+
+    //使用 Mathf.Clamp() 函数确保健康值在指定范围内（0 到 maxHealth 之间）
+    currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+    // SetValue 方法通过更新 mask 对应的 RectTransform 的水平尺寸
+    UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+}
+```
+
+也就是这个
+
+```c#
+    public void SetValue(float value)
+    {	
+        //这一行代码用于根据 value 更新血条的宽度。originalSize 可能是血条的初始宽度，RectTransform.Axis.Horizontal 表示更新的是水平方向的尺寸。   
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
+    }
+```
+
+然后再一个物体上挂载这个脚本，就可以实现了。
+
+![image-20240130002016727](image-20240130002016727.png)
+
+![image-20240130002234191](image-20240130002234191.png)
+
+## 制作NPC
