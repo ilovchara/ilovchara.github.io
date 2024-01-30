@@ -946,7 +946,7 @@ public GameObject projectilePrefab;
 >
 >    ```c#
 >    public GameObject enemyPrefab;
->                   
+>                      
 >    void StartWave()
 >    {
 >        for (int i = 0; i < 5; i++)
@@ -1352,3 +1352,179 @@ public void ChangeHealth(int amount)
 ![image-20240130002234191](image-20240130002234191.png)
 
 ## 制作NPC
+
+将连续的图片拖入到Hierarchy中，就可以制作动画。不过帧数还是要调整一下，三张图片，就调整为3帧就好。
+
+![image-20240130142945671](image-20240130142945671.png)
+
+这里调整，1.画布的宽度和长度。2.界面的大小 3.图层等级
+
+![image-20240130143116131](image-20240130143116131.png)
+
+画布右键，建立
+
+![image-20240130150511168](image-20240130150511168.png)
+
+然后建立画布子对象，用于背景。在Rect Transform 按Alt键点击右下角平铺
+
+![image-20240130150719609](./image-20240130150719609.png)
+
+加入文本
+
+![image-20240130151111397](image-20240130151111397.png)
+
+然后就实现了
+
+![image-20240130151125694](image-20240130151125694.png)
+
+然后创建一个脚本用来判断对话框显示。这里对话框是用碰撞体和射线判断的，记得加上碰撞体。
+
+![image-20240130143243194](image-20240130143243194.png)
+
+接下来写一下脚本
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NonPlayerCharacter : MonoBehaviour
+{
+    // 对话框显示的持续时间
+    public float displayTime = 4.0f;
+
+    // 对话框的 GameObject 引用
+    public GameObject dialogBox;
+
+    // 控制对话框显示时间的计时器
+    float timerDisplay;
+
+    void Start()
+    {
+        // 初始时禁用对话框
+        dialogBox.SetActive(false);
+
+        // 使用负值初始化计时器，表示计时器未激活
+        timerDisplay = -1.0f;
+    }
+
+    void Update()
+    {
+        // 检查对话框当前是否处于激活状态
+        if (timerDisplay >= 0)
+        {
+            // 根据经过的时间减少计时器的值
+            timerDisplay -= Time.deltaTime;
+
+            // 检查计时器是否已经达到或超过零
+            if (timerDisplay < 0)
+            {
+                // 当计时器到期时禁用对话框
+                dialogBox.SetActive(false);
+            }
+        }
+    }
+
+    // 方法用于触发对话框的显示
+    public void DisplayDialog()
+    {
+        // 将计时器设置为指定的显示时间
+        timerDisplay = displayTime;
+
+        // 激活对话框
+        dialogBox.SetActive(true);
+    }
+}
+```
+
+在`RubyController`的`Update`中加入：**物理系统**功能“**射线投射**”
+
+```c#
+// 控制对话
+if (Input.GetKeyDown(KeyCode.X))
+{
+    // 从角色当前位置向上偏移0.2个单位，沿着朝向 lookDirection 发射射线
+    RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+
+    // 检查射线是否击中了某个物体
+    if (hit.collider != null)
+    {
+        // 再次验证击中的物体确实是属于 "NPC" 图层
+        if (hit.collider != null)
+        {
+            // 从击中的物体获取 NonPlayerCharacter 组件
+            NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+
+            // 检查获取的组件是否有效
+            if (character != null)
+            {
+                // 触发 NonPlayerCharacter 的 DisplayDialog 方法，显示对话框
+                character.DisplayDialog();
+            }
+        }
+    }
+}
+```
+
+![GIF4](GIF4.gif)
+
+## 制作音频
+
+添加一个物体，用于播放背景音乐。拉入Clip就行
+
+![image-20240130200353123](image-20240130200353123.png)
+
+然后添加一个吃食物的音乐，这里用函数来生成。现在获取生命值的时候加入一个脚本
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HealthCollectible : MonoBehaviour
+{
+    public AudioClip collectedClip;
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        RubyController controller = other.GetComponent<RubyController>();
+
+        if (controller != null)
+        {
+            if (controller.health < controller.maxHealth)
+            {
+                controller.ChangeHealth(1);
+                Destroy(gameObject);
+			   // 添加播放音乐
+                controller.PlaySound(collectedClip);
+            }
+        }
+
+    }
+}
+```
+
+在Ruby controler 中加入如下代码
+
+```c#
+    // 声明变量过度
+	private AudioSource audioSource;
+
+	
+	void Start()
+	{
+		//获取变量组件
+    	audioSource = GetComponent<AudioSource>();
+	}
+	
+	public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+```
+
+记得在Ruby中添加音乐播放
+
+![image-20240130201954042](image-20240130201954042.png)
+
+然后踩水果就有音效了。教程到这里游戏就完成了！
