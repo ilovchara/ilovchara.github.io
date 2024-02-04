@@ -408,30 +408,109 @@ enum Con{
 
 通过`.`操作符，可以像数组一样来枚举变量内部的值。
 
+## [委托](https://www.jb51.net/article/103224.htm)
+
+[C#中的委托](https://www.jianshu.com/p/674da938f3d0)是用来实现传递回调函数的。回调函数是什么，举个例子
+
+> 你到一个商店买东西，刚好你要的东西没有货，于是你在店员那里留下了你的电话，过了几天店里有货了，店员就打了你的电话，然后你接到电话后就到店里去取了货。在这个例子里，你的电话号码就叫回调函数，你把电话留给店员就叫登记回调函数，店里后来有货了叫做触发了回调关联的事件，营业员直接帮你买了，送到你家，叫做调用回调函数，你到店里去取货叫做响应回调事件。
+
+`C#`是一门强类型的语言。函数的参数必须要有严格的类型。而且也是不允许直接把函数作为另一个函数的参数的。委托的功能就是将一个函数作为另一个函数的参数传递。
+
+下面用js的逻辑写一个例子：
+
+```c#
+using System;
+
+namespace Test
+{
+    class Test
+    {
+        public Test()
+        {
+            Calculate(23, 45, ShowText);
+        }
+
+        public void Calculate(int num1, int num2, callback)
+        {
+            int sum = num1 + num2;
+            callback(sum.ToString());
+        }
+
+        public void ShowText(string text)
+        {
+            Console.WriteLine(text);
+        }
+    }
+}
+```
+
+直接把`ShowText`这个函数名传递给`Calculate`方法显然在C#中是会报错的。这时我们就需要用到委托`delegate`。于是我们添加添加一个委托，如下：
+
+```c#
+using System;
+
+namespace Test
+{
+    class Test
+    {
+        public Test()
+        {
+            ShowTextDel showTextDel = ShowText;  // 委托就像方法的容器，用户存储方法。
+            Calculate(23, 45, showTextDel);
+        }
+
+        public void Calculate(int num1, int num2, ShowTextDel callback)
+        {
+            int sum = num1 + num2;
+            callback(sum.ToString());
+        }
+
+        // 定义一个只有一个`string`类型参数返回值为`void`的方法的委托。
+        public delegate void ShowTextDel(string text);  
+
+        public void ShowText(string text)
+        {
+            Console.WriteLine(text);
+        }
+    }
+}
+```
+
+有了委托就可以在`C#`中传递回调函数了。但委托有如下的一些注意点：
+
+1. 既然委托作为函数或方法的容器，那么在强类型的C#中就需要函数或方法和委托具有相同的结构（**即委托与函数或方法必须有相同的参数列表和相同的返回值**）。
+2. 委托既然作为函数或方法的容器，一个委托可以容纳多个函数或方法。在调用这个委托的时候会依次调用这个委托中的各个方法。具体可以参考微软的官方文档：[使用委托（C# 编程指南）](https://link.jianshu.com?t=https://msdn.microsoft.com/zh-cn/library/ms173172.aspx)
+
+### 匿名函数
+
+没有方法名字的函数，称之为匿名函数。但是没有名称我们怎么调用？
+
+主要用于简化委托，常常与Lambda表达式结合。
+
+![image-20240201202033173](image-20240201202033173.png)
+
 ### [Lambda表达式 ](https://zhuanlan.zhihu.com/p/257275006)
 
-就是方法的另一种表达方式，简化方法体。
+就是匿名方法的另一种表达方式，简化方法体。
 
 ```c#
 //方法只有一行的情况
 MyDelegate.Say("张三", (name) => Console.WriteLine("你好，" + name));
 ```
 
+## [事件](https://www.cnblogs.com/SkySoot/archive/2012/04/05/2433639.html)
 
-
-## [委托](https://www.jb51.net/article/103224.htm)
-
-C# 中的委托（Delegate）类似于 C 或 C++ 中函数的指针。 委托（Delegate） 是存有对某个方法的引用的一种引用类型变量。引用可在运行时被改变。 委托就是用来储存方法的结构 委托（Delegate）特别用于实现事件和回调方法。所有的委托（Delegate）都派生自 `System.Delegate `类。
-
-**为什么要使用委托**，解耦，对修改关闭，对扩展开放。逻辑分离。可以把委托理解为函数的父类，或者是一个方法的占位符。（方法的引用）
+**声明一个事件不过类似于声明一个进行了封装的委托类型的变量而已**。
 
 ## [异步](https://www.cnblogs.com/yilezhu/p/12045018.html)
 
 ## [线程](https://www.cnblogs.com/dotnet261010/p/6159984.html)
 
-## [事件](https://www.cnblogs.com/SkySoot/archive/2012/04/05/2433639.html)
+https://www.cnblogs.com/Survivalist/p/11527949.html
 
-## `API`
+[C#多线程学习总结(持续更新中) - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/119074326)
 
-> 遇到不懂的api都会记录在这里
+## 反射
+
+## https://www.cnblogs.com/wangshenhe/p/3256657.html
 
