@@ -188,20 +188,16 @@ categoryBar:
   column: even # odd：3列 | even：4列
   row: 1 #显示行数，默认两行，超过行数切换为滚动显示
   message: 
-    - descr: 工程
-      cover: https://i.postimg.cc/26knw69Q/8503892-F3-BA81-A21-A95138-AF31-AD35-D3.jpg
-    - descr: 随笔
-      cover: https://i.postimg.cc/gjrRC7Wr/AC359-C705737-B63-CB0498055-BE6-A4-C50.jpg
-    - descr: 算法 
-      cover: https://i.postimg.cc/Y9dYyHTJ/D3-F917755-E8221-F861-F1-DAC211-E50301.jpg
-    - descr: 刷题
-      cover: https://i.postimg.cc/KcstPmPT/EBCFF72-D7-FDD8323-C3-E1-FBE2-CFEDFF47.jpg
     - descr: unity
-      cover: https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182021986.jpg
-    #- descr: 杂谈教程
-      #cover: https://assets.akilar.top/image/cover6.webp
-      # 图片 ![](https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182021986.jpg)
-      # 图片 ![](https://cdn.jsdelivr.net/gh/ilovchara/blog-img/blog-img202311182021561.jpg)
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/32C0AE2D7CC8F7BDB318D890DAEDFAB6.gif
+    - descr: 工程
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/C43A524A91D4A987989BE85F8FC86776.gif
+    - descr: RPG
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/759FC46D5BD8AF6ECFFC0431340327D6.gif
+    - descr: 随笔
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/2C53DA2C01B8F373A758330AC25381D5.gif
+    - descr: 算法
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/9B323EC1ACE225793F737D80FF811692.gif
   custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
 
 # 双文章

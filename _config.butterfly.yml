@@ -94,21 +94,6 @@ cover:
   default_cover: #/picture/img/Girl of the Deep.jpg
   #url(/picture/img/8BFED8A3E9CC90D2D68BDFD4B1495FA0.jpg)
   #url()
-    - https://i.postimg.cc/SKSckRLn/109535523-p0-master1200.jpg
-    - https://i.postimg.cc/NMVX6x3X/111002764-p0-master1200.jpg
-    - https://i.postimg.cc/K8n5mCdH/111097004-p0-master1200.jpg
-    - https://i.postimg.cc/wjdh407c/111125960-p0-master1200.jpg
-    - https://i.postimg.cc/CKT6NGVW/111138606-p0-master1200.jpg
-    - https://i.postimg.cc/cH5RDWnr/Girl-of-the-Deep.jpg
-    - https://i.postimg.cc/W3Rj0F93/image.png
-    - https://i.postimg.cc/PrJ5yKFP/36-EAEEC6-A0012-C8807-BC9-E804-D47-DD2-D.jpg
-    - https://i.postimg.cc/tgQRXbRx/3705-BE3564-BA6103-F5823-E240307-B140.jpg
-    - https://i.postimg.cc/3RrTRJsd/62226-E7-EBEE95-CFD289-D8-E98774-DC9-C2.jpg
-    - https://i.postimg.cc/XYM658MM/7235-CF181273439-BC356-B7-C00371751-C.jpg
-    - https://i.postimg.cc/XqJ427LT/79-C069066176-FF955-FB519266-CB1-F630.jpg
-    - https://i.postimg.cc/FFDK0wpM/81-D4178-C4-DBAF0-E01-E251968-DE9-D71-D8.jpg
-    - https://i.postimg.cc/YCmqK077/A7561-F0-C4-D8453828-B6666-B67-E732023.jpg
-    - https://i.postimg.cc/L4bp9SN8/FA779-C1331-C9-EA231-B33-F585-DEDE2-B7-B.gif
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/8234576C0FEBAB0869FA8AE2B16376C9.jpg
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/3544A883309EEFF126E119A653C77151.png
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/572E007FFDBA8B277E9B3A00C9280A48.jpg
@@ -126,7 +111,23 @@ cover:
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/BBFAE58FD59D29F86586917312AF59B5.jpg
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/A7545BD33A89DAB6F995462E48FBB02E.jpg
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/34336187908AC099072DE090076974A7.jpg
-    - 
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/FA779-C1331-C9-EA231-B33-F585-DEDE2-B7-B.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/2C582D5BC9B786789D76C8CD4E8F5DCA.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/93EF065DE497B66850EDB317827FA3D0.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/57A2D1E32FFF3DD2C9DEBF15FBAE5F34.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/27CB59CEEF200379F98B43EF36BAE957.png
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/3E64F5CE50D1538FFC4F7FC757966DD7.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/82501256B5503A7979944926DD48235E.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/72A0E08C217330C33C3555ED547A9C05.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/32044CDD010CDF2D42FA319A22B29BF0.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/F8ED3E45D41FE52D26583AB07036EE16.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/DFF2F939FCFB956A8AF637E14B0118B5.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/B3087E975CE9E780A658A60D182F1A15.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/89D95DC2843677A844E4B164869FC884.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/88CBFB63B340032946CF9A626B49F7DB.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/31F76777764988677EFAA3363BB0712D.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/28B007F45985CB50A2AA385B0A87C087.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/8AE5585D648F87815E0F0F2A00F6E12D.gif
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
   flink: img/111119755_p0_master1200.jpg
