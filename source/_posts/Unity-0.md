@@ -550,11 +550,3 @@ public class Apple : Fruit
 ## [四元数](https://cloud.tencent.com/developer/article/1546639)
 
 没用过
-
-## 委托
-
-委托就是方法参数。类似于函数指针
-
-## 事件
-
-高级的委托
