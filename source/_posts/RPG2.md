@@ -265,7 +265,7 @@ public class Player_Controller : FSMController
 
 ![image-20240222141932320](./../../RPG2/image-20240222141932320.png)
 
-Parameters 是用来控制动画混合的参数。在 Freeform Directional Blend Type 中，这些参数通常包括 Direction（方向）和 Speed（速度）。
+Parameters 是用来控制动画混合的参数。在` Freeform Directional Blend Type` 中，这些参数通常包括 Direction（方向）和 Speed（速度）。
 
 ![image-20240222142204393](./../../RPG2/image-20240222142204393.png)
 
@@ -293,3 +293,194 @@ public float Vertical { get => Input.GetAxis("Vertical"); }
 控制红点的移动，就可以实现动画的融合。这就是混合树的基本构造了。
 
 ## 角色移动状态
+
+![image-20240222192350631](./../../RPG2/image-20240222192350631.png)
+
+在实现本节课的效果之前，先来搭建场地。先创建一个地板，这样就有走路的地方了
+
+![image-20240222202910864](./../../RPG2/image-20240222202910864.png)
+
+![image-20240222203012022](./../../RPG2/image-20240222203012022.png)
+
+接下来给地板赋予材质，简单立即为涂色。先创建一个材质
+
+![image-20240222204259290](./../../RPG2/image-20240222204259290.png)
+
+创建完成的材质直接拖入到对应需要材质的物体上
+
+![image-20240222204329302](./../../RPG2/image-20240222204329302.png)
+
+改变一下颜色，我这里填涂上蓝黑色
+
+![image-20240222204334802](./../../RPG2/image-20240222204334802.png)
+
+然后开始配置角色的移动，首先创建一个Player_Move脚本，用于控制角色的移动
+
+![image-20240222211143891](./../../RPG2/image-20240222211143891.png)
+
+这个脚本的作用是角色的移动逻辑，这里就继承我们之前创建的`StaeBase`。然后重写里面的代码
+
+然后给角色加入一个组件，Character Controller是一种用于控制角色移动和碰撞的组件。
+
+![image-20240222211615588](./../../RPG2/image-20240222211615588.png)
+
+![image-20240222212316610](./../../RPG2/image-20240222212316610.png)
+
+当然，在设置的时候这个icon有点扰人，这里可以点击右上角的小地球来取消对应的icon
+
+![image-20240222212358183](./../../RPG2/image-20240222212358183.png)
+
+然后配置这个碰撞体的大小
+
+![image-20240222212644058](./../../RPG2/image-20240222212644058.png)
+
+然后开始制作角色移动，写入`Player_Move`脚本中
+
+```c#
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Player_Move : StateBase
+{
+    // 获取挂载
+    public Player_Controller player;
+    private float moveSpeed = 90;
+    //旋转
+    private float rotateSpeed = 90;
+    // 重写
+    public override void Init(FSMController controller, Enum stateType)
+    {
+        base.Init(controller, stateType);
+        // 有限状态机
+        player = controller as Player_Controller;
+    }
+    public override void OnUpdate()
+    {
+        float h = player.input.Horizontal;
+        float v = player.input.Vertical;
+        Move(h, v);
+    }
+
+    private void Move(float h,float v)
+    {
+        Vector3 dir = new Vector3(0, 0, v);
+        player.characterController.SimpleMove(moveSpeed * dir);
+    }
+
+    public override void OnEnter()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnExit()
+    {
+        throw new System.NotImplementedException();
+    }  
+}
+```
+
+这里还需要在`Player_Controller`获取对应的组件，这个脚本是挂载在player上的。
+
+```c#
+    private void Start()
+    {
+        input = new Player_Input();
+        audio = new Player_Audio(GetComponent<AudioSource>());  
+        // 获取组件
+        characterController = GetComponent<CharacterController>();
+        //实现移动
+        ChangeState(PlayerState.Player_Move);
+    }
+```
+
+当然为了封装性，`Player_Controller`中的变量也替换为了属性
+
+```c#
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public enum PlayerState
+{
+    // 移动
+    Player_Move,
+}
+
+public class Player_Controller : FSMController
+{
+    private PlayerState playerState;
+
+    // 重写抽象类
+    public override Enum CurrentState { get => playerState; set => playerState = (PlayerState)value; }
+    // 获取输入
+    public Player_Input input { get; private set; }
+    public new Player_Audio audio { get; private set; }
+
+    // 获取组件 - 这个是碰撞的
+    // 属性的获取必须要比声明其的修饰词封装性高
+    public CharacterController characterController { get; private set; }
+
+    private void Start()
+    {
+        input = new Player_Input();
+        audio = new Player_Audio(GetComponent<AudioSource>());  
+        // 获取运动状态
+        characterController = GetComponent<CharacterController>();
+        //实现移动
+        ChangeState(PlayerState.Player_Move);
+    }
+
+}
+```
+
+这里获取输入的`Player_Input`代码是这个：
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngineInternal;
+
+// 根据结构图 - 我们这里只是一个单纯的类，用于实现在controler中的方法
+public class Player_Input
+{
+    private KeyCode runKeyCode = KeyCode.LeftShift;
+    private KeyCode attackKeyCode = KeyCode.J;
+
+    //获取数轴
+    public float Horizontal{ get => Input.GetAxis("Horizontal"); }
+    public float Vertical { get => Input.GetAxis("Vertical"); }
+
+    // 按键持续按下的状态
+    public bool GetKey(KeyCode key)
+    {
+        return Input.GetKey(key);
+    }
+    // 按键按下瞬间
+    public bool GetKeyDown(KeyCode key)
+    {
+        return Input.GetKeyDown(key);
+    }
+    // 获取持续按下run键
+    public bool GetRunKey()
+    {
+        return GetKey(runKeyCode);
+    }
+    // 获取持续按下attack键
+    public bool GetAttackKey()
+    {
+        return GetKeyDown(attackKeyCode);
+    }
+
+}
+```
+
+然后测试就可以移动了。
+
+![image-20240222231656073](./../../RPG2/image-20240222231656073.png)
+
+![image-20240222231707556](./../../RPG2/image-20240222231707556.png)
