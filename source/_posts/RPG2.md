@@ -314,6 +314,10 @@ public float Vertical { get => Input.GetAxis("Vertical"); }
 
 ![image-20240222204334802](./../../RPG2/image-20240222204334802.png)
 
+这里可以配置一下摄像机的角度问题，按住`ctrl+shift+f`就可以定格你的摄像机视角
+
+![image-20240223135552367](./../../RPG2/image-20240223135552367.png)
+
 然后开始配置角色的移动，首先创建一个Player_Move脚本，用于控制角色的移动
 
 ![image-20240222211143891](./../../RPG2/image-20240222211143891.png)
@@ -484,3 +488,187 @@ public class Player_Input
 ![image-20240222231656073](./../../RPG2/image-20240222231656073.png)
 
 ![image-20240222231707556](./../../RPG2/image-20240222231707556.png)
+
+但是这种移动效果没有包含动画，而且对应的转角也没有实现对应的移动。接下来就为了解决这个问题。
+
+现在在`Player_Move`，加入有关旋转的代码
+
+```c#
+//先实现对应的旋转
+    private void Move(float h,float v)
+    {
+        // dir需要优化
+        Vector3 dir = new Vector3(0, 0, v);
+        dir = player.transform.TransformDirection(dir);
+        player.characterController.SimpleMove(dir*moveSpeed);
+
+        // 旋转
+        Vector3 rot = new Vector3(0, h, 0);
+        player.transform.Rotate(rot*rotateSpeed* Time.deltaTime);
+    }
+```
+
+> 补充一下这个`Vector3`这个函数：这个函数是结构体，里面有三个变量x,y,z。可以代表向量，坐标，旋转，缩放。也就是我们调整第二个参数就可以改变当前挂载物体的旋转。
+
+然后就可以实现旋转，但是没有动画。
+
+![image-20240223145017231](./../../RPG2/image-20240223145017231.png)
+
+为了实现动画，我们给`model`创建一个新的脚本，记录需要添加的东西例如： 动画，武器层，刀光效果
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// 动画 - 武器层 刀光效果
+public class Player_Model : MonoBehaviour
+{
+    // 这里的controller是为了调名字
+    private Player_Controller player;
+    private Animator animator;
+
+
+    public void Init(Player_Controller player)
+    {
+        this.player = player;
+        animator = GetComponent<Animator>();
+    }
+
+
+    // 更新移动相关参数 - 播放动画
+    public void UpdateMovePar(float x,float y)
+    {
+        animator.SetFloat("左右", y);
+        animator.SetFloat("前后", x);
+
+    }
+
+}
+```
+
+同时在`player_controler`中要初始化这个`model`
+
+```c#
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public enum PlayerState
+{
+    // 移动
+    Player_Move
+}
+
+public class Player_Controller : FSMController
+{
+    // 重写抽象类
+    public override Enum CurrentState { get => playerState; set => playerState = (PlayerState)value; } // 这里需要转为枚举需要类型
+    private PlayerState playerState;
+
+    // 获取输入 - 这里需要可读不可写
+    public Player_Input input { get; private set; }
+    // 获取音效
+    public new Player_Audio audio { get; private set; }
+    // 
+    public Player_Model model { get; private set; }
+
+    // 获取组件 - 这个是碰撞的
+    // 属性的获取必须要比声明其的修饰词封装性高
+    public CharacterController characterController { get; private set; }
+
+    private void Start()
+    {
+        input = new Player_Input();
+        audio = new Player_Audio(GetComponent<AudioSource>());  
+        // 获取运动状态
+        characterController = GetComponent<CharacterController>();
+        // 获取Model对应组件 - 基类中获取脚本是根据名字
+        model = transform.Find("Model").GetComponent<Player_Model>();
+        model.Init(this);
+        //默认移动状态
+        ChangeState(PlayerState.Player_Move);
+    }
+
+}
+
+```
+
+然后优化一下Move函数
+
+```c#
+    private void Move(float h,float v)
+    {
+        // dir需要优化
+        Vector3 dir = new Vector3(0, 0, v);
+        // 角色的相对位移 - 角色视角而不是世界视角
+        dir = player.transform.TransformDirection(dir);
+        player.characterController.SimpleMove(dir * moveSpeed); 
+
+        // 旋转
+        Vector3 rot = new Vector3(0, h, 0);
+        player.transform.Rotate(rot * rotateSpeed * Time.deltaTime);
+
+        //同步模型动画
+        player.model.UpdateMovePar(h, v);
+
+    }
+```
+
+然后修改一下速度的值，就可以正常启动了。
+
+![GIF30](https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/GIF30.gif)
+
+然后制作一下冲刺。在前面状态树中，我们把冲刺需要的参数调整为2。所以说我们添加一个参数判断我们是否进入冲刺就行
+
+![image-20240223154443270](./../../RPG2/image-20240223154443270.png)
+
+在移动类中创建一个属性
+
+```c#
+ // 判断是否在奔跑
+ private bool isRun
+ {
+     get
+     {
+         //按动run键加速
+         bool temp = player.input.GetRunKey() && player.input.Vertical > 0;
+         if (temp) moveSpeed = 5f;
+         else moveSpeed = 1f;
+         return temp;
+     }
+
+ }
+
+```
+
+然后再`update`中加入与这个参数相关的值来控制`movespeed`
+
+```c#
+    public override void OnUpdate()
+    {
+        float h = player.input.Horizontal;
+        float v = player.input.Vertical;
+
+        if (v >= 0)
+        {   
+            // 这里是要加到1 - 才能冲刺
+            if (isRun && runTimesition < 1) runTimesition += Time.deltaTime / 2;
+            else if (!isRun && runTimesition > 0) runTimesition -= Time.deltaTime / 2;
+        }
+        else if (runTimesition > 0) runTimesition -= Time.deltaTime / 2;
+
+        if (isRun)
+        {
+            Debug.Log(moveSpeed);
+        }
+        // 在v这里加参数就可以控制了
+        Move(h, v+runTimesition);
+    }
+```
+
+然后就可以实现了。
+
+![GIF13](./../../RPG2/GIF13.gif)
