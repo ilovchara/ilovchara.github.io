@@ -104,7 +104,9 @@ class Program
 
 ### [元组](https://www.zhihu.com/question/28600808)
 
-允许一条语句中完成所有变量的赋值：![image-20231204135416803](/image-20231204135416803.png)
+允许一条语句中完成所有变量的赋值：
+
+![image-20231204135416803](image-20231204135416803.png)
 
 ![image-20231204135434082](image-20231204135434082.png)
 
@@ -410,6 +412,8 @@ enum Con{
 
 通过`.`操作符，可以像数组一样来枚举变量内部的值。
 
+## [泛型](https://www.cnblogs.com/dotnet261010/p/9034594.html)
+
 ## [委托](https://www.jb51.net/article/103224.htm)
 
 [C#中的委托](https://www.jianshu.com/p/674da938f3d0)是用来实现传递回调函数(函数作为参数传递给另一个函数)。简单理解委托的作用就是作为方法的参数。委托本身就是函数。
@@ -541,3 +545,4 @@ c#中主要是用`async`以及`await`来调用异步功能。
 
 ## [反射](https://www.cnblogs.com/wangshenhe/p/3256657.html)
 
+> 反射消耗[性能](https://zhuanlan.zhihu.com/p/105292546)
