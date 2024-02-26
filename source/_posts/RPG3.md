@@ -19,7 +19,7 @@ typora-root-url: ./RPG3
 
 ![image-20240224125555679](./../../RPG3/image-20240224125555679.png)
 
-但是创建位置是在GameObject中，这里先创建一个虚拟相机
+但是创建位置是在`GameObject`中，这里先创建一个虚拟相机
 
 ![image-20240224130530740](./../../RPG3/image-20240224130530740.png)
 
@@ -210,3 +210,334 @@ public abstract class StateBase<T>
 ## 技能系统设计
 
 ![image-20240224202430557](./../../RPG3/image-20240224202430557.png)
+
+### 玩家攻击
+
+在之前创建过玩家移动的脚本，这里攻击其实是同样的。配置攻击动画，打开模型类的动画控制器。添加攻击动画
+
+![image-20240225162442992](./../../RPG3/image-20240225162442992.png)
+
+创建一个`bool`值，用于触发攻击
+
+![image-20240225163331645](./../../RPG3/image-20240225163331645.png)
+
+> 这里的Has Exit Time是过度时间，取消勾选因为需要在任意时刻都可以切换为攻击模式
+
+因为是模型在攻击，这里在模型脚本中创建一个攻击函数.
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// 动画 - 武器层 刀光效果
+public class Player_Model : MonoBehaviour
+{
+    private Player_Controller player;
+    private Animator animator;
+
+
+    public void Init(Player_Controller player)
+    {
+        this.player = player;
+        animator = GetComponent<Animator>();
+    }
+
+
+    // 更新移动相关参数
+    public void UpdateMovePar(float x,float y)
+    {
+        animator.SetFloat("左右", y);
+        animator.SetFloat("前后", x);
+
+    }
+    // 3.攻击函数
+    public void Attack()
+    {
+        // 播放攻击动画
+        animator.SetBool("攻击", true);
+    }
+}
+```
+
+然后和移动一样，创建脚本`player_Attack`
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Player_Attack : StateBase<PlayerState>
+{
+    public Player_Controller player;
+
+    public override void Init(FSMController<PlayerState> controller, PlayerState stateType)
+    {
+        base.Init(controller, stateType);
+        player = controller as Player_Controller;
+    }
+
+    public override void OnEnter()
+    {
+        // 1.攻击
+        Attack();
+    }
+
+    public override void OnExit()
+    {
+        
+    }
+
+    public override void OnUpdate()
+    {
+       
+    }
+
+    public void Attack()
+    {
+        player.model.Attack();
+
+    }
+}
+```
+
+在移动的时候，如果我们按攻击键，那么模型也会攻击，这里就在`Player_Move`中添加一个`if`语句来判断
+
+```c#
+public override void OnUpdate()
+{
+    float h = player.input.Horizontal;
+    float v = player.input.Vertical;
+
+    if (v >= 0)
+    {   
+        // 这里是要加到1 - 才能冲刺
+        if (isRun && runTimesition < 1) runTimesition += Time.deltaTime / 2;
+        else if (!isRun && runTimesition > 0) runTimesition -= Time.deltaTime / 2;
+    }
+    else if (runTimesition > 0) runTimesition -= Time.deltaTime / 2;
+
+
+
+    if (isRun)
+    {
+       //  Debug.Log(moveSpeed);
+    }
+    
+    Move(h, v+runTimesition);
+
+    // 4.检测攻击 - 需要注意cd
+    if (player.CheckAttack())
+    {
+        player.ChangeState<Player_Attack>(PlayerState.Player_Attack);
+    }
+
+}
+```
+
+然后就可以了，但是不会触发动画的回归，这里需要设置一些动画事件
+
+![image-20240226121340584](./../../RPG3/image-20240226121340584.png)
+
+在动画状态机中，有关于`Events`的选项在这里进行事件的适配
+
+![image-20240226121828373](./../../RPG3/image-20240226121828373.png)
+
+在动画结束的末尾，添加一个动画结束的事件。
+
+![image-20240226122623934](./../../RPG3/image-20240226122623934.png)
+
+在代码中添加一个函数用于结束`攻击`动画
+
+![image-20240226124038514](./../../RPG3/image-20240226124038514.png)
+
+既然攻击，也就是要有攻击的时刻。设置两个事件时刻来检测攻击。
+
+- `StartSkillHit`
+
+![image-20240226125043607](./../../RPG3/image-20240226125043607.png)
+
+- `StopSkillHit`
+
+![image-20240226125158690](./../../RPG3/image-20240226125158690.png)
+
+在`Player_Model`脚本中，添加动画事件
+
+![image-20240226125537579](./../../RPG3/image-20240226125537579.png)
+
+### 武器层和武器拖尾
+
+在人物模型出，为武器添加特效。这里和骨骼有关，但是我没接触过。
+
+![image-20240226130318476](./../../RPG3/image-20240226130318476.png)
+
+这里调整红线和武器对齐，防止碰撞的时候出现问题
+
+![image-20240226132920014](./../../RPG3/image-20240226132920014.png)
+
+创建武器的子对象，制作特效。
+
+![image-20240226133710070](./../../RPG3/image-20240226133710070.png)
+
+然后调整[特效](https://blog.csdn.net/NCZ9_/article/details/84189155)的大小
+
+![image-20240226135127056](./../../RPG3/image-20240226135127056.png)
+
+刀光特效就出现了
+
+![image-20240226135051471](./../../RPG3/image-20240226135051471.png)
+
+先创建一个材质
+
+![image-20240226140118057](./../../RPG3/image-20240226140118057.png)
+
+针对于这个刀光，赋予其一个材质
+
+![image-20240226140157559](./../../RPG3/image-20240226140157559.png)
+
+然后再特效处加上[特效材质](https://www.cnblogs.com/qitanzhideyu/p/14370300.html)
+
+![image-20240226140056107](./../../RPG3/image-20240226140056107.png)
+
+在剑的位置构造碰撞体，后面可以制作打击效果
+
+![image-20240226142302502](./../../RPG3/image-20240226142302502.png)
+
+我们需要挥刀的时候才显示这些特效，而且挥刀的时候才会显示碰撞效果
+
+- `WeaponCollider` 特效碰撞类
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WeaponCollider : MonoBehaviour
+{
+    public BoxCollider BoxCollider;
+    public TrailRenderer TrailRenderer;
+
+
+    public void Init()
+    {
+        StartSkillHit();
+        StopSkillHit();
+    }
+
+	// 开始挥剑
+    public void StartSkillHit()
+    {
+        BoxCollider.enabled = true;
+        TrailRenderer.emitting = true;
+    }
+	// 结束挥剑
+    public void StopSkillHit()
+    {
+        BoxCollider.enabled = false;
+        TrailRenderer.emitting = false;
+    }
+}
+```
+
+- `Init` 初始化，这里是在`Player_Model`中初始化
+
+```c#
+// 创建对象
+public WeaponCollider WeaponCollider;    
+
+public void Init(Player_Controller player)
+    {
+        this.player = player;
+        animator = GetComponent<Animator>();
+        WeaponCollider.Init();
+    }
+```
+
+- 在`Player_Model`中编辑动画事件，调用`WeaponCollider`方法。这里的`StopSkillHit`和`StopSkillHit`是调用动画事件的"时间戳"
+
+```c#
+#region 动画事件
+private void StartSkillHit()
+{
+    // 开启刀光的拖尾
+    // 伤害检测触发器
+    WeaponCollider.StartSkillHit();
+}
+
+private void StopSkillHit()
+{
+    // 关闭刀光
+    // 关闭伤害检测
+    WeaponCollider.StopSkillHit();
+}
+
+public void StopSkillHit()
+{
+    animator.SetBool("攻击", false);
+    player.ChangeState<Player_Move>(PlayerState.Player_Move);
+}
+
+#endregion
+```
+
+这里还要挂载一下组件，要不然控制不了。（不过好像可以用子对象搜索名字的方法）
+
+![image-20240226152934151](./../../RPG3/image-20240226152934151.png)
+
+然后就可以了
+
+![image-20240226153752860](./../../RPG3/image-20240226153752860.png)
+
+接下来处理碰撞问题，在剑的位置加入刚体。刚体的作用是检测碰撞（不太懂），这里需要对其`XYZ`的位置进行约束，这样就不会乱动了。
+
+![image-20240226154258993](./../../RPG3/image-20240226154258993.png)
+
+在脚本中配置打击怪物的效果函数，为后续做准备
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WeaponCollider : MonoBehaviour
+{
+    public BoxCollider BoxCollider;
+    public TrailRenderer TrailRenderer;
+    // 怪物列表 - 记录被攻击的的怪物 - 保证只被攻击一次
+    private List<GameObject> monsterList;
+
+    public void Init()
+    {
+        monsterList = new List<GameObject>();
+        StopSkillHit();
+        
+    }
+
+    public void StartSkillHit()
+    {
+        BoxCollider.enabled = true;
+        TrailRenderer.emitting = true;
+    }
+
+    public void StopSkillHit()
+    {
+        BoxCollider.enabled = false;
+        TrailRenderer.emitting = false;
+        // 清空怪物列表
+        monsterList.Clear();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // 保证一段伤害只击中一次怪物
+        // 对方是怪物，并且此次攻击第一次碰到
+        if(other.tag == "Monster" && !monsterList.Contains(other.gameObject))
+        {
+            // 输出伤害
+            monsterList.Add(other.gameObject);
+        }
+    }
+
+}
+```
+
