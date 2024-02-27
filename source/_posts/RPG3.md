@@ -541,3 +541,215 @@ public class WeaponCollider : MonoBehaviour
 }
 ```
 
+### 怪物和给怪物一刀
+
+导入怪物素材
+
+![image-20240227112447673](./../../RPG3/image-20240227112447673.png)
+
+将怪物拉入到场景中，这里和玩家一样将怪物模型独立出来
+
+![image-20240227112627155](./../../RPG3/image-20240227112627155.png)
+
+给怪物赋予碰撞体，这里适合胶囊体。
+
+![image-20240227112903618](./../../RPG3/image-20240227112903618.png)
+
+加个`tag`，名称为`monster`。这里是武器攻击的索引
+
+![image-20240227134919497](./../../RPG3/image-20240227134919497.png)
+
+创建一个动画控制器，塞入到怪物模型的`Animator`中
+
+![image-20240227124503767](./../../RPG3/image-20240227124503767.png)
+
+打开控制机，我们制作受击-待机的动画状态
+
+![image-20240227124559129](./../../RPG3/image-20240227124559129.png)
+
+- 左侧创建三个触发器变量，用于控制状态的转移
+- 右侧的状态转移将过度事件取消勾选，这里需要受击秒更新
+
+编写脚本，让怪物达到受击效果。这里和玩家一样编写两个脚本
+
+- `Monster_Model`
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Monster_Model : MonoBehaviour
+{
+    private int currHurtAnimationIndex = 1;
+    private Animator animator;
+
+    public void Init()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    public void PlayerHurtAnimation()
+    {
+        // 这里是用字符串算的
+        animator.SetTrigger("受伤" + currHurtAnimationIndex);
+        if (currHurtAnimationIndex == 1) currHurtAnimationIndex = 2;
+        else currHurtAnimationIndex = 1;
+    }
+
+    public void StopHurtAnimation()
+    {
+        animator.SetTrigger("受伤结束");
+    }    
+}
+```
+
+- `Monster_Controller`
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Monster_Controller : MonoBehaviour
+{
+    private Monster_Model model;
+    private int hp = 100;
+
+    private void Start()
+    {
+        model = transform.Find("Model").GetComponent<Monster_Model>(); 
+        model.Init();
+    }
+
+    public void Hurt()
+    {
+        //受击动画
+        model.PlayerHurtAnimation();
+        Invoke("HurtOver", 1);// 1秒硬直事件
+        //击退
+
+        //hp down
+    }
+
+    private void HurtOver()
+    {
+
+    }
+
+}
+```
+
+击打效果就实现了，但是没有硬直而且转化生硬
+
+![image-20240227135541374](./../../RPG3/image-20240227135541374.png)
+
+接着来优化这些问题，顺便制作怪物的击飞.
+
+```c#
+public void Hurt()
+{
+    //受击动画
+    model.PlayerHurtAnimation();
+
+    CancelInvoke("HurtOver");
+    // 延迟调用
+    Invoke("HurtOver", 1);// 1秒硬直事件
+    
+
+    //hp down
+}
+```
+
+击飞的本质是改变物体的位置，所以说这里创建一些变量
+
+- `Monster_Controller`
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Monster_Controller : MonoBehaviour
+{
+    private Monster_Model model;
+    private int hp = 100;
+    // 获取当前的碰撞
+    private CharacterController characterController;
+
+    // 是否受击
+    private bool isHurt;
+    // 受击力量
+    private Vector3 hurtVelocity;
+    // 受击过度
+    private float hurtTime;
+    // 当前时间
+    private float currHurtTime;
+
+    private void Start()
+    {
+        model = transform.Find("Model").GetComponent<Monster_Model>(); 
+        characterController = GetComponent<CharacterController>();
+        model.Init();
+    }
+
+    private void Update()
+    {
+        if(isHurt)
+        {
+            currHurtTime += Time.deltaTime;
+            // 用hurtTime的时间 移动了hurtVelocity的距离
+            characterController.Move(hurtVelocity * Time.deltaTime / hurtTime);
+            if(currHurtTime >= hurtTime) isHurt = false;
+        }
+        else
+        {
+            characterController.Move(new Vector3(0,-9f,0) * Time.deltaTime);
+        }
+    }
+
+
+    public void Hurt()
+    {
+        // 先实现功能
+        //受击动画
+        model.PlayerHurtAnimation();
+
+        CancelInvoke("HurtOver");
+        // 延迟调用
+        Invoke("HurtOver", 1);// 1秒硬直事件
+        
+
+        // 击退 击飞
+        isHurt = true;
+        hurtVelocity = new Vector3(0,1,1);
+        hurtTime = 0.2f;
+        currHurtTime = 0;
+
+        // 生命减少
+        hp -= 10;
+    }
+
+    private void HurtOver()
+    {
+
+    }
+    
+}
+```
+
+这里需要注意的是怪物需要添加碰撞体和物理组件。我们是通过这两个来操控物体的
+
+![image-20240227145102482](./../../RPG3/image-20240227145102482.png)
+
+然后就可以达成击飞了：
+
+![image-20240227145242366](./../../RPG3/image-20240227145242366.png)
+
+> 总结：这里感觉代码逻辑好乱。但是实现的原理很简单。
+>
+> - 通过`animator.SetTrigger("")`调用动画机中的变量，来实现动画切换（这里将切换的语句封装成了函数）
+>
+> - 移动是通过 `Vector3()`转化位置达到想要的效果。
+>
+>   之后回来看看
