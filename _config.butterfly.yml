@@ -382,7 +382,7 @@ readmode: true
 
 # dark mode - 黑夜模式切换
 darkmode: 
-  enable: true
+  enable: flase
   # Toggle Button to switch dark/light mode
   button: true
   # Switch dark/light mode automatically (自動切換 dark mode和 light mode)
@@ -801,9 +801,9 @@ ClickShowText:
   random: false
   mobile: false
 
-# Default display mode (網站默認的顯示模式)
+# Default display mode (網站默認的顯示模式) - 设定为黑夜模式
 # light (default) / dark
-display_mode: light
+display_mode: dark
 
 # Beautify (美化頁面顯示)
 beautify:
