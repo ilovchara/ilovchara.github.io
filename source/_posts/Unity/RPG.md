@@ -1,7 +1,7 @@
 ---
-title: RPG
+title: 2D小RPG(有空完善)
 date: 2023-10-30 22:56:26
-categories: unity
+categories: RPG
 typora-root-url: ./RPG
 ---
 

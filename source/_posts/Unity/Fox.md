@@ -1,7 +1,7 @@
 ---
-title: Fox
+title: 横板移动游戏(Ruby)
 date: 2024-01-18 11:02:38
-categories: unity
+categories: RPG
 typora-root-url: ./Fox
 ---
 

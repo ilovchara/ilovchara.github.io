@@ -189,45 +189,20 @@ categoryBar:
   column: even # odd：3列 | even：4列
   row: 1 #显示行数，默认两行，超过行数切换为滚动显示
   message: 
-    - descr: unity
+    - descr: #unity
       cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/32C0AE2D7CC8F7BDB318D890DAEDFAB6.gif
-    - descr: 工程
+    - descr: #工程
       cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/C43A524A91D4A987989BE85F8FC86776.gif
-    - descr: RPG
+    - descr: #RPG
       cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/759FC46D5BD8AF6ECFFC0431340327D6.gif
-    - descr: 随笔
+    - descr: #随笔
       cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/2C53DA2C01B8F373A758330AC25381D5.gif
-    - descr: 算法
+    - descr: #算法
       cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/9B323EC1ACE225793F737D80FF811692.gif
-    - descr: 挖坟
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/E603DDF6E5A5EAB4DA68B928F6FF8BEE.gif
+    #- descr: 挖坟
+      #cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/E603DDF6E5A5EAB4DA68B928F6FF8BEE.gif
   custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
 
 # 双文章
 butterfly_article_double_row:
   enable: true
-
-# github图磁贴 - 这里Vercel爆掉了
-# hexo-filter-gitcalendar  source\about\index.md
-gitcalendar:
-  enable: false # 开关 - 先关了
-  priority: 5 #过滤器优先权
-  enable_page: /about/ # 应用页面
-  # butterfly挂载容器
-  layout: # 挂载容器类型
-    type: id
-    name: gitZone
-    index: 0
-  user: ilovchara #git用户名
-  apiurl: 'https://gitcalendar-www.wniee.cn'	# 这是我的API，最好自己弄一个
-  minheight:
-    pc: 280px #桌面端最小高度
-    mibile: 0px #移动端最小高度
-  color: "['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9']" # 目前我在用的
-  # "['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']" #橘黄色调
-  # color: "['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f']" #浅紫色调
-  # color: "['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620']" #翠绿色调
-  # color: "['#ebedf0', '#f1f8ff', '#dbedff', '#c8e1ff', '#79b8ff', '#2188ff', '#0366d6', '#005cc5', '#044289', '#032f62', '#05264c']" #天青色调
-  container: .recent-post-item(style='width:100%;height:auto;padding:10px;') #父元素容器，需要使用pug语法
-  gitcalendar_css: https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css
-  gitcalendar_js: https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js	

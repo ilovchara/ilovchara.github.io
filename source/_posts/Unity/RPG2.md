@@ -1,5 +1,5 @@
 ---
-title: RPG2
+title: 3D(RPG)2
 date: 2024-02-21 16:01:26
 categories: RPG
 typora-root-url: ./RPG2

@@ -3,6 +3,7 @@ title: mysql
 date: 2023-09-21 13:16:13
 tags:
 typora-root-url: ./mysql
+hidden: true
 ---
 
 ## Mysql
