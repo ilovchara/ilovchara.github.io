@@ -1,0 +1,208 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Jane Website
+# 副标题
+subtitle: 'Keep doing the hard things'
+# 描述
+description: '一个菜鸟刚搭的网站'
+keywords:
+author: chara
+language: zh-CN
+timezone: ''
+
+# URL
+# http://yoursite.com
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project' https://github.com/ilovchara/ilovchara.github.io.git
+url: https://www.wniee.cn/
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+
+new_post_name: :year/:month-:day-:title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+#图片插入模式
+post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
+
+relative_link: false
+future: true
+
+#代码高光配置文件
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+
+# 高光
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+
+# prism_plugin:
+#   mode: 'preprocess'    # realtime/preprocess
+#   theme: 'tomorrow'  #这个是代码块的主题
+#   line_number: false    # default false
+#   #如果为true就会显示代码号，而且会分两边显示，显得不友好
+#   custom_css:
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'mtime'
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: butterfly
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: 'git'
+  #repo: https://github.com/ilovchara/ilovchara.github.io.git
+  #branch: main
+
+prism_plugin:
+  mode: 'preprocess' # realtime/preprocess
+  theme: 'default'
+  line_number: true # default false
+
+# 这个好像没实现
+algolia:
+  appId: "Z3MWKH4W0V"
+  apiKey: "828a95db73a211e34eb00401aed977dd"
+  adminApiKey: "166aa9dd01b79734a08514d9a8355ad0"
+  chunkSize: 5000
+  indexName: "chara"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink
+    - photos
+    - slug
+    - tags
+    - title
+
+#看板娘 - 关了
+# Live2D
+## https://github.com/EYHN/hexo-helper-live2d
+live2d:
+  enable: false #开关插件版看板娘
+  scriptFrom: local # 默认
+  pluginRootPath: live2dw/ # 插件在站点上的根目录(相对路径)
+  pluginJsPath: lib/ # 脚本文件相对与插件根目录路径
+  pluginModelPath: assets/ # 模型文件相对与插件根目录路径
+  # scriptFrom: jsdelivr # jsdelivr CDN
+  # scriptFrom: unpkg # unpkg CDN
+  # scriptFrom: https://npm.elemecdn.com/live2d-widget@3.x/lib/L2Dwidget.min.js # 你的自定义 url
+  tagMode: false # 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中
+  debug: false # 调试, 是否在控制台输出日志
+  model:
+    use: live2d-widget-model-koharu # npm-module package name
+    # use: wanko # 博客根目录/live2d_models/ 下的目录名
+    # use: ./wives/wanko # 相对于博客根目录的路径
+    # use: https://npm.elemecdn.com/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # 你的自定义 url
+  display:
+    position: left #控制看板娘位置
+    width: 150 #控制看板娘大小
+    height: 300 #控制看板娘大小
+  mobile:
+    show: true # 手机中是否展示
+
+#首页分类磁铁
+# hexo-butterfly-categories-card
+# see https://akilar.top/posts/a9131002/
+categoryBar:
+  enable: true # 开关
+  priority: 5 #过滤器优先权
+  enable_page: / # 应用页面
+  layout: # 挂载容器类型
+    type: id
+    name: recent-posts
+    index: 0
+  column: even # odd：3列 | even：4列
+  row: 1 #显示行数，默认两行，超过行数切换为滚动显示
+  message: 
+    - descr: #unity
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/32C0AE2D7CC8F7BDB318D890DAEDFAB6.gif
+    - descr: #工程
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/C43A524A91D4A987989BE85F8FC86776.gif
+    - descr: #RPG
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/759FC46D5BD8AF6ECFFC0431340327D6.gif
+    - descr: #随笔
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/2C53DA2C01B8F373A758330AC25381D5.gif
+    - descr: #算法
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/9B323EC1ACE225793F737D80FF811692.gif
+    #- descr: 挖坟
+      #cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/E603DDF6E5A5EAB4DA68B928F6FF8BEE.gif
+  custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
+
+# 双文章
+butterfly_article_double_row:
+  enable: true
