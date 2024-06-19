@@ -206,3 +206,5 @@ categoryBar:
 # 双文章
 butterfly_article_double_row:
   enable: true
+
+# 数学公式

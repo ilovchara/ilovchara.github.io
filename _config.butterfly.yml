@@ -415,8 +415,8 @@ rightside_item_order:
 
 # MathJax
 mathjax:
-  enable: false
-  per_page: false
+  enable: true
+  per_page: true
 
 # KaTeX
 katex:
@@ -1017,8 +1017,6 @@ inject:
     # 插入流星背景 - 只会在黑夜模式下才有 - 这里是蒙版
     - <link rel="stylesheet" href="/css/universe.css">
 
-    # 插入波浪
-    - <link rel="stylesheet" href="/css/wave.css">
 
     #插入加载动画风格
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_1.css" > # spinner-box风格样式文件
