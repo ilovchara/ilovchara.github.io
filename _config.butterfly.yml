@@ -174,12 +174,11 @@ anchor:
 # figcaption (圖片描述文字)
 # 图片下面有文件描述
 photofigcaption: false
-
 # copy settings
 # copyright: Add the copyright information after copied content
 #  (複製的內容後面加上版權信息)
 copy:
-  enable: true
+  enable: false
   copyright: 
     enable: true
     limit_count: 200
