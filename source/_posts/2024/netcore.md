@@ -592,7 +592,7 @@ namespace Blide.Models
             // 返回填充后的 DataTable 对象
             return dt;
         }
-		//初始化了数据库连接相关的属性
+  //初始化了数据库连接相关的属性
         public Functions()
         {
             // 链接字符串 - 这里的@的作用是什么 - 
@@ -1368,7 +1368,7 @@ namespace Blide.View.Admin
                 ErrMsg.InnerText = Ex.Message;
             }
         }
-		// 转化输出
+  // 转化输出
         int Key = 0;
         protected void UserGV_SelectedIndexChanged(object sender, EventArgs e)
         {
