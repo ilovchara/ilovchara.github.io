@@ -368,7 +368,7 @@ translate:
   # The text of a button
   default: 简
   # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
-  defaultEncoding: 1
+  defaultEncoding: 2
   # Time delay
   translateDelay: 0
   # The text of the button when the language is Simplified Chinese
@@ -814,11 +814,14 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)
 # 字体
+# ,-apple-system ,MONACO,"Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
+# 代码字体
+# , Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
 font:
   global-font-size:
-  code-font-size:
-  font-family: -apple-system ,MONACO, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
-  code-font-family: consolas, Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif
+  code-font-size: 
+  font-family: PingFang SC
+  code-font-family: consolas
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字-主网
