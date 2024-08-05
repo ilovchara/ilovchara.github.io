@@ -189,13 +189,13 @@ copy:
 # 文章
 # --------------------------------------
 
-# toc (目錄) - 主题配置文件
+# toc (目录) - 主题配置文件
 toc:
 # 文章是否显示toc
   post: true
   page: true
   # 是否显示章节数
-  number: true
+  number: false
   # 展开toc - 
   expand: false
   # 简单模式
@@ -384,14 +384,14 @@ readmode: true
 
 # dark mode - 黑夜模式切换
 darkmode: 
-  enable: flase
+  enable: ture
   # Toggle Button to switch dark/light mode
   button: dark
   # Switch dark/light mode automatically (自動切換 dark mode和 light mode)
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
-  autoChangeMode: flase
+  autoChangeMode: ture
   # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
   start:  6
   end:  18
@@ -732,7 +732,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景) - 网站背景
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/8-BFED8-A3-E9-CC90-D2-D68-BDFD4-B1495-FA0.jpg)
+background: url(https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%20background/58EEF357EE9EAF894F1A5447982E15C7.jpg?q-sign-algorithm=sha1&q-ak=AKID5hegLKmxUG3oGQK5R8kp_3ITXxrt6b4YNJieUNvhw_H54WSHRY4gS_sM3wkbhrOg&q-sign-time=1722866979;1722870579&q-key-time=1722866979;1722870579&q-header-list=host&q-url-param-list=ci-process&q-signature=3b7f07e898b0c06c16a43c85e739c02724cb73c7&x-cos-security-token=0L0YN150P6e95xVZHXmfPImDN3xlyMfa7e62f59433ebc0cf18e6fd9d30c1774fOzM_8u3fa4AJlGinq2U-4QiZsHEgkMZYnCQ3OTwUJMa12yQHrzMqFYxZggbmwS0D2xbf8EKf3VPfxcZDH14O9Ecb_kAkNzylK6Nl9rB6IERbJGqpUcXv1fWSSz9Y_mPo6OVM-dAhd47GfRDnYN_su2O77tL6oPxC3l-cgQy3HhD4vx1Zgzn7R4S-HzSnkt5E&ci-process=originImage)
 
 
 # Footer Background

@@ -199,12 +199,11 @@ categoryBar:
       cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/2C53DA2C01B8F373A758330AC25381D5.gif
     - descr: #算法
       cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/9B323EC1ACE225793F737D80FF811692.gif
-    #- descr: 挖坟
-      #cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/E603DDF6E5A5EAB4DA68B928F6FF8BEE.gif
+    - descr: 挖坟
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/E603DDF6E5A5EAB4DA68B928F6FF8BEE.gif
   custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
 
 # 双文章
 butterfly_article_double_row:
   enable: true
 
-# 数学公式
