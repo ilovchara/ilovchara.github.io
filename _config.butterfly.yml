@@ -732,7 +732,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景) - 网站背景
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%20background/58EEF357EE9EAF894F1A5447982E15C7.jpg?q-sign-algorithm=sha1&q-ak=AKID5hegLKmxUG3oGQK5R8kp_3ITXxrt6b4YNJieUNvhw_H54WSHRY4gS_sM3wkbhrOg&q-sign-time=1722866979;1722870579&q-key-time=1722866979;1722870579&q-header-list=host&q-url-param-list=ci-process&q-signature=3b7f07e898b0c06c16a43c85e739c02724cb73c7&x-cos-security-token=0L0YN150P6e95xVZHXmfPImDN3xlyMfa7e62f59433ebc0cf18e6fd9d30c1774fOzM_8u3fa4AJlGinq2U-4QiZsHEgkMZYnCQ3OTwUJMa12yQHrzMqFYxZggbmwS0D2xbf8EKf3VPfxcZDH14O9Ecb_kAkNzylK6Nl9rB6IERbJGqpUcXv1fWSSz9Y_mPo6OVM-dAhd47GfRDnYN_su2O77tL6oPxC3l-cgQy3HhD4vx1Zgzn7R4S-HzSnkt5E&ci-process=originImage)
+background: url(https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%20background/58EEF357EE9EAF894F1A5447982E15C7.jpg)
 
 
 # Footer Background
