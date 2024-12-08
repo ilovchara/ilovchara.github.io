@@ -204,7 +204,7 @@ anchor:
   auto_update: false # when you scroll in post, the URL will update according to header id. 当您滚动帖子时，URL 将根据标题 id 进行更新
 
 # figcaption (圖片描述文字)
-# 图片下面有文件描述
+# 图片描述
 photofigcaption: false
 
 
@@ -556,7 +556,7 @@ gitalk:
   admin:
   option:
 
-# valine
+# Hexo 网站 上启用 Valine 评论系统
 # https://valine.js.org
 valine:
   appId: # leancloud application app id
@@ -1124,6 +1124,7 @@ electric_clock:
   gaud_map_key: 58d4638ce2f98f04bd823cde6a2d5099 # 高得地图web服务key
   default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
   rectangle: 112.982279,28.19409 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
+
 
   option:
     # main_css:

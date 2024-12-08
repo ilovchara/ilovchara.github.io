@@ -44,7 +44,7 @@ external_link:
 filename_case: 0
 render_drafts: false
 
-#图片插入模式
+#图片插入模式 - 和typora的配置
 post_asset_folder: true
 marked:
   prependRoot: true
@@ -132,7 +132,7 @@ prism_plugin:
   theme: 'default'
   line_number: true # default false
 
-# 这个好像没实现
+#  Hexo 生成的站点内容同步到 Algolia 搜索引擎
 algolia:
   appId: "Z3MWKH4W0V"
   apiKey: "828a95db73a211e34eb00401aed977dd"
