@@ -190,17 +190,17 @@ categoryBar:
   row: 1 #显示行数，默认两行，超过行数切换为滚动显示
   message: 
     - descr: #unity
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/32C0AE2D7CC8F7BDB318D890DAEDFAB6.gif
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/28F87F812CAB57AADC65ED6FB4F15375.jpg
     - descr: #工程
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/C43A524A91D4A987989BE85F8FC86776.gif
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
     - descr: #RPG
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/759FC46D5BD8AF6ECFFC0431340327D6.gif
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
     - descr: #随笔
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/2C53DA2C01B8F373A758330AC25381D5.gif
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
     - descr: #算法
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/9B323EC1ACE225793F737D80FF811692.gif
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
     - descr: #挖坟
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/E603DDF6E5A5EAB4DA68B928F6FF8BEE.gif
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
   custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
 
 # 双文章
