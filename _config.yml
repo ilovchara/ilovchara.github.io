@@ -194,13 +194,13 @@ categoryBar:
     - descr: #工程
       cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
     - descr: #RPG
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/4259A87EEC21A63C6A0B253662353793.jpg
     - descr: #随笔
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/7101882D834912265C149F0572070521.jpg
     - descr: #算法
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/810B85D60844ED8AA79C5F0741A43D5C.jpg
     - descr: #挖坟
-      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/2EDE4BC7B83FBA72B9468138EB08F703.jpg
+      cover: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/new_picture/CAE98F82A024A5EC477651C4BEB5CFB7.jpg
   custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
 
 # 双文章
