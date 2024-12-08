@@ -1,6 +1,3 @@
-# Navigation bar settings (導航欄設置)
-# see https://butterfly.js.org/posts/4aa8abbe/##導航欄設置-Navigation-bar-settings
-# --------------------------------------
 
 # 导航栏设置
 nav:
@@ -1032,9 +1029,6 @@ flink_style:  flexcard # butterfly | volantis | flexcard
   #flink: source\picture\img\Vigus.jpg # 头像失效替换图
   #post_page: source\picture\notwo\112652215_p0_master1200.jpg # 站点缩略图
 
-
-
-
 # Inject - 插入
 inject:
 # css放在head部分
@@ -1042,45 +1036,28 @@ inject:
     # 图源
     - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4222343_dr0clxta0zj.css">
     
-    # 代码高亮  
-    #- <link rel="stylesheet" href="/css/code_demo/vscode_dark.css">
-
-    # 引入- https://blog.antmoe.com/posts/a811d614/#post-comment
-    #- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/static-butterfly/dist/css/index.min.css">
-    
     # 导航栏
     - <link rel="stylesheet" href="/css/comment/Navigation_Bar.css">
     
-    # 自定义css文件 themes\butterfly\source\css\self.css
+    # 自定义css文件
     - <link rel="stylesheet" href="/css/comment/self.css">
 
     # 插入流星背景 - 只会在黑夜模式下才有 - 这里是蒙版
     - <link rel="stylesheet" href="/css/universe.css">
 
-
     #插入加载动画风格
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_1.css" > # spinner-box风格样式文件
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_2.css" > # gear风格样式文件
-
-    # 友联添加 kslink
-    #- <link rel="stylesheet" href="/css/kslink.css">
 
 # js放在bottom处
   bottom:
     # 引入jquery - js素材
     - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> #一定要放在所有引入的js前面！！！
-    # 自定义js
-    #- <script data - pjax type = "text/javascript" src = "/js/{demo}.js" ></script >
-    
+
     # 流星背景 - 暗夜才有效果 - 这里是执行函数
     - <canvas id="universe"></canvas>
     - <script defer src="/js/universe.js"></script>
 
-    #友联样式
-    #- <script defer src="/js/kslink.js"></script>
-
-
-  
 # 非必要請不要修改
 CDN:
   # The CDN provider of internal scripts (主題內部 js 的 cdn 配置)
@@ -1101,7 +1078,7 @@ CDN:
   custom_format:
 
 
-# hexo-butterfly-swiper
+# hexo-butterfly-swiper - 轮播图
 # see https://akilar.top/posts/8e1264d1/
 #--- 模版
 #title: 文章标题
@@ -1126,7 +1103,7 @@ swiper:
   custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁
   custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
 
-# electric_clock
+# electric_clock - 时钟梅花
 # see https://blog.anheyu.com/posts/fc18.html
 electric_clock:
   enable: true # 开关
@@ -1147,9 +1124,6 @@ electric_clock:
   gaud_map_key: 58d4638ce2f98f04bd823cde6a2d5099 # 高得地图web服务key
   default_rectangle: true # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
   rectangle: 112.982279,28.19409 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
-
-
-
 
   option:
     # main_css:
