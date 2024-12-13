@@ -1,8 +1,7 @@
 ---
 title: git基本命令
 date: 2023-10-06 17:17:32
-tags: 工程
-categories: 工程
+categories: 常识
 ---
 
 # Git常见命令
