@@ -1,7 +1,6 @@
 ---
 title: 谷歌恐龙小游戏复刻
 date: 2024-02-02 13:20:14
-tags: 工程
 categories: unity
 typora-root-url: ./Complete-Tutorial
 ---

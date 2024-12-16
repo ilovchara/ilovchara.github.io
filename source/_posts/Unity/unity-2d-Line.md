@@ -3,7 +3,6 @@ title: 画线小游戏(粗略)
 date: 2023-10-12 14:19:34
 categories: unity
 typora-root-url: ./unity-2d-Line
-hidden: false
 ---
 
 ## 菜单搭建

@@ -2,7 +2,6 @@
 title: .netcore
 date: 2023-09-21 22:32:05
 tags: 工程
-hidden: false
 typora-root-url: ./netcore
 
 ---

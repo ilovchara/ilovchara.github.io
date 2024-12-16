@@ -946,7 +946,7 @@ public GameObject projectilePrefab;
 >
 >    ```c#
 >    public GameObject enemyPrefab;
->                            
+>                               
 >    void StartWave()
 >    {
 >        for (int i = 0; i < 5; i++)
@@ -1528,6 +1528,4 @@ public class HealthCollectible : MonoBehaviour
 ![image-20240130201954042](./image-20240130201954042-1733659296275-106.png)
 
 然后踩水果就有音效了。教程到这里游戏就完成了！
-
-## 打包运行
 
