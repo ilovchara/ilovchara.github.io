@@ -1,7 +1,8 @@
 ---
 title: vscode适配unity
 date: 2024-12-13 21:06:36
-tags: 工程
+tags: 基础
+categories: 部署相关
 ---
 
 ## [**VSCode配置Unity运行环境**](https://www.bilibili.com/opus/851037968618487810)

@@ -1,7 +1,7 @@
 ---
 title: 横板移动游戏(Ruby)
 date: 2024-01-18 11:02:38
-categories: RPG
+categories: unity
 typora-root-url: ./Fox
 ---
 

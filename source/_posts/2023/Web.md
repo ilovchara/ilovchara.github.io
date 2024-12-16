@@ -1,7 +1,7 @@
 ---
-title: 前端三件套 - 简单介绍
+title: 前端三件套
 date: 2023-04-30 22:39:00
-categories: 常识
+categories: 基础
 typora-root-url: Web
 swiper_index: 6
 ---

@@ -1,7 +1,7 @@
 ---
 title: git基本命令
 date: 2023-10-06 17:17:32
-categories: 常识
+categories: 基础
 ---
 
 # Git常见命令
