@@ -7,7 +7,7 @@ title: Jane Website
 # 副标题
 subtitle: 'Keep doing the hard things'
 # 描述
-description: '一个菜鸟刚搭的网站'
+description: 
 keywords:
 author: chara
 language: zh-CN
@@ -179,7 +179,7 @@ live2d:
 # hexo-butterfly-categories-card
 # see https://akilar.top/posts/a9131002/
 categoryBar:
-  enable: true # 开关
+  enable: false # 开关
   priority: 5 #过滤器优先权
   enable_page: / # 应用页面
   layout: # 挂载容器类型
