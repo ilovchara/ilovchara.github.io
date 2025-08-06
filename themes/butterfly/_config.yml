@@ -11,11 +11,8 @@ menu:
   时间轴: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  #清单||fa fa-heartbeat:
-    #个人笔记: /eassy/ || iconfont icon-xiuxianqu
-    #研究记录: /open/ || iconfont icon-huikequ
   友链: /link/ || fas fa-link
-  #关于: /about/ || fas fa-heart
+
 
 # Code Blocks 代码框
 # --------------------------------------
@@ -762,7 +759,7 @@ tag_ui: # 留空或 index
 
 # Website Background (設置網站背景) - 网站背景
 # can set it to color or image (可設置圖片 或者 顔色)
-# The formal of image: url(http://xxxxxx.com/xxx.jpg)
+# The formal of image: url(http://xxxxxx.com/xxx.jpg) - 一图流
 background: url(https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%20background/58EEF357EE9EAF894F1A5447982E15C7.jpg)
 
 
@@ -1036,6 +1033,8 @@ inject:
     - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4222343_dr0clxta0zj.css">
     # 导航栏
     - <link rel="stylesheet" href="/css/comment/Navigation_Bar.css">
+    # 安知鱼
+    - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
     
 
 # js放在bottom处
@@ -1143,7 +1142,3 @@ electric_clock:
     # artalk_css:
     # busuanzi:
     # abcjs_basic_js:
-
-
-
-
