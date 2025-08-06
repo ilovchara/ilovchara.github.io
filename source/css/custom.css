@@ -186,7 +186,7 @@ div#category {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #3b70fc;
+  background-color: #45627e;
   border-radius: 2em;
 }
 
@@ -196,7 +196,7 @@ div#category {
 
 ::-moz-selection {
   color: #fff;
-  background-color: #3b70fc;
+  background-color: #45627e;
 }
 
 /* 音乐播放器 */
@@ -367,4 +367,10 @@ div#category {
 /* 代码框主题 */
 #article-container figure.highlight {
   border-radius: 10px;
+}
+
+/* 加载图片 */
+.loading-img {
+  background: url(/picture/img/Vigus.jpg) no-repeat center center;
+  background-size: cover;
 }
