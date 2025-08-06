@@ -760,7 +760,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景) - 网站背景
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg) - 一图流
-background: url(https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%20background/58EEF357EE9EAF894F1A5447982E15C7.jpg)
+background: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%20background/58EEF357EE9EAF894F1A5447982E15C7.jpg 
 
 
 # Footer Background
