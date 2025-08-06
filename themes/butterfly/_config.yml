@@ -1034,28 +1034,14 @@ inject:
   head:
     # 图源
     - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4222343_dr0clxta0zj.css">
-    
     # 导航栏
     - <link rel="stylesheet" href="/css/comment/Navigation_Bar.css">
     
-    # 自定义css文件
-    - <link rel="stylesheet" href="/css/comment/self.css">
-
-    # 插入流星背景 - 只会在黑夜模式下才有 - 这里是蒙版
-    - <link rel="stylesheet" href="/css/universe.css">
-
-    #插入加载动画风格
-    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_1.css" > # spinner-box风格样式文件
-    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_2.css" > # gear风格样式文件
 
 # js放在bottom处
   bottom:
-    # 引入jquery - js素材
-    - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> #一定要放在所有引入的js前面！！！
 
-    # 流星背景 - 暗夜才有效果 - 这里是执行函数
-    - <canvas id="universe"></canvas>
-    - <script defer src="/js/universe.js"></script>
+
 
 # 非必要請不要修改
 CDN:
@@ -1076,31 +1062,6 @@ CDN:
   # For example: https://cdn.staticfile.org/${cdnjs_name}/${version}/${min_cdnjs_file}
   custom_format:
 
-
-# hexo-butterfly-swiper - 轮播图
-# see https://akilar.top/posts/8e1264d1/
-#--- 模版
-#title: 文章标题
-#date: 创建日期
-#updated: 更新日期
-#cover: 文章封面
-#description: 文章描述
-#swiper_index: 1 #置顶轮播图顺序，非负整数，数字越大越靠前
-#---
-swiper:
-  enable: false # 开关
-  priority: 5 #过滤器优先权
-  enable_page: all # 应用页面
-  timemode: date #date/updated
-  layout: # 挂载容器类型
-    type: id
-    name: recent-posts
-    index: 0
-  default_descr: 莫得描述
-  swiper_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css #swiper css依赖
-  swiper_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js #swiper js依赖
-  custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁
-  custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
 
 # electric_clock - 时钟梅花
 # see https://blog.anheyu.com/posts/fc18.html
@@ -1186,5 +1147,3 @@ electric_clock:
 
 
 
-
-    
