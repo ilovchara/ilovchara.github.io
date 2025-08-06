@@ -1,7 +1,3 @@
-# Navigation bar settings (導航欄設置)
-# see https://butterfly.js.org/posts/4aa8abbe/##導航欄設置-Navigation-bar-settings
-# --------------------------------------
-
 # 导航栏设置
 nav:
   logo: # image # 网站的logo图片
@@ -128,6 +124,41 @@ cover:
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/31F76777764988677EFAA3363BB0712D.gif
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/28B007F45985CB50A2AA385B0A87C087.gif
     - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/blog/8AE5585D648F87815E0F0F2A00F6E12D.gif
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/01B8041F09202CDCA3D389E07D3C7D93.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/027CE19889ACDA3F68B132926D5C9109.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/089D8B1B51539BD5630D657AE11B203A.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/0C7EEBB8A9CB578A9CD9403D71BE1F79.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/146E03A501C8A86E2DB606B2BB2EB420.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/1BBA1DC5626F2D4866EAC16D06EEE553.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/299561575721641311FC9C8708167CF8.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/310C21AFC9086485CC8C6910A05EAF21.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/370CB75FFDE22FFA13D88E3EEBAFB343.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/3DA904356800BF6BD21FC11C58D60B67.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/423A69BEDB242B3D1567AEBF7286B148.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/4429D29D5733DB535686DB1635C29761.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/5179595DCF8D5EB9BD156CF08F8B65AB.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/532E35901B7A525ADFA537FFDB07D4C4.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/5473D8E6020CD76E6943A6DC62D49B73.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/57A8CED96867023BF06599AC505F229A.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/59B01A89C904486D7D3D0FD9F3365CF2.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/59B01A89C904486D7D3D0FD9F3365CF2.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/631B6DD5A780294838BC5F8FE89CF50A.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/65DFEBC001CDB6F023172F273E9E71B0.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/68664A6BEC1A173A3E9A0857054AB917.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/79950E3EDBF103B7A1A9D3740682D6D4.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/7AE121785229302A5DA01F58DE6CD3DA.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/7C7421DC9443E3A032D2868371C63E66.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/874A1CCBA1750CF4D9FE66C1A9B51DAE.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/8D29F507503137927380D5B5E1E28512.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/8F4AC35222AC44173F79BD24D3B50E81.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/961B3B808EABB81C32062905CE7B46FA.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/9810FA1787A058BBB0C0BE88C19010B5.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/9A8AE3693D63DBE554C86652A26A16B5.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/9D645D40EA21BD832459F12A3BCBF96B.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/9E034CA682A1AA9ADEE1B009646E8361.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/A4D73F6B904A70C9B1663158520872A8.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/A86433961C255799A5D9D4572E1CB773.jpg
+    - https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/F3168DAF92C10F917C16C08DD086510C.jpg
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
   flink: img/111119755_p0_master1200.jpg
@@ -172,12 +203,14 @@ anchor:
   auto_update: false # when you scroll in post, the URL will update according to header id. 当您滚动帖子时，URL 将根据标题 id 进行更新
 
 # figcaption (圖片描述文字)
-# 图片下面有文件描述
+# 图片描述
 photofigcaption: false
+
+
+
 # copy settings
 # copyright: Add the copyright information after copied content
 #  (複製的內容後面加上版權信息)
-
 copy:
   enable: true
   copyright: 
@@ -187,13 +220,13 @@ copy:
 # 文章
 # --------------------------------------
 
-# toc (目錄) - 主题配置文件
+# toc (目录) - 主题配置文件
 toc:
 # 文章是否显示toc
   post: true
   page: true
   # 是否显示章节数
-  number: true
+  number: false
   # 展开toc - 
   expand: false
   # 简单模式
@@ -382,14 +415,14 @@ readmode: true
 
 # dark mode - 黑夜模式切换
 darkmode: 
-  enable: flase
+  enable: ture
   # Toggle Button to switch dark/light mode
   button: dark
   # Switch dark/light mode automatically (自動切換 dark mode和 light mode)
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
-  autoChangeMode: flase
+  autoChangeMode: ture
   # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
   start:  6
   end:  18
@@ -522,7 +555,7 @@ gitalk:
   admin:
   option:
 
-# valine
+# Hexo 网站 上启用 Valine 评论系统
 # https://valine.js.org
 valine:
   appId: # leancloud application app id
@@ -803,7 +836,7 @@ ClickShowText:
 
 # Default display mode (網站默認的顯示模式) - 设定为黑夜模式
 # light (default) / dark
-display_mode: light
+display_mode: dark
 
 # Beautify (美化頁面顯示)
 beautify:
@@ -995,9 +1028,6 @@ flink_style:  flexcard # butterfly | volantis | flexcard
   #flink: source\picture\img\Vigus.jpg # 头像失效替换图
   #post_page: source\picture\notwo\112652215_p0_master1200.jpg # 站点缩略图
 
-
-
-
 # Inject - 插入
 inject:
 # css放在head部分
@@ -1005,45 +1035,28 @@ inject:
     # 图源
     - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4222343_dr0clxta0zj.css">
     
-    # 代码高亮  
-    #- <link rel="stylesheet" href="/css/code_demo/vscode_dark.css">
-
-    # 引入- https://blog.antmoe.com/posts/a811d614/#post-comment
-    #- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/static-butterfly/dist/css/index.min.css">
-    
     # 导航栏
     - <link rel="stylesheet" href="/css/comment/Navigation_Bar.css">
     
-    # 自定义css文件 themes\butterfly\source\css\self.css
+    # 自定义css文件
     - <link rel="stylesheet" href="/css/comment/self.css">
 
     # 插入流星背景 - 只会在黑夜模式下才有 - 这里是蒙版
     - <link rel="stylesheet" href="/css/universe.css">
 
-
     #插入加载动画风格
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_1.css" > # spinner-box风格样式文件
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@latest/hexo/css/loading_style_2.css" > # gear风格样式文件
-
-    # 友联添加 kslink
-    #- <link rel="stylesheet" href="/css/kslink.css">
 
 # js放在bottom处
   bottom:
     # 引入jquery - js素材
     - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> #一定要放在所有引入的js前面！！！
-    # 自定义js
-    #- <script data - pjax type = "text/javascript" src = "/js/{demo}.js" ></script >
-    
+
     # 流星背景 - 暗夜才有效果 - 这里是执行函数
     - <canvas id="universe"></canvas>
     - <script defer src="/js/universe.js"></script>
 
-    #友联样式
-    #- <script defer src="/js/kslink.js"></script>
-
-
-  
 # 非必要請不要修改
 CDN:
   # The CDN provider of internal scripts (主題內部 js 的 cdn 配置)
@@ -1064,7 +1077,7 @@ CDN:
   custom_format:
 
 
-# hexo-butterfly-swiper
+# hexo-butterfly-swiper - 轮播图
 # see https://akilar.top/posts/8e1264d1/
 #--- 模版
 #title: 文章标题
@@ -1075,7 +1088,7 @@ CDN:
 #swiper_index: 1 #置顶轮播图顺序，非负整数，数字越大越靠前
 #---
 swiper:
-  enable: true # 开关
+  enable: false # 开关
   priority: 5 #过滤器优先权
   enable_page: all # 应用页面
   timemode: date #date/updated
@@ -1089,7 +1102,7 @@ swiper:
   custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁
   custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
 
-# electric_clock
+# electric_clock - 时钟梅花
 # see https://blog.anheyu.com/posts/fc18.html
 electric_clock:
   enable: true # 开关
@@ -1108,10 +1121,8 @@ electric_clock:
   ip_api: https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0
   qweather_key: ee3d7f610b85431d891a12105f573ae6 # 和风天气key
   gaud_map_key: 58d4638ce2f98f04bd823cde6a2d5099 # 高得地图web服务key
-  default_rectangle: true # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
+  default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
   rectangle: 112.982279,28.19409 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
-
-
 
 
   option:
