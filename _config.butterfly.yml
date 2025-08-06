@@ -710,6 +710,19 @@ site_verification:
   # - name: baidu-site-verification
   #   content: xxxxxxx
 
+
+# 页面布局
+# Article layout on the homepage
+# 1: Cover on the left, info on the right
+# 2: Cover on the right, info on the left
+# 3: Cover and info alternate between left and right
+# 4: Cover on top, info on the bottom
+# 5: Info displayed on the cover
+# 6: Masonry layout - Cover on top, info on the bottom
+# 7: Masonry layout - Info displayed on the cover
+index_layout: 6
+
+
 # Beautify/Effect (美化/效果)
 # --------------------------------------
 
