@@ -759,7 +759,7 @@ tag_ui: # 留空或 index
 
 # Website Background (設置網站背景) - 网站背景
 # can set it to color or image (可設置圖片 或者 顔色)
-# The formal of image: url(http://xxxxxx.com/xxx.jpg)
+# The formal of image: url(http://xxxxxx.com/xxx.jpg) - 一图流
 background: url(https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%20background/58EEF357EE9EAF894F1A5447982E15C7.jpg)
 
 
@@ -1033,6 +1033,8 @@ inject:
     - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4222343_dr0clxta0zj.css">
     # 导航栏
     - <link rel="stylesheet" href="/css/comment/Navigation_Bar.css">
+    # 安知鱼
+    - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
     
 
 # js放在bottom处
