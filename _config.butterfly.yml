@@ -52,7 +52,7 @@ disable_top_img: false
 index_img:
 
 # 默认图片 
-default_top_img: /picture/img/miku.jpg
+default_top_img: https://blog-1324437773.cos.ap-nanjing.myqcloud.com/%20background/58EEF357EE9EAF894F1A5447982E15C7.jpg
 
 # 归档页面的图片 - 就是目录 - 你写文章的记录
 archive_img: /picture/img/miku.jpg
