@@ -593,7 +593,7 @@ facebook_comments:
 # Twikoo - 评论
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId: https://chara-twwikoo.wniee.cn/
+  envId: 
   region:
   visitor: false
   option:
